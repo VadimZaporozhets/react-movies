@@ -7,16 +7,12 @@ const rootEl = document.getElementById('root');
 const element = React.createElement(
     'div',
     null,
-        React.createElement(
-            'h1',
-            null,
-            'Generally I am React.createElement'
-        ),
-        <App/>
-    );
+    React.createElement(
+        'h1',
+        null,
+        'Generally I am React.createElement'
+    ),
+    <App/>
+);
 
 render(element, rootEl);
-
-if (module.hot) {
-    module.hot.accept();
-}

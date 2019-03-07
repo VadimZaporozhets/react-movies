@@ -5,12 +5,10 @@ import {
     Pure
 } from './components';
 
-export const App = () => {
-  return (
-      <>
+export const App = () => (
+    <>
         <GeneralComponent/>
         <Pure/>
         <FunctionalComponent/>
-      </>
-  )
-};
+    </>
+);
