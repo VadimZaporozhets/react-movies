@@ -1,4 +1,4 @@
-#React movies DB
+# React movies DB
 
 To launch app first of all install all packages by use of command:
  
