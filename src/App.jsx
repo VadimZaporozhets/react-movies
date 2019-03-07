@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-    GeneralComponent,
-    FunctionalComponent,
-    Pure
-} from './components';
+import { GeneralComponent, FunctionalComponent, Pure } from './components';
 
 export const App = () => (
     <>
-        <GeneralComponent/>
-        <Pure/>
-        <FunctionalComponent/>
+        <GeneralComponent />
+        <Pure />
+        <FunctionalComponent />
     </>
 );

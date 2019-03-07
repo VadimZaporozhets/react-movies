@@ -1,9 +1,5 @@
-import {GeneralComponent} from './Component';
-import {FunctionalComponent} from './FunctionalComponent';
-import {Pure} from './PureComponent';
+import { GeneralComponent } from './Component';
+import { FunctionalComponent } from './FunctionalComponent';
+import { Pure } from './PureComponent';
 
-export {
-    GeneralComponent,
-    FunctionalComponent,
-    Pure
-};
+export { GeneralComponent, FunctionalComponent, Pure };
