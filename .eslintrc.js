@@ -21,21 +21,5 @@ module.exports = {
     ],
     "rules": {
         "prettier/prettier": "error"
-        // "indent": [
-        //     "error",
-        //     4
-        // ],
-        // "linebreak-style": [
-        //     "error",
-        //     "windows"
-        // ],
-        // "quotes": [
-        //     "error",
-        //     "single"
-        // ],
-        // "semi": [
-        //     "error",
-        //     "always"
-        // ]
     }
 };
