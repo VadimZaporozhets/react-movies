@@ -1,16 +1,10 @@
 import React from 'react';
-import GeneralComponent from './components/Component';
-import FunctionalComponent from './components/FunctionalComponent';
-import PureComponent from './components/PureComponent';
+import { GeneralComponent, FunctionalComponent, Pure } from './components';
 
-const App = () => {
-  return (
-      <>
-        <GeneralComponent/>
-        <PureComponent/>
-        <FunctionalComponent/>
-      </>
-  )
-};
-
-export default App;
+export const App = () => (
+    <>
+        <GeneralComponent />
+        <Pure />
+        <FunctionalComponent />
+    </>
+);
