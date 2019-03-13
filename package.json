@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open --hot"
+    "test": "jest",
+    "coverage": " jest --coverage --ci"
   },
   "author": "Vadym Zaporozhets",
   "license": "ISC",
@@ -36,5 +37,17 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

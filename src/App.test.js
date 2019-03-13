@@ -1,9 +1,11 @@
 import React from 'react';
-import {App} from './App';
+import { App } from './App';
 import renderer from 'react-test-renderer';
 
-it('renders correctly', () => {
-    const component = renderer.create(<App/>).toJSON();
+describe('App component', () => {
+    it('should render app container', () => {
+        const wrapper = renderer.create(<App />).toJSON();
 
-    expect(component).toMatchSnapshot();
+        expect(wrapper).toMatchSnapshot();
+    });
 });
