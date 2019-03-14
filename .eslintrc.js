@@ -19,6 +19,6 @@ module.exports = {
     plugins: ['react', 'prettier'],
     rules: {
         'prettier/prettier': 'error',
-        'eol-last': ['error', 'never'],
+        'eol-last': ['error', 'always'],
     }
 };
