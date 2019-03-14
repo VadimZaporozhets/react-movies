@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render app container 1`] = `
+Array [
+  <h2>
+    Hello from Component
+  </h2>,
+  <h2>
+    Hello from Pure Component
+  </h2>,
+  <h2>
+    Hello from functional Component
+  </h2>,
+]
+`;
