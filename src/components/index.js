@@ -1,5 +1,3 @@
-import { GeneralComponent } from './Component';
-import { FunctionalComponent } from './FunctionalComponent';
-import { Pure } from './PureComponent';
+import { MovieTilesPane } from './MovieTilesPane';
 
-export { GeneralComponent, FunctionalComponent, Pure };
+export { MovieTilesPane };
