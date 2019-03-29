@@ -1,7 +1,8 @@
 import React from 'react';
-import { MovieTilesPane } from '../../components';
-import { BackNavigation, MovieDetails } from './components';
-import { getMovies, getMovieDetails } from '../../data/Movies';
+import { MovieTilesPane } from '../components';
+import { BackNavigation } from './BackNavigation';
+import { MovieDetails } from './MovieDetails';
+import { getMovies, getMovieDetails } from '../data/Movies';
 
 const movies = getMovies();
 const details = getMovieDetails();

@@ -1,7 +1,8 @@
 import React from 'react';
-import { MovieTilesPane } from '../../components';
-import { SearchPanel, SortResultsPanel } from './components';
-import { getMovies } from '../../data/Movies';
+import { MovieTilesPane } from '../components';
+import { SearchPanel } from './SearchPanel';
+import { SortResultsPanel } from './SortResultsPannel';
+import { getMovies } from '../data/Movies';
 
 const movies = getMovies();
 

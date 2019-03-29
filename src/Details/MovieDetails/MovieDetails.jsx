@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import PropTypes from 'prop-types';
-import { emptyImageUrl } from '../../../../data/Movies/mockData';
+import { emptyImageUrl } from '../../data/Movies/mockData';
 
 export const MovieDetails = ({
     imageUrl,

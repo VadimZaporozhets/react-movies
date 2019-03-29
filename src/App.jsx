@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { HomeScene, DetailsScene } from './scenes';
+import { HomeScene } from './Home';
+import { DetailsScene } from './Details';
 
 export class App extends Component {
     constructor(props) {
