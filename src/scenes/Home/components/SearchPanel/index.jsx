@@ -9,7 +9,7 @@ export const SearchPanel = () => (
         <Grid xs={12} item>
             <Paper elevation={1} style={{ padding: 20 }}>
                 <SearchInputSubmit />
-                <SearchCategories />
+                <SearchCategories searchBy="Title" />
             </Paper>
         </Grid>
     </Grid>

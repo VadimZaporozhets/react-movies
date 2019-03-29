@@ -9,9 +9,18 @@ export const MovieTilesPane = ({ movies, title }) => (
         <Grid item xs={12}>
             <Typography variant="h4">{title}</Typography>
         </Grid>
-        {movies.map((movie, index) => (
-            <MovieTile key={index} {...movie} />
-        ))}
+        {movies.map(movie => {
+            const { imageSrc, title, releaseYear, genres, id } = movie;
+            return (
+                <MovieTile
+                    key={id}
+                    imageSrc={imageSrc}
+                    title={title}
+                    releaseYear={releaseYear}
+                    genres={genres}
+                />
+            );
+        })}
     </Grid>
 );
 
