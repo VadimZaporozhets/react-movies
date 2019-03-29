@@ -1,3 +1,3 @@
-import { SortResultsPanel } from './SortResultsPannel';
+import { SortResultsPanel } from './SortResultsPanel';
 
 export { SortResultsPanel };

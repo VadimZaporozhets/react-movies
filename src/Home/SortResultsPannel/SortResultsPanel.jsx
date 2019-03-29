@@ -3,11 +3,12 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import './SortResultsPanel.css';
 
 export const SortResultsPanel = () => (
     <Grid container spacing={40}>
         <Grid item xs={12}>
-            <Paper style={{ marginBottom: 20, padding: 20 }} elevation={1}>
+            <Paper className="paper-wrapper" elevation={1}>
                 <Grid container spacing={40}>
                     <Grid container alignItems="center" item sm={12} md={6}>
                         <Typography variant="button">
@@ -16,7 +17,7 @@ export const SortResultsPanel = () => (
                     </Grid>
                     <Grid item sm={12} md={6}>
                         <Typography
-                            style={{ marginRight: 20 }}
+                            className="margin-right"
                             inline
                             gutterBottom
                             variant="button"
@@ -24,7 +25,7 @@ export const SortResultsPanel = () => (
                             Sort by:
                         </Typography>
                         <Button
-                            style={{ marginRight: 20 }}
+                            className="margin-right"
                             variant="outlined"
                             size="small"
                             color="primary"
