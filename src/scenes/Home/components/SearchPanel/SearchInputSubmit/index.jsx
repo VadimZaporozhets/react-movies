@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button/index';
 import TextField from '@material-ui/core/TextField';
 
 export const SearchInputSubmit = () => (
-    <Grid style={{ paddingTop: 20 }} container spacing={40}>
+    <Grid container spacing={40}>
         <Grid sm={12} md={8} lg={10} item>
             <TextField placeholder="Search" fullWidth />
         </Grid>

@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { MovieTilesPane } from '../../components';
+import { BackNavigation, MovieDetails } from './components';
+
+const moviesArray = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 export const DetailsScene = () => (
-    <>
-        <div>Details Scene</div>
-        <Link to="/">Home</Link>
-    </>
+    <main style={{ width: 'auto', margin: '0 24px' }}>
+        <BackNavigation />
+        <MovieDetails />
+        <MovieTilesPane title="Films by this genre:" movies={moviesArray} />
+    </main>
 );

@@ -1,4 +1,4 @@
 import { SearchPanel } from './SearchPanel';
-import { SortResultsPannel } from './SortResultsPannel';
+import { SortResultsPanel } from './SortResultsPannel';
 
-export { SearchPanel, SortResultsPannel };
+export { SearchPanel, SortResultsPanel };

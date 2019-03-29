@@ -1,15 +1,13 @@
 import React from 'react';
 import { MovieTilesPane } from '../../components';
-import { Link } from 'react-router-dom';
-import { SearchPanel, SortResultsPannel } from './components';
+import { SearchPanel, SortResultsPanel } from './components';
 
 const moviesArray = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 export const HomeScene = () => (
-    <main style={{ width: 1100, maxWidth: '100%', margin: '0 auto' }}>
+    <main style={{ width: 'auto', margin: '0 24px' }}>
         <SearchPanel />
-        <SortResultsPannel />
-        <MovieTilesPane movies={moviesArray} />
-        <Link to={'/details'}>Details</Link>
+        <SortResultsPanel />
+        <MovieTilesPane title="Found results:" movies={moviesArray} />
     </main>
 );
