@@ -4,30 +4,31 @@ import { HomeScene } from './Home';
 import { DetailsScene } from './Details';
 
 export class App extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { error: false, errorInfo: null };
-    }
+    state = {
+        error: false,
+        errorInfo: null
+    };
 
     componentDidCatch(error, errorInfo) {
         this.setState({
-            errorInfo: errorInfo
+            errorInfo
         });
     }
 
     render() {
+        const { errorInfo } = this.state;
+
         if (this.state.errorInfo) {
-            return <h2>{this.state.errorInfo}</h2>;
-        } else {
-            return (
-                <Router>
-                    <Switch>
-                        <Route path="/" exact component={HomeScene} />
-                        <Route path="/details" exact component={DetailsScene} />
-                    </Switch>
-                </Router>
-            );
+            return <h2>{errorInfo}</h2>;
         }
+
+        return (
+            <Router>
+                <Switch>
+                    <Route path="/" exact component={HomeScene} />
+                    <Route path="/details" exact component={DetailsScene} />
+                </Switch>
+            </Router>
+        );
     }
 }

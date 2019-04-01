@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { array, string } from '../../propTypes';
 import { MovieTile } from './MovieTile';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-export const MovieTilesPane = ({ movies, title }) => (
-    <Grid container spacing={40}>
-        <Grid item xs={12}>
-            <Typography variant="h4">{title}</Typography>
-        </Grid>
-        {movies.map(movie => {
+export class MovieTilesPane extends Component {
+    renderMovieTiles = () => {
+        const { movies } = this.props;
+
+        return movies.map(movie => {
             const { imageSrc, title, releaseYear, genres, id } = movie;
             return (
                 <MovieTile
@@ -20,9 +19,21 @@ export const MovieTilesPane = ({ movies, title }) => (
                     genres={genres}
                 />
             );
-        })}
-    </Grid>
-);
+        });
+    };
+
+    render() {
+        const { title } = this.props;
+        return (
+            <Grid container spacing={40}>
+                <Grid item xs={12}>
+                    <Typography variant="h4">{title}</Typography>
+                </Grid>
+                {this.renderMovieTiles()}
+            </Grid>
+        );
+    }
+}
 
 MovieTilesPane.propTypes = {
     movies: array.isRequired,
