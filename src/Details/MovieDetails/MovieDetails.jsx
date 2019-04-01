@@ -3,10 +3,13 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
-import PropTypes from 'prop-types';
 import { emptyImageUrl } from '../../data/Movies/mockData';
+import { withStyles } from '@material-ui/core/styles';
+import { object, string, number, arrayOf } from '../../propTypes';
+import { MovieDetailsStyles as styles } from './MovieDetailsStyles';
 
-export const MovieDetails = ({
+const MovieDetailsComponent = ({
+    classes,
     imageUrl,
     title,
     rating,
@@ -14,13 +17,13 @@ export const MovieDetails = ({
     genres,
     description
 }) => (
-    <Grid style={{ marginBottom: 20 }} container spacing={40}>
+    <Grid className={classes.marginBottom} container spacing={40}>
         <Grid item xs={12}>
-            <Paper elevation={1} style={{ padding: 20 }}>
+            <Paper elevation={1} className={classes.wrapper}>
                 <Grid container spacing={40}>
                     <Grid item xs={12} md={4}>
                         <img
-                            style={{ maxWidth: '100%' }}
+                            className={classes.image}
                             src={imageUrl ? imageUrl : emptyImageUrl}
                             alt={title}
                         />
@@ -52,7 +55,7 @@ export const MovieDetails = ({
                         >
                             <Badge badgeContent={4.5} color="primary">
                                 <Typography
-                                    style={{ paddingRight: 20 }}
+                                    className={classes.badge}
                                     variant="button"
                                 >
                                     {rating}
@@ -71,7 +74,7 @@ export const MovieDetails = ({
                                         return (
                                             <Typography
                                                 key={genre}
-                                                style={{ marginRight: 10 }}
+                                                className={classes.genre}
                                                 variant="button"
                                                 inline
                                             >
@@ -91,11 +94,14 @@ export const MovieDetails = ({
     </Grid>
 );
 
-MovieDetails.propTypes = {
-    imageUrl: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number,
-    releaseYear: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    description: PropTypes.string
+MovieDetailsComponent.propTypes = {
+    classes: object.isRequired,
+    imageUrl: string,
+    title: string.isRequired,
+    rating: number,
+    releaseYear: string,
+    genres: arrayOf(string),
+    description: string
 };
+
+export const MovieDetails = withStyles(styles)(MovieDetailsComponent);

@@ -1,19 +1,27 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid/index';
 import Card from '@material-ui/core/Card/index';
 import CardContent from '@material-ui/core/CardContent/index';
 import CardMedia from '@material-ui/core/CardMedia/index';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { string, arrayOf, object } from '../../../propTypes';
 import { emptyImageUrl } from '../../../data/Movies/mockData';
+import { MovieTileStyles as styles } from './MovieTileStyles';
 
-export const MovieTile = ({ imageSrc, title, releaseYear, genres }) => (
+const MovieTileComponent = ({
+    imageSrc,
+    title,
+    releaseYear,
+    genres,
+    classes
+}) => (
     <Grid item sm={6} md={4} lg={3}>
-        <Link style={{ textDecoration: 'none' }} to={'/details'}>
+        <Link className={classes.link} to={'/details'}>
             <Card>
                 <CardMedia
-                    style={{ paddingTop: '56.25%' }}
+                    className={classes.media}
                     image={imageSrc ? imageSrc : emptyImageUrl}
                     title={title}
                 />
@@ -38,7 +46,7 @@ export const MovieTile = ({ imageSrc, title, releaseYear, genres }) => (
                                         key={genre}
                                         variant="button"
                                         inline
-                                        style={{ marginRight: 10 }}
+                                        className={classes.marginRight}
                                     >
                                         {genre}
                                     </Typography>
@@ -51,9 +59,12 @@ export const MovieTile = ({ imageSrc, title, releaseYear, genres }) => (
     </Grid>
 );
 
-MovieTile.propTypes = {
-    imageSrc: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    releaseYear: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string)
+MovieTileComponent.propTypes = {
+    imageSrc: string,
+    title: string.isRequired,
+    releaseYear: string,
+    genres: arrayOf(string),
+    classes: object.isRequired
 };
+
+export const MovieTile = withStyles(styles)(MovieTileComponent);

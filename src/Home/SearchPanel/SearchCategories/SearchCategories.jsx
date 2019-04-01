@@ -2,13 +2,15 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
+import { object, string } from '../../../propTypes';
+import { withStyles } from '@material-ui/core/styles';
+import { SearchCategoriesStyles as styles } from './SearchCategoriesStyles';
 
-export const SearchCategories = ({ searchBy }) => (
+const SearchCategoriesComponent = ({ searchBy, classes }) => (
     <Grid container spacing={40}>
         <Grid item sm={12}>
             <Typography
-                style={{ marginRight: 20 }}
+                className={classes.marginRight}
                 inline
                 gutterBottom
                 variant="button"
@@ -16,7 +18,7 @@ export const SearchCategories = ({ searchBy }) => (
                 Search by:
             </Typography>
             <Button
-                style={{ marginRight: 20 }}
+                className={classes.marginRight}
                 variant={searchBy === 'Title' ? 'contained' : 'outlined'}
                 size="small"
                 color="primary"
@@ -34,6 +36,9 @@ export const SearchCategories = ({ searchBy }) => (
     </Grid>
 );
 
-SearchCategories.propTypes = {
-    searchBy: PropTypes.string.isRequired
+SearchCategoriesComponent.propTypes = {
+    searchBy: string.isRequired,
+    classes: object.isRequired
 };
+
+export const SearchCategories = withStyles(styles)(SearchCategoriesComponent);

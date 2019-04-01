@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { array, string } from '../../propTypes';
 import { MovieTile } from './MovieTile';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -25,6 +25,6 @@ export const MovieTilesPane = ({ movies, title }) => (
 );
 
 MovieTilesPane.propTypes = {
-    movies: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired
+    movies: array.isRequired,
+    title: string.isRequired
 };

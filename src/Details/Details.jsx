@@ -3,11 +3,14 @@ import { MovieTilesPane } from '../components';
 import { BackNavigation } from './BackNavigation';
 import { MovieDetails } from './MovieDetails';
 import { getMovies, getMovieDetails } from '../data/Movies';
+import { withStyles } from '@material-ui/core/styles';
+import { object } from '../propTypes';
+import { DetailsStyles as styles } from './DetailsStyles';
 
 const movies = getMovies();
 const details = getMovieDetails();
 
-export const DetailsScene = () => {
+const DetailsSceneComponent = ({ classes }) => {
     const {
         title,
         imageUrl,
@@ -17,7 +20,7 @@ export const DetailsScene = () => {
         description
     } = details;
     return (
-        <main style={{ width: 'auto', margin: '0 24px' }}>
+        <main className={classes.details}>
             <BackNavigation />
             <MovieDetails
                 imageUrl={imageUrl}
@@ -31,3 +34,9 @@ export const DetailsScene = () => {
         </main>
     );
 };
+
+DetailsSceneComponent.propTypes = {
+    classes: object.isRequired
+};
+
+export const DetailsScene = withStyles(styles)(DetailsSceneComponent);
