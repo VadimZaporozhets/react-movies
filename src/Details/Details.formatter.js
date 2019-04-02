@@ -17,13 +17,13 @@ export const formatMovieData = ({
 };
 
 export const formatMovies = moviesArr => {
-    return moviesArr.map(movie => {
+    return moviesArr.map(({ id, title, poster_path, release_date, genres }) => {
         return {
-            id: movie.id,
-            title: movie.title,
-            poster_path: movie.poster_path,
-            releaseYear: movie.release_date.split('-')[0],
-            genres: movie.genres
+            id,
+            title,
+            poster_path,
+            releaseYear: release_date.split('-')[0],
+            genres
         };
     });
 };
