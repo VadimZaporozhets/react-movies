@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent/index';
 import CardMedia from '@material-ui/core/CardMedia/index';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import { string, arrayOf, object } from '../../../propTypes';
+import { string, arrayOf, object } from 'prop-types';
 import { emptyImageUrl } from '../../../constants';
 import { MovieTileStyles as styles } from './MovieTileStyles';
 
@@ -29,7 +29,7 @@ class MovieTileComponent extends Component {
     };
 
     render() {
-        const { imageSrc, title, releaseYear, classes } = this.props;
+        const { poster_path, title, releaseYear, classes } = this.props;
 
         return (
             <Grid item sm={6} md={4} lg={3}>
@@ -37,7 +37,7 @@ class MovieTileComponent extends Component {
                     <Card>
                         <CardMedia
                             className={classes.media}
-                            image={imageSrc || emptyImageUrl}
+                            image={poster_path || emptyImageUrl}
                             title={title}
                         />
                         <CardContent>
@@ -69,7 +69,7 @@ class MovieTileComponent extends Component {
 }
 
 MovieTileComponent.propTypes = {
-    imageSrc: string,
+    poster_path: string,
     title: string.isRequired,
     releaseYear: string,
     genres: arrayOf(string),

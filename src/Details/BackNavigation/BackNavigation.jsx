@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { object } from '../../propTypes';
+import { object } from 'prop-types';
 import { BackNavigationStyles as styles } from './BackNavigationStyles';
 
 const BackNavigationComponent = ({ classes }) => (

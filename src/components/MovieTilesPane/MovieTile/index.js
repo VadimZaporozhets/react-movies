@@ -1,3 +1,1 @@
-import { MovieTile } from './MovieTile';
-
-export { MovieTile };
+export * from './MovieTile';

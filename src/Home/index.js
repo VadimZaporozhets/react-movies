@@ -1,3 +1,1 @@
-import { HomeScene } from './Home';
-
-export { HomeScene };
+export * from './Home';

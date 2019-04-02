@@ -4,7 +4,7 @@ import { SearchCategories } from './SearchCategories';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { object } from '../../propTypes';
+import { object } from 'prop-types';
 import { SearchPanelStyles as styles } from './SearchPannelStyles';
 
 const SearchPanelComponent = ({ classes }) => (

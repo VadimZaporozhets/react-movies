@@ -1,19 +1,22 @@
 import { moviesArray } from './mockData';
 import { movieData } from './mockData';
 
-export const movieService = {
-    getMovies: function() {
+class MovieService {
+    getMovies = () => {
+        return this._apiCall(moviesArray);
+    };
+
+    getMovieById = () => {
+        return this._apiCall(movieData);
+    };
+
+    _apiCall = data => {
         return new Promise(resolve => {
             setTimeout(() => {
-                resolve(moviesArray);
+                resolve(data);
             }, 1000);
         });
-    },
-    getMovieById: function() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(movieData);
-            }, 1000);
-        });
-    }
-};
+    };
+}
+
+export const movieService = new MovieService();

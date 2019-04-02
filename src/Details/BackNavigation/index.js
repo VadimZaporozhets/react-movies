@@ -1,3 +1,1 @@
-import { BackNavigation } from './BackNavigation';
-
-export { BackNavigation };
+export * from './BackNavigation';

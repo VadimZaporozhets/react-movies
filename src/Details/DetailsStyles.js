@@ -7,5 +7,9 @@ export const DetailsStyles = theme => ({
             margin: `0 ${theme.spacing.unit * 3}px`,
             maxWidth: '100%'
         }
+    },
+    progress: {
+        display: 'block',
+        margin: `${theme.spacing.unit * 3}px auto`
     }
 });

@@ -1,3 +1,1 @@
-import { DetailsScene } from './Details';
-
-export { DetailsScene };
+export * from './Details';

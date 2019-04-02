@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import { emptyImageUrl } from '../../constants';
 import { withStyles } from '@material-ui/core/styles';
-import { object, string, number, arrayOf } from '../../propTypes';
+import { object, string, number, arrayOf } from 'prop-types';
 import { MovieDetailsStyles as styles } from './MovieDetailsStyles';
 
 class MovieDetailsComponent extends Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { object } from '../../propTypes';
+import { object } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { sortResultsPanelStyles as styles } from './SortResultsPanelStyles';
 import Typography from '@material-ui/core/Typography';

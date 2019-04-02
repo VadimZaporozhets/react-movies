@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { array, string } from '../../propTypes';
+import { array, string } from 'prop-types';
 import { MovieTile } from './MovieTile';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -9,14 +9,16 @@ export class MovieTilesPane extends Component {
         const { movies } = this.props;
 
         return movies.map(movie => {
-            const { imageSrc, title, releaseYear, genres, id } = movie;
+            const { poster_path, title, releaseYear, genres, id } = movie;
             return (
                 <MovieTile
                     key={id}
-                    imageSrc={imageSrc}
-                    title={title}
-                    releaseYear={releaseYear}
-                    genres={genres}
+                    {...{
+                        poster_path,
+                        title,
+                        releaseYear,
+                        genres
+                    }}
                 />
             );
         });

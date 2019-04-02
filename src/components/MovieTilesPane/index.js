@@ -1,3 +1,1 @@
-import { MovieTilesPane } from './MovieTilesPane';
-
-export { MovieTilesPane };
+export * from './MovieTilesPane';

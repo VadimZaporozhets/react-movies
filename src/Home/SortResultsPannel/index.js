@@ -1,3 +1,1 @@
-import { SortResultsPanel } from './SortResultsPanel';
-
-export { SortResultsPanel };
+export * from './SortResultsPanel';

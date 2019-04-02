@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { object, string } from '../../../propTypes';
+import { object, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { SearchCategoriesStyles as styles } from './SearchCategoriesStyles';
 

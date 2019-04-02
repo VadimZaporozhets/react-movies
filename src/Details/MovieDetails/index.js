@@ -1,3 +1,1 @@
-import { MovieDetails } from './MovieDetails';
-
-export { MovieDetails };
+export * from './MovieDetails';

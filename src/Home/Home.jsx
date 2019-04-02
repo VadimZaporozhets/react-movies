@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { object } from '../propTypes';
+import { object } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { MovieTilesPane } from '../components';
 import { SearchPanel } from './SearchPanel';
 import { SortResultsPanel } from './SortResultsPannel';
@@ -13,16 +14,12 @@ class HomeSceneComponent extends Component {
         movies: null
     };
 
-    componentDidMount() {
-        this.getMovies().then(movies => {
+    componentDidMount = async () => {
+        await movieService.getMovies().then(movies => {
             this.setState({
                 movies: formatMovies(movies)
             });
         });
-    }
-
-    getMovies = async () => {
-        return await movieService.getMovies();
     };
 
     render() {
@@ -33,8 +30,10 @@ class HomeSceneComponent extends Component {
             <main className={classes.home}>
                 <SearchPanel />
                 <SortResultsPanel />
-                {movies && (
+                {movies ? (
                     <MovieTilesPane title="Found results:" movies={movies} />
+                ) : (
+                    <CircularProgress className={classes.progress} />
                 )}
             </main>
         );

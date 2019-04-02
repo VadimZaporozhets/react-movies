@@ -1,3 +1,1 @@
-import { SearchCategories } from './SearchCategories';
-
-export { SearchCategories };
+export * from './SearchCategories';

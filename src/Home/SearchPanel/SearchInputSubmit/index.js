@@ -1,3 +1,1 @@
-import { SearchInputSubmit } from './SearchInputSubmit';
-
-export { SearchInputSubmit };
+export * from './SearchInputSubmit';
