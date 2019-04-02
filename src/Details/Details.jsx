@@ -16,23 +16,29 @@ class DetailsSceneComponent extends Component {
     };
 
     componentDidMount = async () => {
-        await movieService.getMovieById().then(details => {
-            this.setState({
-                details: formatMovieData(details)
-            });
+        const details = await movieService.getMovieById();
+
+        this.setState({
+            details: formatMovieData(details)
         });
 
-        await movieService.getMovies().then(movies => {
-            this.setState({
-                movies: formatMovies(movies)
-            });
+        const movies = await movieService.getMovies();
+
+        this.setState({
+            movies: formatMovies(movies)
         });
     };
 
     render() {
         const { movies, details } = this.state;
-        const { title, poster_path, rating, releaseYear, genres, description } =
-            details || {};
+        const {
+            title,
+            poster_path,
+            overview,
+            releaseYear,
+            genres,
+            description
+        } = details || {};
 
         const { classes } = this.props;
         return (
@@ -43,7 +49,7 @@ class DetailsSceneComponent extends Component {
                         {...{
                             poster_path,
                             title,
-                            rating,
+                            overview,
                             releaseYear,
                             genres,
                             description

@@ -18,7 +18,7 @@ export class App extends Component {
     render() {
         const { errorInfo } = this.state;
 
-        if (this.state.errorInfo) {
+        if (errorInfo) {
             return <h2>{errorInfo}</h2>;
         }
 

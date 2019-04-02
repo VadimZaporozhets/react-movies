@@ -1,11 +1,18 @@
-export const formatMovieData = movieData => {
+export const formatMovieData = ({
+    title,
+    poster_path,
+    vote_average,
+    release_date,
+    genres,
+    overview
+}) => {
     return {
-        title: movieData.title,
-        poster_path: movieData.poster_path,
-        rating: movieData.vote_average,
-        releaseYear: movieData.release_date.split('-')[0],
-        genres: movieData.genres,
-        description: movieData.overview
+        title,
+        poster_path,
+        vote_average,
+        releaseYear: release_date.split('-')[0],
+        genres,
+        overview
     };
 };
 

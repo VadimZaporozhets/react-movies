@@ -15,10 +15,10 @@ class HomeSceneComponent extends Component {
     };
 
     componentDidMount = async () => {
-        await movieService.getMovies().then(movies => {
-            this.setState({
-                movies: formatMovies(movies)
-            });
+        const movies = await movieService.getMovies();
+
+        this.setState({
+            movies: formatMovies(movies)
         });
     };
 

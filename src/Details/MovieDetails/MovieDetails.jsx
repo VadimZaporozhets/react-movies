@@ -31,11 +31,11 @@ class MovieDetailsComponent extends Component {
     render() {
         const {
             classes,
-            imageUrl,
+            poster_path,
             title,
-            rating,
+            vote_average,
             releaseYear,
-            description
+            overview
         } = this.props;
 
         return (
@@ -46,7 +46,7 @@ class MovieDetailsComponent extends Component {
                             <Grid item xs={12} md={4}>
                                 <img
                                     className={classes.image}
-                                    src={imageUrl || emptyImageUrl}
+                                    src={poster_path || emptyImageUrl}
                                     alt={title}
                                 />
                             </Grid>
@@ -82,7 +82,7 @@ class MovieDetailsComponent extends Component {
                                             className={classes.badge}
                                             variant="button"
                                         >
-                                            {rating}
+                                            Rating {vote_average}
                                         </Typography>
                                     </Badge>
                                 </Grid>
@@ -95,7 +95,7 @@ class MovieDetailsComponent extends Component {
                                     <Grid item>{this.renderGenres()}</Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography>{description}</Typography>
+                                    <Typography>{overview}</Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -108,12 +108,12 @@ class MovieDetailsComponent extends Component {
 
 MovieDetailsComponent.propTypes = {
     classes: object.isRequired,
-    imageUrl: string,
+    poster_path: string,
     title: string.isRequired,
-    rating: number,
+    vote_average: number,
     releaseYear: string,
     genres: arrayOf(string),
-    description: string
+    overview: string
 };
 
 export const MovieDetails = withStyles(styles)(MovieDetailsComponent);
