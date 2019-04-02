@@ -1,10 +1,34 @@
-import React from 'react';
-import { GeneralComponent, FunctionalComponent, Pure } from './components';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HomeScene } from './Home';
+import { DetailsScene } from './Details';
 
-export const App = () => (
-    <>
-        <GeneralComponent />
-        <Pure />
-        <FunctionalComponent />
-    </>
-);
+export class App extends Component {
+    state = {
+        error: false,
+        errorInfo: null
+    };
+
+    componentDidCatch(error, errorInfo) {
+        this.setState({
+            errorInfo
+        });
+    }
+
+    render() {
+        const { errorInfo } = this.state;
+
+        if (errorInfo) {
+            return <h2>{errorInfo}</h2>;
+        }
+
+        return (
+            <Router>
+                <Switch>
+                    <Route path="/" exact component={HomeScene} />
+                    <Route path="/details" exact component={DetailsScene} />
+                </Switch>
+            </Router>
+        );
+    }
+}
