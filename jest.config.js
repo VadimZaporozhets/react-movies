@@ -1,4 +1,6 @@
 module.exports = {
     coverageDirectory: 'coverage',
-    testEnvironment: 'node'
+    testEnvironment: 'node',
+    setupFiles: ['./enzyme-adapter.js'],
+    snapshotSerializers: ['enzyme-to-json/serializer']
 };

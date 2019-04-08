@@ -10,7 +10,7 @@ import { string, arrayOf, object } from 'prop-types';
 import { emptyImageUrl } from '../../../constants';
 import { MovieTileStyles as styles } from './MovieTileStyles';
 
-class MovieTileComponent extends Component {
+export class MovieTileComponent extends Component {
     renderGenres = () => {
         const { classes, genres } = this.props;
         return (
@@ -34,7 +34,7 @@ class MovieTileComponent extends Component {
         return (
             <Grid item sm={6} md={4} lg={3}>
                 <Link className={classes.link} to="/details">
-                    <Card>
+                    <Card className="movie-tile">
                         <CardMedia
                             className={classes.media}
                             image={poster_path || emptyImageUrl}
@@ -54,7 +54,9 @@ class MovieTileComponent extends Component {
                                     xs={3}
                                     item
                                 >
-                                    <Typography>{releaseYear}</Typography>
+                                    <Typography className="release">
+                                        {releaseYear}
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     {this.renderGenres()}

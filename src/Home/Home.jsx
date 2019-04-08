@@ -9,7 +9,7 @@ import { HomeStyles as styles } from './HomeStyles';
 import { movieService } from '../api/Movies/movies-api';
 import { formatMovies } from './Home.formatter';
 
-class HomeSceneComponent extends Component {
+export class HomeSceneComponent extends Component {
     state = {
         movies: null
     };

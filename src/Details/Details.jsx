@@ -9,7 +9,7 @@ import { formatMovieData, formatMovies } from './Details.formatter';
 import { movieService } from '../api/Movies/movies-api';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-class DetailsSceneComponent extends Component {
+export class DetailsSceneComponent extends Component {
     state = {
         details: null,
         movies: null

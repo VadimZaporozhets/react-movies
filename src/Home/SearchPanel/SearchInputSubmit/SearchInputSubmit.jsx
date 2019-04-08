@@ -6,7 +6,7 @@ import { object } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { SearchInputSubmitStyles as styles } from './SearchInputSubmitStyles';
 
-const SearchInputSubmitComponent = ({ classes }) => (
+export const SearchInputSubmitComponent = ({ classes }) => (
     <Grid container spacing={40}>
         <Grid sm={12} md={8} lg={10} item>
             <TextField placeholder="Search" fullWidth />
