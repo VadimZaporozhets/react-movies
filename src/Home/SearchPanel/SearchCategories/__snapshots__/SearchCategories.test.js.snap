@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchCategoriesComponent /> should render search categories component 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={40}
+>
+  <WithStyles(Grid)
+    item={true}
+    sm={12}
+  >
+    <WithStyles(Typography)
+      className={Object {}}
+      gutterBottom={true}
+      inline={true}
+      variant="button"
+    >
+      Search by:
+    </WithStyles(Typography)>
+    <WithStyles(Button)
+      className={Object {}}
+      color="primary"
+      id="search-by-title"
+      size="small"
+      variant="contained"
+    >
+      Title
+    </WithStyles(Button)>
+    <WithStyles(Button)
+      color="primary"
+      size="small"
+      variant="outlined"
+    >
+      Genre
+    </WithStyles(Button)>
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
+`;

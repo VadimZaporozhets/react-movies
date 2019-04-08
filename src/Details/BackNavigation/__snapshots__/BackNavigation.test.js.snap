@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BackNavigationComponent /> should render back navigation component 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={40}
+>
+  <WithStyles(Grid)
+    item={true}
+    xs={12}
+  >
+    <WithStyles(Paper)
+      className={Object {}}
+      elevation={1}
+    >
+      <Link
+        className={Object {}}
+        replace={false}
+        to="/"
+      >
+        <WithStyles(Button)
+          size="medium"
+          variant="outlined"
+        >
+          ← Back to Home
+        </WithStyles(Button)>
+      </Link>
+    </WithStyles(Paper)>
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
+`;

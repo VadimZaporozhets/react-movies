@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchInputSubmitComponent /> should render search component 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={40}
+>
+  <WithStyles(Grid)
+    item={true}
+    lg={10}
+    md={8}
+    sm={12}
+  >
+    <TextField
+      fullWidth={true}
+      placeholder="Search"
+      required={false}
+      select={false}
+      variant="standard"
+    />
+  </WithStyles(Grid)>
+  <WithStyles(Grid)
+    className={Object {}}
+    item={true}
+    lg={2}
+    md={4}
+    sm={12}
+  >
+    <WithStyles(Button)
+      color="primary"
+      variant="contained"
+    >
+      Search
+    </WithStyles(Button)>
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
+`;

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
+<main
+  className={Object {}}
+>
+  <WithStyles(SearchPanelComponent) />
+  <WithStyles(SortResultsPanelComponent) />
+  <WithStyles(CircularProgress)
+    className={Object {}}
+  />
+</main>
+`;
+
+exports[`<HomeSceneComponent /> should render home component with movie tiles pane 1`] = `
+<main
+  className={Object {}}
+>
+  <WithStyles(SearchPanelComponent) />
+  <WithStyles(SortResultsPanelComponent) />
+  <MovieTilesPane
+    movies={
+      Array [
+        Object {
+          "genres": Array [
+            "Action",
+            "Adventure",
+            "Science Fiction",
+          ],
+          "id": 447365,
+          "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+          "releaseYear": "2020",
+          "title": "Guardians of the Galaxy Vol. 3",
+        },
+        Object {
+          "genres": Array [
+            "Science Fiction",
+            "Action",
+            "Adventure",
+          ],
+          "id": 424785,
+          "poster_path": "https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg",
+          "releaseYear": "2019",
+          "title": "Transformers 7",
+        },
+      ]
+    }
+    title="Found results:"
+  />
+</main>
+`;
