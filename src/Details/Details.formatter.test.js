@@ -1,6 +1,6 @@
 import { formatMovieData, formatMovies } from './Details.formatter';
 
-describe('Home formatter', () => {
+describe('formatMovies', () => {
     it('should format movie array', () => {
         const input = [
             {
@@ -57,7 +57,9 @@ describe('Home formatter', () => {
 
         expect(formatMovies(input)).toEqual(expectedOutput);
     });
+});
 
+describe('formatMovieData', () => {
     it('should format movie details', () => {
         const input = {
             budget: 0,

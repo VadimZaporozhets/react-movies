@@ -1,23 +1,23 @@
 import React from 'react';
 import { HomeSceneComponent } from './index';
 import { shallow } from 'enzyme';
-import '@babel/polyfill';
 
 describe('<HomeSceneComponent />', () => {
     let props, wrapper;
 
     beforeEach(() => {
         props = {
-            classes: {
-                home: {},
-                progress: {}
-            }
+            classes: expect.any(Object)
         };
 
         wrapper = shallow(<HomeSceneComponent {...props} />);
     });
 
     it('should render home component with loader', () => {
+        wrapper.setState({
+            loading: true
+        });
+
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -42,6 +42,7 @@ describe('<HomeSceneComponent />', () => {
         ];
 
         wrapper.setState({
+            loading: false,
             movies
         });
 

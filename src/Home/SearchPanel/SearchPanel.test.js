@@ -5,10 +5,7 @@ import { shallow } from 'enzyme';
 describe('<SearchPanelComponent />', () => {
     it('should render search panel component', () => {
         const props = {
-            classes: {
-                marginBottom: {},
-                panel: {}
-            }
+            classes: expect.any(Object)
         };
 
         const wrapper = shallow(<SearchPanelComponent {...props} />);

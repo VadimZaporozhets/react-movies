@@ -5,11 +5,7 @@ import { shallow } from 'enzyme';
 describe('<SortResultsPanelComponent />', () => {
     it('should render sort panel component', () => {
         const props = {
-            classes: {
-                marginRight: {},
-                paperWrapper: {},
-                marginBottom: {}
-            }
+            classes: expect.any(Object)
         };
 
         const wrapper = shallow(<SortResultsPanelComponent {...props} />);

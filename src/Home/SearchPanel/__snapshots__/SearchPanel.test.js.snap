@@ -2,7 +2,6 @@
 
 exports[`<SearchPanelComponent /> should render search panel component 1`] = `
 <WithStyles(Grid)
-  className={Object {}}
   container={true}
   spacing={40}
 >
@@ -11,7 +10,6 @@ exports[`<SearchPanelComponent /> should render search panel component 1`] = `
     xs={12}
   >
     <WithStyles(Paper)
-      className={Object {}}
       elevation={1}
     >
       <WithStyles(SearchInputSubmitComponent) />

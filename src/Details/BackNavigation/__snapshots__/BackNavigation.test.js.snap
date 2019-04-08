@@ -10,11 +10,9 @@ exports[`<BackNavigationComponent /> should render back navigation component 1`]
     xs={12}
   >
     <WithStyles(Paper)
-      className={Object {}}
       elevation={1}
     >
       <Link
-        className={Object {}}
         replace={false}
         to="/"
       >

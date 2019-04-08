@@ -20,7 +20,6 @@ exports[`<SearchInputSubmitComponent /> should render search component 1`] = `
     />
   </WithStyles(Grid)>
   <WithStyles(Grid)
-    className={Object {}}
     item={true}
     lg={2}
     md={4}

@@ -7,9 +7,7 @@ describe('<SearchCategoriesComponent />', () => {
 
     beforeEach(() => {
         props = {
-            classes: {
-                marginRight: {}
-            },
+            classes: expect.any(Object),
             searchBy: 'Title'
         };
 

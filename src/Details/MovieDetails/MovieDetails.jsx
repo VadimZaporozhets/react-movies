@@ -7,6 +7,7 @@ import { emptyImageUrl } from '../../constants';
 import { withStyles } from '@material-ui/core/styles';
 import { object, string, number, arrayOf } from 'prop-types';
 import { MovieDetailsStyles as styles } from './MovieDetailsStyles';
+import classNames from 'classnames';
 
 export class MovieDetailsComponent extends Component {
     renderGenres = () => {
@@ -37,6 +38,8 @@ export class MovieDetailsComponent extends Component {
             releaseYear,
             overview
         } = this.props;
+
+        const ratingClass = classNames(classes.badge, 'movie-rating');
 
         return (
             <Grid className={classes.marginBottom} container spacing={40}>
@@ -82,9 +85,7 @@ export class MovieDetailsComponent extends Component {
                                 >
                                     <Badge badgeContent={4.5} color="primary">
                                         <Typography
-                                            className={`${
-                                                classes.badge
-                                            } movie-rating`}
+                                            className={ratingClass}
                                             variant="button"
                                         >
                                             Rating {vote_average}

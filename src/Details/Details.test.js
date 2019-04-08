@@ -1,17 +1,13 @@
 import React from 'react';
 import { DetailsSceneComponent } from './index';
 import { shallow } from 'enzyme';
-import '@babel/polyfill';
 
 describe('<DetailsSceneComponent />', () => {
     let props, wrapper;
 
     beforeEach(() => {
         props = {
-            classes: {
-                details: {},
-                progress: {}
-            }
+            classes: expect.any(Object)
         };
 
         wrapper = shallow(<DetailsSceneComponent {...props} />);

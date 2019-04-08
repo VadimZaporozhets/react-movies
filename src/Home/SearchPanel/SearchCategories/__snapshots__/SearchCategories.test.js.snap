@@ -10,7 +10,6 @@ exports[`<SearchCategoriesComponent /> should render search categories component
     sm={12}
   >
     <WithStyles(Typography)
-      className={Object {}}
       gutterBottom={true}
       inline={true}
       variant="button"
@@ -18,7 +17,6 @@ exports[`<SearchCategoriesComponent /> should render search categories component
       Search by:
     </WithStyles(Typography)>
     <WithStyles(Button)
-      className={Object {}}
       color="primary"
       id="search-by-title"
       size="small"

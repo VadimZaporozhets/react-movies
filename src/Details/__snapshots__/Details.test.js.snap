@@ -1,23 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<DetailsSceneComponent /> should render details component with loaders 1`] = `
-<main
-  className={Object {}}
->
+<main>
   <WithStyles(BackNavigationComponent) />
-  <WithStyles(CircularProgress)
-    className={Object {}}
-  />
-  <WithStyles(CircularProgress)
-    className={Object {}}
-  />
+  <WithStyles(CircularProgress) />
+  <WithStyles(CircularProgress) />
 </main>
 `;
 
 exports[`<DetailsSceneComponent /> should render details component with movie details and movies pane 1`] = `
-<main
-  className={Object {}}
->
+<main>
   <WithStyles(BackNavigationComponent) />
   <WithStyles(MovieDetailsComponent)
     genres={

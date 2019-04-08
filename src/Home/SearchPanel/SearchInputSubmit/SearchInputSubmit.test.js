@@ -5,9 +5,7 @@ import { shallow } from 'enzyme';
 describe('<SearchInputSubmitComponent />', () => {
     it('should render search component', () => {
         const props = {
-            classes: {
-                alignRight: {}
-            }
+            classes: expect.any(Object)
         };
 
         const wrapper = shallow(<SearchInputSubmitComponent {...props} />);

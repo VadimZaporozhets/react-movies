@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import emptyImageUrl from './../../constants';
 
 describe('<MovieDetailsComponent />', () => {
-    it('should render movie details component with props', () => {
+    it('should render movie details component', () => {
         const props = {
             title: 'Movie',
             releaseYear: '2006',
@@ -12,27 +12,11 @@ describe('<MovieDetailsComponent />', () => {
             genres: ['Action', 'Comedy'],
             vote_average: 5,
             overview: 'Test overview',
-            classes: {
-                media: {},
-                link: {}
-            }
+            classes: expect.any(Object)
         };
 
         const wrapper = shallow(<MovieDetailsComponent {...props} />);
 
-        expect(wrapper).toMatchSnapshot();
-    });
-
-    it('should render movie details with title and classes only', () => {
-        const props = {
-            title: 'Movie',
-            classes: {
-                media: {},
-                link: {}
-            }
-        };
-
-        const wrapper = shallow(<MovieDetailsComponent {...props} />);
         expect(wrapper).toMatchSnapshot();
     });
 });

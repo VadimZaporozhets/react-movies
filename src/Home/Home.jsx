@@ -11,29 +11,31 @@ import { formatMovies } from './Home.formatter';
 
 export class HomeSceneComponent extends Component {
     state = {
-        movies: null
+        movies: null,
+        loading: true
     };
 
     componentDidMount = async () => {
         const movies = await movieService.getMovies();
 
         this.setState({
+            loading: false,
             movies: formatMovies(movies)
         });
     };
 
     render() {
-        const { movies } = this.state;
+        const { movies, loading } = this.state;
         const { classes } = this.props;
 
         return (
             <main className={classes.home}>
                 <SearchPanel />
                 <SortResultsPanel />
-                {movies ? (
-                    <MovieTilesPane title="Found results:" movies={movies} />
-                ) : (
+                {loading ? (
                     <CircularProgress className={classes.progress} />
+                ) : (
+                    <MovieTilesPane title="Found results:" movies={movies} />
                 )}
             </main>
         );

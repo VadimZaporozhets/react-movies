@@ -2,7 +2,6 @@
 
 exports[`<SortResultsPanelComponent /> should render sort panel component 1`] = `
 <WithStyles(Grid)
-  className={Object {}}
   container={true}
   spacing={40}
 >
@@ -11,7 +10,6 @@ exports[`<SortResultsPanelComponent /> should render sort panel component 1`] = 
     xs={12}
   >
     <WithStyles(Paper)
-      className={Object {}}
       elevation={1}
     >
       <WithStyles(Grid)
@@ -38,7 +36,6 @@ exports[`<SortResultsPanelComponent /> should render sort panel component 1`] = 
           sm={12}
         >
           <WithStyles(Typography)
-            className={Object {}}
             gutterBottom={true}
             inline={true}
             variant="button"
@@ -46,7 +43,6 @@ exports[`<SortResultsPanelComponent /> should render sort panel component 1`] = 
             Sort by:
           </WithStyles(Typography)>
           <WithStyles(Button)
-            className={Object {}}
             color="primary"
             size="small"
             variant="outlined"

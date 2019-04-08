@@ -1,21 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
-<main
-  className={Object {}}
->
+<main>
   <WithStyles(SearchPanelComponent) />
   <WithStyles(SortResultsPanelComponent) />
-  <WithStyles(CircularProgress)
-    className={Object {}}
-  />
+  <WithStyles(CircularProgress) />
 </main>
 `;
 
 exports[`<HomeSceneComponent /> should render home component with movie tiles pane 1`] = `
-<main
-  className={Object {}}
->
+<main>
   <WithStyles(SearchPanelComponent) />
   <WithStyles(SortResultsPanelComponent) />
   <MovieTilesPane
