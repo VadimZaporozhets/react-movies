@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { object } from 'prop-types';
 import { BackNavigationStyles as styles } from './BackNavigationStyles';
 
-const BackNavigationComponent = ({ classes }) => (
+export const BackNavigationComponent = ({ classes }) => (
     <Grid container spacing={40}>
         <Grid xs={12} item>
             <Paper elevation={1} className={classes.wrapper}>

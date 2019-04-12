@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 
-const SortResultsPanelComponent = ({ classes }) => (
+export const SortResultsPanelComponent = ({ classes }) => (
     <Grid className={classes.marginBottom} container spacing={40}>
         <Grid item xs={12}>
             <Paper className={classes.paperWrapper} elevation={1}>

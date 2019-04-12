@@ -7,8 +7,9 @@ import { emptyImageUrl } from '../../constants';
 import { withStyles } from '@material-ui/core/styles';
 import { object, string, number, arrayOf } from 'prop-types';
 import { MovieDetailsStyles as styles } from './MovieDetailsStyles';
+import classNames from 'classnames';
 
-class MovieDetailsComponent extends Component {
+export class MovieDetailsComponent extends Component {
     renderGenres = () => {
         const { genres, classes } = this.props;
         return (
@@ -38,6 +39,8 @@ class MovieDetailsComponent extends Component {
             overview
         } = this.props;
 
+        const ratingClass = classNames(classes.badge, 'movie-rating');
+
         return (
             <Grid className={classes.marginBottom} container spacing={40}>
                 <Grid item xs={12}>
@@ -65,7 +68,10 @@ class MovieDetailsComponent extends Component {
                                     xs={12}
                                     md={10}
                                 >
-                                    <Typography variant="h4">
+                                    <Typography
+                                        className="movie-title"
+                                        variant="h4"
+                                    >
                                         {title}
                                     </Typography>
                                 </Grid>
@@ -79,7 +85,7 @@ class MovieDetailsComponent extends Component {
                                 >
                                     <Badge badgeContent={4.5} color="primary">
                                         <Typography
-                                            className={classes.badge}
+                                            className={ratingClass}
                                             variant="button"
                                         >
                                             Rating {vote_average}
@@ -88,14 +94,19 @@ class MovieDetailsComponent extends Component {
                                 </Grid>
                                 <Grid item container spacing={40} xs={12}>
                                     <Grid item>
-                                        <Typography variant="button">
+                                        <Typography
+                                            className="release-year"
+                                            variant="button"
+                                        >
                                             {releaseYear}
                                         </Typography>
                                     </Grid>
                                     <Grid item>{this.renderGenres()}</Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography>{overview}</Typography>
+                                    <Typography className="overview">
+                                        {overview}
+                                    </Typography>
                                 </Grid>
                             </Grid>
                         </Grid>

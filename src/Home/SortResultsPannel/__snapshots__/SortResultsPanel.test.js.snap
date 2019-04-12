@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SortResultsPanelComponent /> should render sort panel component 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={40}
+>
+  <WithStyles(Grid)
+    item={true}
+    xs={12}
+  >
+    <WithStyles(Paper)
+      elevation={1}
+    >
+      <WithStyles(Grid)
+        container={true}
+        spacing={40}
+      >
+        <WithStyles(Grid)
+          alignItems="center"
+          container={true}
+          item={true}
+          md={6}
+          sm={12}
+        >
+          <WithStyles(Typography)
+            className="margin-right"
+            variant="button"
+          >
+            Found 20 movies
+          </WithStyles(Typography)>
+        </WithStyles(Grid)>
+        <WithStyles(Grid)
+          item={true}
+          md={6}
+          sm={12}
+        >
+          <WithStyles(Typography)
+            gutterBottom={true}
+            inline={true}
+            variant="button"
+          >
+            Sort by:
+          </WithStyles(Typography)>
+          <WithStyles(Button)
+            color="primary"
+            size="small"
+            variant="outlined"
+          >
+            Release date
+          </WithStyles(Button)>
+          <WithStyles(Button)
+            color="primary"
+            size="small"
+            variant="outlined"
+          >
+            Rating
+          </WithStyles(Button)>
+        </WithStyles(Grid)>
+      </WithStyles(Grid)>
+    </WithStyles(Paper)>
+  </WithStyles(Grid)>
+</WithStyles(Grid)>
+`;

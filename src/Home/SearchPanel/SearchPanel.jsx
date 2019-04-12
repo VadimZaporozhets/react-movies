@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { object } from 'prop-types';
 import { SearchPanelStyles as styles } from './SearchPannelStyles';
 
-const SearchPanelComponent = ({ classes }) => (
+export const SearchPanelComponent = ({ classes }) => (
     <Grid className={classes.marginBottom} container spacing={40}>
         <Grid xs={12} item>
             <Paper elevation={1} className={classes.panel}>

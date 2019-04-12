@@ -6,7 +6,7 @@ import { object, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { SearchCategoriesStyles as styles } from './SearchCategoriesStyles';
 
-const SearchCategoriesComponent = ({ searchBy, classes }) => (
+export const SearchCategoriesComponent = ({ searchBy, classes }) => (
     <Grid container spacing={40}>
         <Grid item sm={12}>
             <Typography
@@ -18,6 +18,7 @@ const SearchCategoriesComponent = ({ searchBy, classes }) => (
                 Search by:
             </Typography>
             <Button
+                id="search-by-title"
                 className={classes.marginRight}
                 variant={searchBy === 'Title' ? 'contained' : 'outlined'}
                 size="small"
