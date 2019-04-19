@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HomeScene } from './Home';
 import { DetailsScene } from './Details';
+import { Provider } from 'react-redux';
+import { store, persistor } from './store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export class App extends Component {
     state = {
@@ -9,26 +12,32 @@ export class App extends Component {
         errorInfo: null
     };
 
-    componentDidCatch(error, errorInfo) {
-        this.setState({
-            errorInfo
-        });
+    static getDerivedStateFromError(error) {
+        return { error: true, errorInfo: error };
     }
 
     render() {
-        const { errorInfo } = this.state;
+        const { errorInfo, error } = this.state;
 
-        if (errorInfo) {
-            return <h2>{errorInfo}</h2>;
+        if (error) {
+            return <h2>{errorInfo.message}</h2>;
         }
 
         return (
-            <Router>
-                <Switch>
-                    <Route path="/" exact component={HomeScene} />
-                    <Route path="/details" exact component={DetailsScene} />
-                </Switch>
-            </Router>
+            <Provider store={store}>
+                <PersistGate persistor={persistor}>
+                    <Router>
+                        <Switch>
+                            <Route path="/" exact component={HomeScene} />
+                            <Route
+                                path="/details/:id"
+                                exact
+                                component={DetailsScene}
+                            />
+                        </Switch>
+                    </Router>
+                </PersistGate>
+            </Provider>
         );
     }
 }

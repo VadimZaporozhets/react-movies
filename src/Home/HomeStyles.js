@@ -12,5 +12,8 @@ export const HomeStyles = theme => ({
     progress: {
         margin: 'auto',
         display: 'block'
+    },
+    text: {
+        textAlign: 'center'
     }
 });

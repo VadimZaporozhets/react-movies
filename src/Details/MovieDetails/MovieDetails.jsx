@@ -83,12 +83,15 @@ export class MovieDetailsComponent extends Component {
                                     alignItems="center"
                                     justify="flex-end"
                                 >
-                                    <Badge badgeContent={4.5} color="primary">
+                                    <Badge
+                                        badgeContent={vote_average}
+                                        color="primary"
+                                    >
                                         <Typography
                                             className={ratingClass}
                                             variant="button"
                                         >
-                                            Rating {vote_average}
+                                            Rating
                                         </Typography>
                                     </Badge>
                                 </Grid>
@@ -120,7 +123,7 @@ export class MovieDetailsComponent extends Component {
 MovieDetailsComponent.propTypes = {
     classes: object.isRequired,
     poster_path: string,
-    title: string.isRequired,
+    title: string,
     vote_average: number,
     releaseYear: string,
     genres: arrayOf(string),

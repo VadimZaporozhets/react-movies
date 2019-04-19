@@ -9,15 +9,24 @@ export class MovieTilesPane extends Component {
         const { movies } = this.props;
 
         return movies.map(movie => {
-            const { poster_path, title, releaseYear, genres, id } = movie;
+            const {
+                poster_path,
+                title,
+                releaseYear,
+                genres,
+                id,
+                vote_average
+            } = movie;
             return (
                 <MovieTile
                     key={id}
                     {...{
+                        id,
                         poster_path,
                         title,
                         releaseYear,
-                        genres
+                        genres,
+                        vote_average
                     }}
                 />
             );

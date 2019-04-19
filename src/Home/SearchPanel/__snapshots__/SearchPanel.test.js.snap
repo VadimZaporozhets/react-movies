@@ -12,9 +12,13 @@ exports[`<SearchPanelComponent /> should render search panel component 1`] = `
     <WithStyles(Paper)
       elevation={1}
     >
-      <WithStyles(SearchInputSubmitComponent) />
+      <WithStyles(SearchInputSubmitComponent)
+        onSubmit={[MockFunction]}
+        searchBy="title"
+      />
       <WithStyles(SearchCategoriesComponent)
-        searchBy="Title"
+        handleSearchByChange={[Function]}
+        searchBy="title"
       />
     </WithStyles(Paper)>
   </WithStyles(Grid)>

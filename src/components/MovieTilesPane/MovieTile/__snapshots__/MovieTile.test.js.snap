@@ -9,7 +9,7 @@ exports[`<MovieTile /> should render movie tile component 1`] = `
 >
   <Link
     replace={false}
-    to="/details"
+    to="/details/1"
   >
     <WithStyles(Card)
       className="movie-tile"
@@ -44,6 +44,9 @@ exports[`<MovieTile /> should render movie tile component 1`] = `
               className="release"
             >
               2006
+            </WithStyles(Typography)>
+            <WithStyles(Typography)>
+              Rating 8.5
             </WithStyles(Typography)>
           </WithStyles(Grid)>
           <WithStyles(Grid)

@@ -57,15 +57,14 @@ exports[`<MovieDetailsComponent /> should render movie details component 1`] = `
             xs={12}
           >
             <WithStyles(Badge)
-              badgeContent={4.5}
+              badgeContent={5}
               color="primary"
             >
               <WithStyles(Typography)
                 className="movie-rating"
                 variant="button"
               >
-                Rating 
-                5
+                Rating
               </WithStyles(Typography)>
             </WithStyles(Badge)>
           </WithStyles(Grid)>

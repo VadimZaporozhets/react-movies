@@ -24,6 +24,7 @@ exports[`<DetailsSceneComponent /> should render details component with movie de
     poster_path="https://image.tmdb.org/t/p/w500/yUOJHa9XmB1H0iYodG9Kb3YCc9T.jpg"
     releaseYear="2019"
     title="Shazam!"
+    vote_average={0}
   />
   <MovieTilesPane
     movies={
@@ -38,6 +39,7 @@ exports[`<DetailsSceneComponent /> should render details component with movie de
           "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
           "releaseYear": "2020",
           "title": "Guardians of the Galaxy Vol. 3",
+          "vote_average": undefined,
         },
         Object {
           "genres": Array [
@@ -49,6 +51,7 @@ exports[`<DetailsSceneComponent /> should render details component with movie de
           "poster_path": "https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg",
           "releaseYear": "2019",
           "title": "Transformers 7",
+          "vote_average": undefined,
         },
       ]
     }

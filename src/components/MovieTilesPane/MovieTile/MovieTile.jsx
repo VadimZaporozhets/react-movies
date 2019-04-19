@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent/index';
 import CardMedia from '@material-ui/core/CardMedia/index';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import { string, arrayOf, object } from 'prop-types';
+import { string, arrayOf, object, number } from 'prop-types';
 import { emptyImageUrl } from '../../../constants';
 import { MovieTileStyles as styles } from './MovieTileStyles';
 
@@ -29,11 +29,18 @@ export class MovieTileComponent extends Component {
     };
 
     render() {
-        const { poster_path, title, releaseYear, classes } = this.props;
+        const {
+            poster_path,
+            title,
+            releaseYear,
+            classes,
+            id,
+            vote_average
+        } = this.props;
 
         return (
             <Grid item sm={6} md={4} lg={3}>
-                <Link className={classes.link} to="/details">
+                <Link className={classes.link} to={`/details/${id}`}>
                     <Card className="movie-tile">
                         <CardMedia
                             className={classes.media}
@@ -57,6 +64,10 @@ export class MovieTileComponent extends Component {
                                     <Typography className="release">
                                         {releaseYear}
                                     </Typography>
+                                    <Typography>
+                                        {vote_average > 0 &&
+                                            `Rating ${vote_average}`}
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     {this.renderGenres()}
@@ -75,7 +86,9 @@ MovieTileComponent.propTypes = {
     title: string.isRequired,
     releaseYear: string,
     genres: arrayOf(string),
-    classes: object.isRequired
+    classes: object.isRequired,
+    id: number.isRequired,
+    vote_average: number.isRequired
 };
 
 export const MovieTile = withStyles(styles)(MovieTileComponent);

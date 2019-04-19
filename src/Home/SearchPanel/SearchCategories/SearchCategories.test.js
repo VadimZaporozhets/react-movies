@@ -6,7 +6,8 @@ describe('<SearchCategoriesComponent />', () => {
     it('should render search categories component', () => {
         const props = {
             classes: expect.any(Object),
-            searchBy: 'Title'
+            searchBy: 'Title',
+            handleSearchByChange: jest.fn()
         };
 
         const wrapper = shallow(<SearchCategoriesComponent {...props} />);

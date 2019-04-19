@@ -43,7 +43,8 @@ describe('formatMovies', () => {
                 poster_path:
                     'https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg',
                 releaseYear: '2020',
-                genres: ['Action', 'Adventure', 'Science Fiction']
+                genres: ['Action', 'Adventure', 'Science Fiction'],
+                vote_average: 0
             },
             {
                 id: 424785,
@@ -51,7 +52,8 @@ describe('formatMovies', () => {
                 poster_path:
                     'https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg',
                 releaseYear: '2019',
-                genres: ['Science Fiction', 'Action', 'Adventure']
+                genres: ['Science Fiction', 'Action', 'Adventure'],
+                vote_average: 0
             }
         ];
 
