@@ -61,9 +61,15 @@ describe('<HomeSceneComponent />', () => {
             movies: []
         };
 
+        const event = {
+            currentTarget: {
+                value: SORT_PARAMS.rating
+            }
+        };
+
         const wrapper = shallow(<HomeSceneComponent {...props} />);
 
-        wrapper.instance().changeSortParam(SORT_PARAMS.rating);
+        wrapper.instance().changeSortParam(event);
 
         expect(wrapper.state().sortParam).toEqual(SORT_PARAMS.rating);
     });

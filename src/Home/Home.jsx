@@ -11,7 +11,6 @@ import { SearchPanel } from './SearchPanel';
 import { SortResultsPanel } from './SortResultsPannel';
 import { HomeStyles as styles } from './HomeStyles';
 import { SORT_PARAMS } from '../constants';
-import { formatMovies } from './Home.formatter';
 import { fetchMovies } from './store/Movies/movies.actions';
 import {
     selectMovies,
@@ -19,9 +18,10 @@ import {
     selectMoviesLoading,
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
+import { withSortParam } from '../hocs/withSortParam';
 
-const mapStateToProps = state => ({
-    movies: selectMovies(state),
+const mapStateToProps = (state, { sortParam }) => ({
+    movies: selectMovies(state, sortParam),
     loading: selectMoviesLoading(state),
     error: selectMoviesFetchError(state),
     total: selectMoviesTotal(state)
@@ -36,41 +36,17 @@ export class HomeSceneComponent extends Component {
         sortParam: SORT_PARAMS.releaseDate
     };
 
-    changeSortParam = ({ currentTarget: { value } }) => {
-        this.setState({
-            sortParam: value
-        });
-    };
-
-    sortByReleaseDate = (firstMovie, secondMovie) => {
-        const firstMovieReleaseDate = new Date(firstMovie.release_date);
-        const secondMovieReleaseDate = new Date(secondMovie.release_date);
-        return secondMovieReleaseDate - firstMovieReleaseDate;
-    };
-
-    sortByRating = (firstMovie, secondMovie) =>
-        secondMovie.vote_average - firstMovie.vote_average;
-
-    getSortedMovies = () => {
-        const { movies } = this.props;
-        const { sortParam } = this.state;
-        let sortedMovies;
-
-        if (sortParam === SORT_PARAMS.releaseDate) {
-            sortedMovies = movies.sort(this.sortByReleaseDate);
-        } else if (sortParam === SORT_PARAMS.rating) {
-            sortedMovies = movies.sort(this.sortByRating);
-        }
-
-        return formatMovies(sortedMovies);
-    };
-
     render() {
-        const { classes, loading, error, fetchMovies, total } = this.props;
-
-        const { sortParam } = this.state;
-
-        const sortedMovies = this.getSortedMovies();
+        const {
+            classes,
+            loading,
+            error,
+            fetchMovies,
+            total,
+            onSortParamChange,
+            movies,
+            sortParam
+        } = this.props;
 
         return (
             <main className={classes.home}>
@@ -78,15 +54,12 @@ export class HomeSceneComponent extends Component {
                 <SortResultsPanel
                     total={total}
                     currentSortParam={sortParam}
-                    onSortParamChange={this.changeSortParam}
+                    onSortParamChange={onSortParamChange}
                 />
                 {loading ? (
                     <CircularProgress className={classes.progress} />
-                ) : sortedMovies.length ? (
-                    <MovieTilesPane
-                        title="Found results:"
-                        movies={sortedMovies}
-                    />
+                ) : movies.length ? (
+                    <MovieTilesPane title="Found results:" movies={movies} />
                 ) : (
                     <Typography className={classes.text} variant="h4">
                         {error || 'Search for movies'}
@@ -103,10 +76,13 @@ HomeSceneComponent.propTypes = {
     error: string.isRequired,
     loading: bool.isRequired,
     fetchMovies: func.isRequired,
-    total: number
+    total: number,
+    onSortParamChange: func.isRequired,
+    sortParam: string.isRequired
 };
 
 export const HomeScene = compose(
+    withSortParam,
     withStyles(styles),
     connect(
         mapStateToProps,

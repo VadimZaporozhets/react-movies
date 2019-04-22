@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ConnectedRouter } from 'connected-react-router';
 
 import { HomeScene } from './Home';
 import { DetailsScene } from './Details';
-import { store, persistor } from './store';
+import { store, persistor, history } from './store';
 import { routes } from './routes';
 
 export class App extends Component {
@@ -27,7 +28,7 @@ export class App extends Component {
         return (
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
-                    <Router>
+                    <ConnectedRouter history={history}>
                         <Switch>
                             <Route
                                 path={routes.HOME}
@@ -40,7 +41,7 @@ export class App extends Component {
                                 component={DetailsScene}
                             />
                         </Switch>
-                    </Router>
+                    </ConnectedRouter>
                 </PersistGate>
             </Provider>
         );

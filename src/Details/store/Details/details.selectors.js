@@ -1,12 +1,33 @@
-export const selectDetails = store => store.movieDetails.data;
+import { createSelector } from 'reselect';
 
-export const selectLoadingDetails = store => store.movieDetails.loadingDetails;
+const getMovieDetails = state => state.movieDetails;
 
-export const selectLoadingMovies = store => store.movieDetails.loadingMovies;
+export const selectDetails = createSelector(
+    getMovieDetails,
+    ({ data }) => data
+);
 
-export const selectDetailsError = store => store.movieDetails.detailsError;
+export const selectLoadingDetails = createSelector(
+    getMovieDetails,
+    ({ loadingDetails }) => loadingDetails
+);
 
-export const selectSimilarMoviesError = store =>
-    store.movieDetails.similarMoviesError;
+export const selectLoadingMovies = createSelector(
+    getMovieDetails,
+    ({ loadingMovies }) => loadingMovies
+);
 
-export const selectSimilarMovies = store => store.movieDetails.similarMovies;
+export const selectDetailsError = createSelector(
+    getMovieDetails,
+    ({ detailsError }) => detailsError
+);
+
+export const selectSimilarMoviesError = createSelector(
+    getMovieDetails,
+    ({ similarMoviesError }) => similarMoviesError
+);
+
+export const selectSimilarMovies = createSelector(
+    getMovieDetails,
+    ({ similarMovies }) => similarMovies
+);

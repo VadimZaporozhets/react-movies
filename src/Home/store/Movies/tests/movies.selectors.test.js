@@ -15,7 +15,7 @@ const initializeStore = () => ({
 });
 
 describe('selectMovies', () => {
-    it('should return movies array', () => {
+    it('should derive movies array from state', () => {
         const store = initializeStore();
 
         expect(selectMovies(store)).toEqual(expect.any(Array));
@@ -23,7 +23,7 @@ describe('selectMovies', () => {
 });
 
 describe('selectMoviesTotal', () => {
-    it('should return total number', function() {
+    it('should derive total number from state', function() {
         const store = initializeStore();
 
         expect(selectMoviesTotal(store)).toEqual(10);
@@ -31,7 +31,7 @@ describe('selectMoviesTotal', () => {
 });
 
 describe('selectMoviesFetchError', () => {
-    it('should return error string', function() {
+    it('should derive error from state', function() {
         const store = initializeStore();
 
         expect(selectMoviesFetchError(store)).toEqual('error');
@@ -39,7 +39,7 @@ describe('selectMoviesFetchError', () => {
 });
 
 describe('selectMoviesLoading', () => {
-    it('should return loading boolean', function() {
+    it('should derive loading flag from state', function() {
         const store = initializeStore();
 
         expect(selectMoviesLoading(store)).toBeTruthy();

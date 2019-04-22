@@ -69,7 +69,7 @@ export class DetailsSceneComponent extends Component {
             genres,
             description,
             vote_average
-        } = details || {};
+        } = details;
 
         const { classes } = this.props;
         return (

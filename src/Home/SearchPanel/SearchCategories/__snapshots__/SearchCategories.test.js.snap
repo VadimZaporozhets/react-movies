@@ -19,16 +19,18 @@ exports[`<SearchCategoriesComponent /> should render search categories component
     <WithStyles(Button)
       color="primary"
       id="search-by-title"
-      onClick={[Function]}
+      onClick={[MockFunction]}
       size="small"
+      value="title"
       variant="outlined"
     >
       Title
     </WithStyles(Button)>
     <WithStyles(Button)
       color="primary"
-      onClick={[Function]}
+      onClick={[MockFunction]}
       size="small"
+      value="genres"
       variant="outlined"
     >
       Genre

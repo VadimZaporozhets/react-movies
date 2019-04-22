@@ -19,37 +19,37 @@ const store = {
 };
 
 describe('selectDetails', () => {
-    it('should return details object', () => {
+    it('should derive details from state', () => {
         expect(selectDetails(store)).toEqual(expect.any(Object));
     });
 });
 
 describe('selectLoadingDetails', () => {
-    it('should return loading boolean', () => {
+    it('should derive details loading flag from state', () => {
         expect(selectLoadingDetails(store)).toBeFalsy();
     });
 });
 
 describe('selectLoadingMovies', () => {
-    it('should return loading boolean', () => {
+    it('should derive movies loading flag from state', () => {
         expect(selectLoadingMovies(store)).toBeTruthy();
     });
 });
 
 describe('selectSimilarMovies', () => {
-    it('should return similar movies array', () => {
+    it('should derive similar movies array from state', () => {
         expect(selectSimilarMovies(store)).toEqual(expect.any(Array));
     });
 });
 
 describe('selectDetailsError', () => {
-    it('should return details error string', () => {
+    it('should derive details error from state', () => {
         expect(selectDetailsError(store)).toEqual('error');
     });
 });
 
 describe('selectSimilarMoviesError', () => {
-    it('should return similar movies error string', () => {
+    it('should derive similar movies error from state', () => {
         expect(selectSimilarMoviesError(store)).toEqual('error');
     });
 });

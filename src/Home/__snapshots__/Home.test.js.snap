@@ -5,10 +5,7 @@ exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
   <WithStyles(SearchPanelComponent)
     onSubmit={[MockFunction]}
   />
-  <WithStyles(SortResultsPanelComponent)
-    currentSortParam="RELEASE_DATE"
-    onSortParamChange={[Function]}
-  />
+  <WithStyles(SortResultsPanelComponent) />
   <WithStyles(CircularProgress) />
 </main>
 `;
@@ -19,8 +16,6 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
     onSubmit={[MockFunction]}
   />
   <WithStyles(SortResultsPanelComponent)
-    currentSortParam="RELEASE_DATE"
-    onSortParamChange={[Function]}
     total={20}
   />
   <MovieTilesPane
@@ -34,9 +29,8 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
           ],
           "id": 447365,
           "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
-          "releaseYear": "2020",
+          "release_date": "2020-12-12",
           "title": "Guardians of the Galaxy Vol. 3",
-          "vote_average": undefined,
         },
         Object {
           "genres": Array [
@@ -46,9 +40,8 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
           ],
           "id": 424785,
           "poster_path": "https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg",
-          "releaseYear": "2019",
+          "release_date": "2019-12-12",
           "title": "Transformers 7",
-          "vote_average": undefined,
         },
       ]
     }

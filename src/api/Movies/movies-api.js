@@ -10,9 +10,13 @@ const defaultParams = {
 
 class MovieService {
     getMovies = ({ search, searchBy, limit } = defaultParams) => {
-        return axios.get(
-            `${BASE_URL}?search=${search}&searchBy=${searchBy}&limit=${limit}`
-        );
+        return axios.get(BASE_URL, {
+            params: {
+                search,
+                searchBy,
+                limit
+            }
+        });
     };
 
     getMovieById = id => {
