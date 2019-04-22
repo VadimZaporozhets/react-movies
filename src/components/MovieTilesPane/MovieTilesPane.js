@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { array, string } from 'prop-types';
-import { MovieTile } from './MovieTile';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+
+import { MovieTile } from './MovieTile';
 
 export class MovieTilesPane extends Component {
     renderMovieTiles = () => {

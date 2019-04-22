@@ -8,60 +8,57 @@ import {
     FETCH_SIMILAR_MOVIES_SUCCESS
 } from './details.actions';
 
-export const defaultState = {
+export const initialState = {
     data: {},
     loadingDetails: false,
     loadingMovies: false,
-    error: '',
+    detailsError: '',
+    similarMoviesError: '',
     similarMovies: []
 };
 
-export const movieDetails = (state = defaultState, action) => {
+export const movieDetails = (state = initialState, action) => {
     switch (action.type) {
         case withDetailsFeatureLabel(FETCH_DETAILS):
             return {
+                ...state,
                 data: {},
                 loadingDetails: true,
-                loadingMovies: false,
-                error: '',
-                similarMovies: []
+                detailsError: ''
             };
         case withDetailsFeatureLabel(FETCH_DETAILS_SUCCESS):
             return {
+                ...state,
                 data: action.payload,
                 loadingDetails: false,
-                loadingMovies: false,
-                error: '',
-                similarMovies: []
+                detailsError: ''
             };
         case withDetailsFeatureLabel(FETCH_DETAILS_ERROR):
             return {
+                ...state,
                 loadingDetails: false,
-                loadingMovies: false,
-                error: action.payload,
-                data: {},
-                similarMovies: []
+                detailsError: action.payload,
+                data: {}
             };
         case withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES):
             return {
                 ...state,
                 loadingMovies: true,
-                error: '',
+                similarMoviesError: '',
                 similarMovies: []
             };
         case withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_SUCCESS):
             return {
                 ...state,
                 loadingMovies: false,
-                error: '',
+                similarMoviesError: '',
                 similarMovies: action.payload
             };
         case withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_ERROR):
             return {
-                loadingDetails: false,
+                ...state,
                 loadingMovies: false,
-                error: action.payload,
-                data: {},
+                similarMoviesError: action.payload,
                 similarMovies: []
             };
         default:

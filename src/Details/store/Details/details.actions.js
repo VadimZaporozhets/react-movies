@@ -7,17 +7,17 @@ export const FETCH_SIMILAR_MOVIES = 'FETCH_SIMILAR_MOVIES';
 export const FETCH_SIMILAR_MOVIES_SUCCESS = 'FETCH_SIMILAR_MOVIES_SUCCESS';
 export const FETCH_SIMILAR_MOVIES_ERROR = 'FETCH_SIMILAR_MOVIES_ERROR';
 
-export const fetchDetails = payload =>
-    withDetailsFeatureAction(FETCH_DETAILS)(payload);
+export const fetchDetails = withDetailsFeatureAction(FETCH_DETAILS);
 
-export const fetchDetailsSuccess = payload =>
-    withDetailsFeatureAction(FETCH_DETAILS_SUCCESS)(payload);
+export const fetchDetailsSuccess = withDetailsFeatureAction(
+    FETCH_DETAILS_SUCCESS
+);
 
-export const fetchDetailsError = payload =>
-    withDetailsFeatureAction(FETCH_DETAILS_ERROR)(payload);
+export const fetchDetailsError = withDetailsFeatureAction(FETCH_DETAILS_ERROR);
 
-export const fetchSimilarMovies = payload =>
-    withDetailsFeatureAction(FETCH_SIMILAR_MOVIES)(payload);
+export const fetchSimilarMovies = withDetailsFeatureAction(
+    FETCH_SIMILAR_MOVIES
+);
 
 export const fetchSimilarMoviesSuccess = payload =>
     withDetailsFeatureAction(FETCH_SIMILAR_MOVIES_SUCCESS)(payload);

@@ -3,14 +3,16 @@ import { object, array, string, bool, func, number } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Typography } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
 import { MovieTilesPane } from '../components';
 import { SearchPanel } from './SearchPanel';
 import { SortResultsPanel } from './SortResultsPannel';
 import { HomeStyles as styles } from './HomeStyles';
 import { SORT_PARAMS } from '../constants';
 import { formatMovies } from './Home.formatter';
-import { fetchMovies as fetchMoviesAction } from './store/Movies/movies.actions';
-import { connect } from 'react-redux';
+import { fetchMovies } from './store/Movies/movies.actions';
 import {
     selectMovies,
     selectMoviesFetchError,
@@ -18,25 +20,25 @@ import {
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
 
-const mapStateToProps = store => ({
-    movies: selectMovies(store),
-    loading: selectMoviesLoading(store),
-    error: selectMoviesFetchError(store),
-    total: selectMoviesTotal(store)
+const mapStateToProps = state => ({
+    movies: selectMovies(state),
+    loading: selectMoviesLoading(state),
+    error: selectMoviesFetchError(state),
+    total: selectMoviesTotal(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchMovies: searchObj => dispatch(fetchMoviesAction(searchObj))
-});
+const mapDispatchToProps = {
+    fetchMovies
+};
 
 export class HomeSceneComponent extends Component {
     state = {
         sortParam: SORT_PARAMS.releaseDate
     };
 
-    changeSortParam = sortParam => {
+    changeSortParam = ({ currentTarget: { value } }) => {
         this.setState({
-            sortParam
+            sortParam: value
         });
     };
 
@@ -104,9 +106,10 @@ HomeSceneComponent.propTypes = {
     total: number
 };
 
-const HomeSceneComponentStyled = withStyles(styles)(HomeSceneComponent);
-
-export const HomeScene = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(HomeSceneComponentStyled);
+export const HomeScene = compose(
+    withStyles(styles),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )
+)(HomeSceneComponent);

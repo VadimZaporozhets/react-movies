@@ -3,11 +3,12 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
-import { emptyImageUrl } from '../../constants';
 import { withStyles } from '@material-ui/core/styles';
 import { object, string, number, arrayOf } from 'prop-types';
-import { MovieDetailsStyles as styles } from './MovieDetailsStyles';
 import classNames from 'classnames';
+
+import { MovieDetailsStyles as styles } from './MovieDetailsStyles';
+import { emptyImageUrl } from '../../constants';
 
 export class MovieDetailsComponent extends Component {
     renderGenres = () => {

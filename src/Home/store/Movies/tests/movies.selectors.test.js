@@ -15,7 +15,7 @@ const initializeStore = () => ({
 });
 
 describe('selectMovies', () => {
-    it('should return movies array', function() {
+    it('should return movies array', () => {
         const store = initializeStore();
 
         expect(selectMovies(store)).toEqual(expect.any(Array));

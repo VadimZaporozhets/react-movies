@@ -7,10 +7,10 @@ import {
 } from './movies.actions';
 import { withMoviesFeatureLabel } from './movies.feature';
 
-export function* fetchMoviesSaga(action) {
+export function* fetchMoviesSaga({ payload }) {
     try {
-        const moviesObj = yield call(movieService.getMovies, action.payload);
-        yield put(fetchMoviesSuccess(moviesObj.data));
+        const { data } = yield call(movieService.getMovies, payload);
+        yield put(fetchMoviesSuccess(data));
     } catch (e) {
         yield put(fetchMoviesError(e.message));
     }

@@ -1,4 +1,4 @@
-import { movies as reducer, defaultState } from '../movies.reducer';
+import { movies as reducer, initialState } from '../movies.reducer';
 import { withMoviesFeatureLabel } from '../movies.feature';
 import {
     FETCH_MOVIES,
@@ -8,25 +8,23 @@ import {
 
 describe('Movies reducer', () => {
     it('should return the initial state', function() {
-        expect(reducer(undefined, {})).toEqual(defaultState);
+        expect(reducer(undefined, {})).toEqual(initialState);
     });
 
-    it('should handle FETCH_MOVIES', function() {
+    it('should set loading to true on fetch start', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withMoviesFeatureLabel(FETCH_MOVIES)
             })
         ).toEqual({
-            data: [],
-            loading: true,
-            error: '',
-            total: 0
+            ...initialState,
+            loading: true
         });
     });
 
-    it('should handle FETCH_MOVIES_SUCCESS', function() {
+    it('should set movies array and total after fetch success', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS),
                 payload: {
                     data: expect.any(Array),
@@ -34,24 +32,21 @@ describe('Movies reducer', () => {
                 }
             })
         ).toEqual({
+            ...initialState,
             data: expect.any(Array),
-            loading: false,
-            error: '',
             total: 10
         });
     });
 
-    it('should handle FETCH_MOVIES_ERROR', function() {
+    it('should set error on fetch fail', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withMoviesFeatureLabel(FETCH_MOVIES_ERROR),
                 payload: 'error'
             })
         ).toEqual({
-            data: [],
-            loading: false,
-            error: 'error',
-            total: 0
+            ...initialState,
+            error: 'error'
         });
     });
 });

@@ -15,7 +15,8 @@ describe('<DetailsSceneComponent />', () => {
             },
             loadingDetails: true,
             loadingMovies: true,
-            error: '',
+            similarMoviesError: '',
+            detailsError: '',
             similarMovies: []
         };
 
@@ -65,7 +66,8 @@ describe('<DetailsSceneComponent />', () => {
             },
             loadingDetails: false,
             loadingMovies: false,
-            error: '',
+            similarMoviesError: '',
+            detailsError: '',
             similarMovies: movies
         };
 
@@ -86,7 +88,8 @@ describe('<DetailsSceneComponent />', () => {
             },
             loadingDetails: true,
             loadingMovies: true,
-            error: '',
+            similarMoviesError: '',
+            detailsError: '',
             similarMovies: []
         };
 
@@ -107,14 +110,16 @@ describe('<DetailsSceneComponent />', () => {
             },
             loadingDetails: true,
             loadingMovies: true,
-            error: '',
+            similarMoviesError: '',
+            detailsError: '',
             similarMovies: []
         };
 
         const wrapper = shallow(<DetailsSceneComponent {...props} />);
 
         wrapper.setProps({
-            error: 'error'
+            similarMoviesError: 'error',
+            detailsError: 'error'
         });
 
         expect(props.fetchDetails.mock.calls.length).toBe(1);
@@ -132,7 +137,8 @@ describe('<DetailsSceneComponent />', () => {
             },
             loadingDetails: true,
             loadingMovies: true,
-            error: '',
+            similarMoviesError: '',
+            detailsError: '',
             similarMovies: []
         };
 

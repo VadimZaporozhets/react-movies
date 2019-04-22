@@ -1,57 +1,55 @@
 import {
     selectDetailsError,
+    selectSimilarMoviesError,
     selectSimilarMovies,
     selectLoadingMovies,
     selectLoadingDetails,
     selectDetails
 } from '../details.selectors';
 
-const initializeStore = () => ({
+const store = {
     movieDetails: {
         data: expect.any(Object),
         loadingDetails: false,
         loadingMovies: true,
-        error: 'error',
+        similarMoviesError: 'error',
+        detailsError: 'error',
         similarMovies: expect.any(Array)
     }
-});
+};
 
 describe('selectDetails', () => {
     it('should return details object', () => {
-        const store = initializeStore();
-
         expect(selectDetails(store)).toEqual(expect.any(Object));
     });
 });
 
 describe('selectLoadingDetails', () => {
     it('should return loading boolean', () => {
-        const store = initializeStore();
-
         expect(selectLoadingDetails(store)).toBeFalsy();
     });
 });
 
 describe('selectLoadingMovies', () => {
     it('should return loading boolean', () => {
-        const store = initializeStore();
-
         expect(selectLoadingMovies(store)).toBeTruthy();
     });
 });
 
 describe('selectSimilarMovies', () => {
     it('should return similar movies array', () => {
-        const store = initializeStore();
-
         expect(selectSimilarMovies(store)).toEqual(expect.any(Array));
     });
 });
 
 describe('selectDetailsError', () => {
-    it('should return error string', () => {
-        const store = initializeStore();
-
+    it('should return details error string', () => {
         expect(selectDetailsError(store)).toEqual('error');
+    });
+});
+
+describe('selectSimilarMoviesError', () => {
+    it('should return similar movies error string', () => {
+        expect(selectSimilarMoviesError(store)).toEqual('error');
     });
 });

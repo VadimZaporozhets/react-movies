@@ -1,12 +1,16 @@
 import React from 'react';
 import { object, string, func, number } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { sortResultsPanelStyles as styles } from './SortResultsPanelStyles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+
 import { SORT_PARAMS } from '../../constants';
+import { sortResultsPanelStyles as styles } from './SortResultsPanelStyles';
+
+const resolveButtonType = (currentSortParam, buttonSortParam) =>
+    currentSortParam === buttonSortParam ? 'contained' : 'outlined';
 
 export const SortResultsPanelComponent = ({
     classes,
@@ -34,30 +38,26 @@ export const SortResultsPanelComponent = ({
                         </Typography>
                         <Button
                             className={classes.marginRight}
-                            variant={
-                                currentSortParam === SORT_PARAMS.releaseDate
-                                    ? 'contained'
-                                    : 'outlined'
-                            }
+                            variant={resolveButtonType(
+                                currentSortParam,
+                                SORT_PARAMS.releaseDate
+                            )}
                             size="small"
                             color="primary"
-                            onClick={() => {
-                                onSortParamChange(SORT_PARAMS.releaseDate);
-                            }}
+                            value={SORT_PARAMS.releaseDate}
+                            onClick={onSortParamChange}
                         >
                             Release date
                         </Button>
                         <Button
-                            variant={
-                                currentSortParam === SORT_PARAMS.rating
-                                    ? 'contained'
-                                    : 'outlined'
-                            }
+                            variant={resolveButtonType(
+                                currentSortParam,
+                                SORT_PARAMS.rating
+                            )}
+                            value={SORT_PARAMS.rating}
                             size="small"
                             color="primary"
-                            onClick={() => {
-                                onSortParamChange(SORT_PARAMS.rating);
-                            }}
+                            onClick={onSortParamChange}
                         >
                             Rating
                         </Button>

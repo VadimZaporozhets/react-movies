@@ -2,13 +2,16 @@ import axios from 'axios';
 
 const BASE_URL = 'https://reactjs-cdp.herokuapp.com/movies';
 
+const defaultParams = {
+    search: '',
+    limit: 10,
+    searchBy: 'title'
+};
+
 class MovieService {
-    getMovies = ({ search, searchBy, limit } = {}) => {
-        const searchParam = search || '';
-        const limitParam = limit || 10;
-        const searchByParam = searchBy || 'title';
+    getMovies = ({ search, searchBy, limit } = defaultParams) => {
         return axios.get(
-            `${BASE_URL}?search=${searchParam}&searchBy=${searchByParam}&limit=${limitParam}`
+            `${BASE_URL}?search=${search}&searchBy=${searchBy}&limit=${limit}`
         );
     };
 

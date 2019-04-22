@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia/index';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { string, arrayOf, object, number } from 'prop-types';
+
 import { emptyImageUrl } from '../../../constants';
 import { MovieTileStyles as styles } from './MovieTileStyles';
 

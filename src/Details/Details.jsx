@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { object, func, array, bool, string } from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { connect } from 'react-redux';
+import { Typography } from '@material-ui/core';
+import { compose } from 'redux';
+
 import { MovieTilesPane } from '../components';
 import { BackNavigation } from './BackNavigation';
 import { MovieDetails } from './MovieDetails';
-import { withStyles } from '@material-ui/core/styles';
-import { object, func, array, bool, string } from 'prop-types';
 import { DetailsStyles as styles } from './DetailsStyles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { connect } from 'react-redux';
-import { fetchDetails as fetchDetailsAction } from './store/Details/details.actions';
+import { fetchDetails } from './store/Details/details.actions';
 import { formatMovies } from './Details.formatter';
-import { Typography } from '@material-ui/core';
 import {
     selectDetails,
     selectDetailsError,
     selectLoadingDetails,
     selectLoadingMovies,
-    selectSimilarMovies
+    selectSimilarMovies,
+    selectSimilarMoviesError
 } from './store/Details/details.selectors';
 
-const mapStateToProps = store => ({
-    details: selectDetails(store),
-    loadingDetails: selectLoadingDetails(store),
-    loadingMovies: selectLoadingMovies(store),
-    error: selectDetailsError(store),
-    similarMovies: selectSimilarMovies(store)
+const mapStateToProps = state => ({
+    details: selectDetails(state),
+    loadingDetails: selectLoadingDetails(state),
+    loadingMovies: selectLoadingMovies(state),
+    detailsError: selectDetailsError(state),
+    similarMoviesError: selectSimilarMoviesError(state),
+    similarMovies: selectSimilarMovies(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetchDetails: id => {
-        dispatch(fetchDetailsAction(id));
-    }
-});
+const mapDispatchToProps = {
+    fetchDetails
+};
 
 export class DetailsSceneComponent extends Component {
     componentDidMount() {
@@ -56,7 +58,8 @@ export class DetailsSceneComponent extends Component {
             details,
             loadingDetails,
             loadingMovies,
-            error
+            detailsError,
+            similarMoviesError
         } = this.props;
         const {
             title,
@@ -72,8 +75,9 @@ export class DetailsSceneComponent extends Component {
         return (
             <main className={classes.details}>
                 <BackNavigation />
-                {error && <Typography>{error}</Typography>}
-                {loadingDetails ? (
+                {detailsError ? (
+                    <Typography>{detailsError}</Typography>
+                ) : loadingDetails ? (
                     <CircularProgress className={classes.progress} />
                 ) : (
                     <MovieDetails
@@ -88,7 +92,10 @@ export class DetailsSceneComponent extends Component {
                         }}
                     />
                 )}
-                {loadingMovies ? (
+
+                {similarMoviesError ? (
+                    <Typography>{similarMoviesError}</Typography>
+                ) : loadingMovies ? (
                     <CircularProgress className={classes.progress} />
                 ) : (
                     <MovieTilesPane
@@ -108,13 +115,15 @@ DetailsSceneComponent.propTypes = {
     match: object.isRequired,
     loadingDetails: bool.isRequired,
     loadingMovies: bool.isRequired,
-    error: string.isRequired,
+    similarMoviesError: string.isRequired,
+    detailsError: string.isRequired,
     similarMovies: array.isRequired
 };
 
-export const DetailsStyledComponent = withStyles(styles)(DetailsSceneComponent);
-
-export const DetailsScene = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(DetailsStyledComponent);
+export const DetailsScene = compose(
+    withStyles(styles),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )
+)(DetailsSceneComponent);

@@ -4,11 +4,8 @@ export const FETCH_MOVIES = 'FETCH_MOVIES';
 export const FETCH_MOVIES_SUCCESS = 'FETCH_MOVIES_SUCCESS';
 export const FETCH_MOVIES_ERROR = 'FETCH_MOVIES_ERROR';
 
-export const fetchMovies = payload =>
-    withMoviesFeatureAction(FETCH_MOVIES)(payload);
+export const fetchMovies = withMoviesFeatureAction(FETCH_MOVIES);
 
-export const fetchMoviesSuccess = payload =>
-    withMoviesFeatureAction(FETCH_MOVIES_SUCCESS)(payload);
+export const fetchMoviesSuccess = withMoviesFeatureAction(FETCH_MOVIES_SUCCESS);
 
-export const fetchMoviesError = payload =>
-    withMoviesFeatureAction(FETCH_MOVIES_ERROR)(payload);
+export const fetchMoviesError = withMoviesFeatureAction(FETCH_MOVIES_ERROR);

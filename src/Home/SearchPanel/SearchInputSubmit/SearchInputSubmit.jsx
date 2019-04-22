@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button/index';
 import TextField from '@material-ui/core/TextField';
 import { object, func, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
 import { SearchInputSubmitStyles as styles } from './SearchInputSubmitStyles';
 
 export class SearchInputSubmitComponent extends Component {
@@ -11,17 +12,24 @@ export class SearchInputSubmitComponent extends Component {
         search: ''
     };
 
-    handleSearchChange = event => {
-        const search = event.target.value;
+    onSubmit = () => {
+        const { onSubmit, searchBy } = this.props;
+        const { search } = this.state;
 
+        onSubmit({
+            search,
+            searchBy
+        });
+    };
+
+    handleSearchChange = ({ target: { value } }) => {
         this.setState({
-            search
+            search: value
         });
     };
 
     render() {
-        const { classes, onSubmit, searchBy } = this.props;
-        const { search } = this.state;
+        const { classes } = this.props;
 
         return (
             <Grid container spacing={40}>
@@ -34,12 +42,7 @@ export class SearchInputSubmitComponent extends Component {
                 </Grid>
                 <Grid sm={12} md={4} lg={2} item className={classes.alignRight}>
                     <Button
-                        onClick={() => {
-                            onSubmit({
-                                search,
-                                searchBy
-                            });
-                        }}
+                        onClick={this.onSubmit}
                         variant="contained"
                         color="primary"
                     >

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { SearchInputSubmit } from './SearchInputSubmit';
-import { SearchCategories } from './SearchCategories';
+import { object, func } from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { object, func } from 'prop-types';
+
+import { SearchInputSubmit } from './SearchInputSubmit';
+import { SearchCategories } from './SearchCategories';
 import { SearchPanelStyles as styles } from './SearchPannelStyles';
 import { SEARCH_BY_PARAMS } from '../../constants';
 
@@ -13,8 +14,8 @@ export class SearchPanelComponent extends Component {
         searchBy: SEARCH_BY_PARAMS.title
     };
 
-    handleSearchByChange = searchBy => {
-        this.setState({ searchBy });
+    handleSearchByChange = ({ currentTarget: { value } }) => {
+        this.setState({ searchBy: value });
     };
 
     render() {

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { object, string, func } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
 import { SearchCategoriesStyles as styles } from './SearchCategoriesStyles';
 import { SEARCH_BY_PARAMS } from '../../../constants';
 
@@ -32,9 +33,8 @@ export const SearchCategoriesComponent = ({
                 }
                 size="small"
                 color="primary"
-                onClick={() => {
-                    handleSearchByChange(SEARCH_BY_PARAMS.title);
-                }}
+                value={SEARCH_BY_PARAMS.title}
+                onClick={handleSearchByChange}
             >
                 Title
             </Button>
@@ -46,9 +46,8 @@ export const SearchCategoriesComponent = ({
                 }
                 size="small"
                 color="primary"
-                onClick={() => {
-                    handleSearchByChange(SEARCH_BY_PARAMS.genre);
-                }}
+                value={SEARCH_BY_PARAMS.genre}
+                onClick={handleSearchByChange}
             >
                 Genre
             </Button>

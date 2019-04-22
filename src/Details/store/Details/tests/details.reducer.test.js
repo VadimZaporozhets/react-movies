@@ -1,4 +1,4 @@
-import { movieDetails as reducer, defaultState } from '../details.reducer';
+import { movieDetails as reducer, initialState } from '../details.reducer';
 import { withDetailsFeatureLabel } from '../details.feature';
 import {
     FETCH_SIMILAR_MOVIES,
@@ -11,94 +11,76 @@ import {
 
 describe('Details reducer', () => {
     it('should return the initial state', function() {
-        expect(reducer(undefined, {})).toEqual(defaultState);
+        expect(reducer(undefined, {})).toEqual(initialState);
     });
 
-    it('should handle FETCH_DETAILS', function() {
+    it('should set details loader to true on fetch start', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withDetailsFeatureLabel(FETCH_DETAILS)
             })
         ).toEqual({
-            data: {},
-            loadingDetails: true,
-            loadingMovies: false,
-            error: '',
-            similarMovies: []
+            ...initialState,
+            loadingDetails: true
         });
     });
 
-    it('should handle FETCH_DETAILS_SUCCESS', function() {
+    it('should set details on details fetch success', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withDetailsFeatureLabel(FETCH_DETAILS_SUCCESS),
                 payload: expect.any(Object)
             })
         ).toEqual({
-            data: expect.any(Object),
-            loadingDetails: false,
-            loadingMovies: false,
-            error: '',
-            similarMovies: []
+            ...initialState,
+            data: expect.any(Object)
         });
     });
 
-    it('should handle FETCH_DETAILS_ERROR', function() {
+    it('should set details error on details fetch error', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withDetailsFeatureLabel(FETCH_DETAILS_ERROR),
                 payload: 'error'
             })
         ).toEqual({
-            data: {},
-            loadingDetails: false,
-            loadingMovies: false,
-            error: 'error',
-            similarMovies: []
+            ...initialState,
+            detailsError: 'error'
         });
     });
 
-    it('should handle FETCH_SIMILAR_MOVIES', function() {
+    it('should set loading movies to true on movies fetch start', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES)
             })
         ).toEqual({
-            data: expect.any(Object),
-            loadingDetails: expect.any(Boolean),
-            loadingMovies: true,
-            error: '',
-            similarMovies: []
+            ...initialState,
+            loadingMovies: true
         });
     });
 
-    it('should handle FETCH_SIMILAR_MOVIES_SUCCESS', function() {
+    it('should set similar movies array on fetch movies success', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_SUCCESS),
                 payload: expect.any(Array)
             })
         ).toEqual({
-            data: expect.any(Object),
-            loadingDetails: expect.any(Boolean),
-            loadingMovies: false,
-            error: '',
+            ...initialState,
             similarMovies: expect.any(Array)
         });
     });
 
-    it('should handle FETCH_SIMILAR_MOVIES_ERROR', function() {
+    it('should set movies error on fetch movies error', function() {
         expect(
-            reducer(defaultState, {
+            reducer(initialState, {
                 type: withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_ERROR),
                 payload: 'error'
             })
         ).toEqual({
-            loadingDetails: false,
-            loadingMovies: false,
-            error: 'error',
-            data: {},
-            similarMovies: []
+            ...initialState,
+            similarMoviesError: 'error'
         });
     });
 });
