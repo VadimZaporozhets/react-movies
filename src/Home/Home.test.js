@@ -10,7 +10,9 @@ describe('<HomeSceneComponent />', () => {
             loading: true,
             fetchMovies: jest.fn(),
             error: '',
-            movies: []
+            movies: [],
+            onSortParamChange: jest.fn(),
+            sortParam: SORT_PARAMS.releaseDate
         };
 
         const wrapper = shallow(<HomeSceneComponent {...props} />);
@@ -44,33 +46,13 @@ describe('<HomeSceneComponent />', () => {
             fetchMovies: jest.fn(),
             error: '',
             movies,
-            total: 20
+            total: 20,
+            onSortParamChange: jest.fn(),
+            sortParam: SORT_PARAMS.releaseDate
         };
 
         const wrapper = shallow(<HomeSceneComponent {...props} />);
 
         expect(wrapper).toMatchSnapshot();
-    });
-
-    it('changeSortParam should change state', async () => {
-        const props = {
-            classes: expect.any(Object),
-            loading: true,
-            fetchMovies: jest.fn(),
-            error: '',
-            movies: []
-        };
-
-        const event = {
-            currentTarget: {
-                value: SORT_PARAMS.rating
-            }
-        };
-
-        const wrapper = shallow(<HomeSceneComponent {...props} />);
-
-        wrapper.instance().changeSortParam(event);
-
-        expect(wrapper.state().sortParam).toEqual(SORT_PARAMS.rating);
     });
 });

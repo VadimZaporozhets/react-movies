@@ -5,7 +5,10 @@ exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
   <WithStyles(SearchPanelComponent)
     onSubmit={[MockFunction]}
   />
-  <WithStyles(SortResultsPanelComponent) />
+  <WithStyles(SortResultsPanelComponent)
+    currentSortParam="RELEASE_DATE"
+    onSortParamChange={[MockFunction]}
+  />
   <WithStyles(CircularProgress) />
 </main>
 `;
@@ -16,6 +19,8 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
     onSubmit={[MockFunction]}
   />
   <WithStyles(SortResultsPanelComponent)
+    currentSortParam="RELEASE_DATE"
+    onSortParamChange={[MockFunction]}
     total={20}
   />
   <MovieTilesPane
