@@ -1,5 +1,5 @@
 import { movies as reducer, initialState } from '../movies.reducer';
-import { withMoviesFeatureLabel } from '../movies.feature';
+import { MoviesFeature } from '../movies.feature';
 import {
     FETCH_MOVIES,
     FETCH_MOVIES_SUCCESS,
@@ -14,7 +14,7 @@ describe('Movies reducer', () => {
     it('should set loading to true on fetch start', function() {
         expect(
             reducer(initialState, {
-                type: withMoviesFeatureLabel(FETCH_MOVIES)
+                type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES)
             })
         ).toEqual({
             ...initialState,
@@ -25,7 +25,7 @@ describe('Movies reducer', () => {
     it('should set movies array and total after fetch success', function() {
         expect(
             reducer(initialState, {
-                type: withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS),
+                type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS),
                 payload: {
                     data: expect.any(Array),
                     total: 10
@@ -41,7 +41,7 @@ describe('Movies reducer', () => {
     it('should set error on fetch fail', function() {
         expect(
             reducer(initialState, {
-                type: withMoviesFeatureLabel(FETCH_MOVIES_ERROR),
+                type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_ERROR),
                 payload: 'error'
             })
         ).toEqual({

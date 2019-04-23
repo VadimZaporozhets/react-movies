@@ -1,9 +1,12 @@
-const movieFeature = 'Movies';
-
-export const withMoviesFeatureAction = actionName => payload => ({
-    type: withMoviesFeatureLabel(actionName),
-    payload
-});
-
-export const withMoviesFeatureLabel = actionName =>
-    `@${movieFeature}/${actionName}`;
+export const MoviesFeature = {
+    name: 'Movies',
+    actionCreator: function(actionName) {
+        return payload => ({
+            type: this.withMoviesFeatureLabel(actionName),
+            payload
+        });
+    },
+    withMoviesFeatureLabel: function(actionName) {
+        return `@${this.name}/${actionName}`;
+    }
+};

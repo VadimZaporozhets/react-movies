@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { object, func, array, bool, string } from 'prop-types';
+import { object, array, bool, string } from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
@@ -10,7 +10,6 @@ import { MovieTilesPane } from '../components';
 import { BackNavigation } from './BackNavigation';
 import { MovieDetails } from './MovieDetails';
 import { DetailsStyles as styles } from './DetailsStyles';
-import { fetchDetails } from './store/Details/details.actions';
 import { formatMovies } from './Details.formatter';
 import {
     selectDetails,
@@ -30,28 +29,7 @@ const mapStateToProps = state => ({
     similarMovies: selectSimilarMovies(state)
 });
 
-const mapDispatchToProps = {
-    fetchDetails
-};
-
 export class DetailsSceneComponent extends Component {
-    componentDidMount() {
-        this.fetchMovieDetails();
-    }
-
-    componentDidUpdate(prevProps) {
-        const prevId = prevProps.match.params.id;
-        const nextId = this.props.match.params.id;
-        if (prevId !== nextId) {
-            this.fetchMovieDetails();
-        }
-    }
-
-    fetchMovieDetails() {
-        const { fetchDetails, match } = this.props;
-        fetchDetails(match.params.id);
-    }
-
     render() {
         const {
             similarMovies,
@@ -110,7 +88,6 @@ export class DetailsSceneComponent extends Component {
 
 DetailsSceneComponent.propTypes = {
     classes: object.isRequired,
-    fetchDetails: func.isRequired,
     details: object.isRequired,
     match: object.isRequired,
     loadingDetails: bool.isRequired,
@@ -122,8 +99,5 @@ DetailsSceneComponent.propTypes = {
 
 export const DetailsScene = compose(
     withStyles(styles),
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )
+    connect(mapStateToProps)
 )(DetailsSceneComponent);

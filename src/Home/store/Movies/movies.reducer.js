@@ -1,4 +1,4 @@
-import { withMoviesFeatureLabel } from './movies.feature';
+import { MoviesFeature } from './movies.feature';
 import {
     FETCH_MOVIES,
     FETCH_MOVIES_ERROR,
@@ -14,7 +14,7 @@ export const initialState = {
 
 export const movies = (state = initialState, action) => {
     switch (action.type) {
-        case withMoviesFeatureLabel(FETCH_MOVIES):
+        case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES):
             return {
                 ...state,
                 data: [],
@@ -22,7 +22,7 @@ export const movies = (state = initialState, action) => {
                 error: '',
                 total: 0
             };
-        case withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS):
+        case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS):
             return {
                 ...state,
                 data: action.payload.data,
@@ -30,7 +30,7 @@ export const movies = (state = initialState, action) => {
                 error: '',
                 total: action.payload.total
             };
-        case withMoviesFeatureLabel(FETCH_MOVIES_ERROR):
+        case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_ERROR):
             return {
                 ...state,
                 data: [],

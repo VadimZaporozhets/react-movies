@@ -1,5 +1,11 @@
-import { fetchDetailsSaga, fetchSimilarMoviesSaga } from '../details.saga';
 import { put, call } from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'connected-react-router';
+
+import {
+    locationChangeSaga,
+    fetchDetailsSaga,
+    fetchSimilarMoviesSaga
+} from '../details.saga';
 import {
     fetchDetails,
     fetchDetailsSuccess,
@@ -83,5 +89,37 @@ describe('fetchSimilarMoviesSaga', () => {
             put(fetchSimilarMoviesError(responseError.message))
         );
         expect(gen.next().done).toBeTruthy();
+    });
+});
+
+describe('locationChangeSaga', () => {
+    it('should dispatch details fetch on details route match', function() {
+        const gen = locationChangeSaga({
+            type: LOCATION_CHANGE,
+            payload: {
+                location: {
+                    pathname: '/details/509885'
+                }
+            }
+        });
+
+        expect(gen.next().value).toEqual(put(fetchDetails('509885')));
+        expect(gen.next().done).toBeTruthy();
+    });
+
+    it('should not dispatch anything if details route does not match', function() {
+        const gen = locationChangeSaga({
+            type: LOCATION_CHANGE,
+            payload: {
+                location: {
+                    pathname: '/'
+                }
+            }
+        });
+
+        const {value, done} = gen.next();
+
+        expect(value).toBeUndefined();
+        expect(done).toBeTruthy();
     });
 });

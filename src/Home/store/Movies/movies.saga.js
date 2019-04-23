@@ -5,7 +5,7 @@ import {
     fetchMoviesSuccess,
     FETCH_MOVIES
 } from './movies.actions';
-import { withMoviesFeatureLabel } from './movies.feature';
+import { MoviesFeature } from './movies.feature';
 
 export function* fetchMoviesSaga({ payload }) {
     try {
@@ -17,5 +17,8 @@ export function* fetchMoviesSaga({ payload }) {
 }
 
 export function* watchFetchMoviesSaga() {
-    yield takeLatest(withMoviesFeatureLabel(FETCH_MOVIES), fetchMoviesSaga);
+    yield takeLatest(
+        MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES),
+        fetchMoviesSaga
+    );
 }

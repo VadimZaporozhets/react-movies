@@ -1,5 +1,5 @@
 import { movieDetails as reducer, initialState } from '../details.reducer';
-import { withDetailsFeatureLabel } from '../details.feature';
+import { DetailsFeature } from '../details.feature';
 import {
     FETCH_SIMILAR_MOVIES,
     FETCH_SIMILAR_MOVIES_ERROR,
@@ -17,7 +17,7 @@ describe('Details reducer', () => {
     it('should set details loader to true on fetch start', function() {
         expect(
             reducer(initialState, {
-                type: withDetailsFeatureLabel(FETCH_DETAILS)
+                type: DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS)
             })
         ).toEqual({
             ...initialState,
@@ -28,7 +28,9 @@ describe('Details reducer', () => {
     it('should set details on details fetch success', function() {
         expect(
             reducer(initialState, {
-                type: withDetailsFeatureLabel(FETCH_DETAILS_SUCCESS),
+                type: DetailsFeature.withDetailsFeatureLabel(
+                    FETCH_DETAILS_SUCCESS
+                ),
                 payload: expect.any(Object)
             })
         ).toEqual({
@@ -40,7 +42,9 @@ describe('Details reducer', () => {
     it('should set details error on details fetch error', function() {
         expect(
             reducer(initialState, {
-                type: withDetailsFeatureLabel(FETCH_DETAILS_ERROR),
+                type: DetailsFeature.withDetailsFeatureLabel(
+                    FETCH_DETAILS_ERROR
+                ),
                 payload: 'error'
             })
         ).toEqual({
@@ -52,7 +56,9 @@ describe('Details reducer', () => {
     it('should set loading movies to true on movies fetch start', function() {
         expect(
             reducer(initialState, {
-                type: withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES)
+                type: DetailsFeature.withDetailsFeatureLabel(
+                    FETCH_SIMILAR_MOVIES
+                )
             })
         ).toEqual({
             ...initialState,
@@ -63,7 +69,9 @@ describe('Details reducer', () => {
     it('should set similar movies array on fetch movies success', function() {
         expect(
             reducer(initialState, {
-                type: withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_SUCCESS),
+                type: DetailsFeature.withDetailsFeatureLabel(
+                    FETCH_SIMILAR_MOVIES_SUCCESS
+                ),
                 payload: expect.any(Array)
             })
         ).toEqual({
@@ -75,7 +83,9 @@ describe('Details reducer', () => {
     it('should set movies error on fetch movies error', function() {
         expect(
             reducer(initialState, {
-                type: withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_ERROR),
+                type: DetailsFeature.withDetailsFeatureLabel(
+                    FETCH_SIMILAR_MOVIES_ERROR
+                ),
                 payload: 'error'
             })
         ).toEqual({

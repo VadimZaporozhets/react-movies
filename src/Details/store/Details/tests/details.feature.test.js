@@ -1,17 +1,16 @@
-import {
-    withDetailsFeatureLabel,
-    withDetailsFeatureAction
-} from '../details.feature';
+import { DetailsFeature } from '../details.feature';
 
 describe('withDetailsFeatureLabel', () => {
     it('should return label with Details feature', () => {
-        expect(withDetailsFeatureLabel('action')).toEqual('@MovieDetails/action');
+        expect(DetailsFeature.withDetailsFeatureLabel('action')).toEqual(
+            '@MovieDetails/action'
+        );
     });
 });
 
-describe('withDetailsFeatureAction', () => {
+describe('actionCreator', () => {
     it('should return action with Movies feature', () => {
-        expect(withDetailsFeatureAction('action')('payload')).toEqual({
+        expect(DetailsFeature.actionCreator('action')('payload')).toEqual({
             type: '@MovieDetails/action',
             payload: 'payload'
         });
