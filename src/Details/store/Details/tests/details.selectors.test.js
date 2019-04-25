@@ -11,10 +11,12 @@ const store = {
     movieDetails: {
         data: expect.any(Object),
         loadingDetails: false,
-        loadingMovies: true,
-        similarMoviesError: 'error',
-        detailsError: 'error',
-        similarMovies: expect.any(Array)
+        detailsError: 'error'
+    },
+    movies: {
+        data: expect.any(Array),
+        error: 'error',
+        loading: true
     }
 };
 

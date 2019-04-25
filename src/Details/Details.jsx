@@ -19,17 +19,12 @@ import {
     selectSimilarMovies,
     selectSimilarMoviesError
 } from './store/Details/details.selectors';
+import { withLoading } from '../hocs/withLoading/withLoading';
 
-const mapStateToProps = state => ({
-    details: selectDetails(state),
-    loadingDetails: selectLoadingDetails(state),
-    loadingMovies: selectLoadingMovies(state),
-    detailsError: selectDetailsError(state),
-    similarMoviesError: selectSimilarMoviesError(state),
-    similarMovies: selectSimilarMovies(state)
-});
+const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
+const WithLoadingMovieDetails = withLoading(MovieDetails);
 
-export class DetailsSceneComponent extends Component {
+export class DetailsSceneContainer extends Component {
     render() {
         const {
             similarMovies,
@@ -58,7 +53,7 @@ export class DetailsSceneComponent extends Component {
                 ) : loadingDetails ? (
                     <CircularProgress className={classes.progress} />
                 ) : (
-                    <MovieDetails
+                    <WithLoadingMovieDetails
                         {...{
                             poster_path,
                             title,
@@ -68,25 +63,22 @@ export class DetailsSceneComponent extends Component {
                             description,
                             vote_average
                         }}
+                        loading={loadingDetails}
+                        error={similarMoviesError}
                     />
                 )}
-
-                {similarMoviesError ? (
-                    <Typography>{similarMoviesError}</Typography>
-                ) : loadingMovies ? (
-                    <CircularProgress className={classes.progress} />
-                ) : (
-                    <MovieTilesPane
-                        title="Films by this genre:"
-                        movies={formatMovies(similarMovies)}
-                    />
-                )}
+                <WithLoadingMovieTilesPane
+                    loading={loadingMovies}
+                    error={'error' || similarMoviesError}
+                    title="Films by this genre:"
+                    movies={formatMovies(similarMovies)}
+                />
             </main>
         );
     }
 }
 
-DetailsSceneComponent.propTypes = {
+DetailsSceneContainer.propTypes = {
     classes: object.isRequired,
     details: object.isRequired,
     match: object.isRequired,
@@ -97,7 +89,16 @@ DetailsSceneComponent.propTypes = {
     similarMovies: array.isRequired
 };
 
+const mapStateToProps = state => ({
+    details: selectDetails(state),
+    loadingDetails: selectLoadingDetails(state),
+    loadingMovies: selectLoadingMovies(state),
+    detailsError: selectDetailsError(state),
+    similarMoviesError: selectSimilarMoviesError(state),
+    similarMovies: selectSimilarMovies(state)
+});
+
 export const DetailsScene = compose(
     withStyles(styles),
     connect(mapStateToProps)
-)(DetailsSceneComponent);
+)(DetailsSceneContainer);

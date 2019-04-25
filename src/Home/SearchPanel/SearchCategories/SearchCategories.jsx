@@ -8,6 +8,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { SearchCategoriesStyles as styles } from './SearchCategoriesStyles';
 import { SEARCH_BY_PARAMS } from '../../../constants';
 
+const resolveButtonType = (currentSortParam, buttonSortParam) =>
+    currentSortParam === buttonSortParam ? 'contained' : 'outlined';
+
 export const SearchCategoriesComponent = ({
     searchBy,
     classes,
@@ -26,11 +29,7 @@ export const SearchCategoriesComponent = ({
             <Button
                 id="search-by-title"
                 className={classes.marginRight}
-                variant={
-                    searchBy === SEARCH_BY_PARAMS.title
-                        ? 'contained'
-                        : 'outlined'
-                }
+                variant={resolveButtonType(searchBy, SEARCH_BY_PARAMS.title)}
                 size="small"
                 color="primary"
                 value={SEARCH_BY_PARAMS.title}
@@ -39,11 +38,7 @@ export const SearchCategoriesComponent = ({
                 Title
             </Button>
             <Button
-                variant={
-                    searchBy === SEARCH_BY_PARAMS.genre
-                        ? 'contained'
-                        : 'outlined'
-                }
+                variant={resolveButtonType(searchBy, SEARCH_BY_PARAMS.genre)}
                 size="small"
                 color="primary"
                 value={SEARCH_BY_PARAMS.genre}

@@ -1,5 +1,8 @@
+import { expectSaga } from 'redux-saga-test-plan';
+import { throwError } from 'redux-saga-test-plan/providers';
+import { call } from 'redux-saga/effects';
+
 import { fetchMoviesSaga } from '../movies.saga';
-import { put, call } from 'redux-saga/effects';
 import { movieService } from '../../../../api/Movies/movies-api';
 import {
     fetchMovies,
@@ -9,24 +12,22 @@ import {
 
 describe('fetchMoviesSaga', () => {
     it('should fetchMovies and call fetchMoviesSuccess action', () => {
-        const gen = fetchMoviesSaga(fetchMovies({}));
         const responseObj = { data: {} };
 
-        expect(gen.next().value).toEqual(call(movieService.getMovies, {}));
-        expect(gen.next(responseObj).value).toEqual(
-            put(fetchMoviesSuccess({}))
-        );
-        expect(gen.next().done).toBeTruthy();
+        return expectSaga(fetchMoviesSaga, fetchMovies({}))
+            .provide([[call(movieService.getMovies, {}), responseObj]])
+            .put(fetchMoviesSuccess({}))
+            .run();
     });
 
-    it('should call fetchMoviesError on error', function() {
-        const gen = fetchMoviesSaga(fetchMovies({}));
+    it('should call fetchMoviesError on error', () => {
         const responseError = new Error('error');
 
-        expect(gen.next().value).toEqual(call(movieService.getMovies, {}));
-        expect(gen.throw(responseError).value).toEqual(
-            put(fetchMoviesError(responseError.message))
-        );
-        expect(gen.next().done).toBeTruthy();
+        return expectSaga(fetchMoviesSaga, fetchMovies({}))
+            .provide([
+                [call(movieService.getMovies, {}), throwError(responseError)]
+            ])
+            .put(fetchMoviesError(responseError.message))
+            .run();
     });
 });

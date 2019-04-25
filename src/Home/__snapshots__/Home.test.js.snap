@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
+exports[`<HomeSceneContainer /> should render home component with loader 1`] = `
 <main>
   <WithStyles(SearchPanelComponent)
     onSubmit={[MockFunction]}
@@ -9,11 +9,16 @@ exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
     currentSortParam="RELEASE_DATE"
     onSortParamChange={[MockFunction]}
   />
-  <WithStyles(CircularProgress) />
+  <WithStyles(WithLoadingComponent)
+    error=""
+    loading={true}
+    movies={Array []}
+    title="Found results:"
+  />
 </main>
 `;
 
-exports[`<HomeSceneComponent /> should render home component with movie tiles pane 1`] = `
+exports[`<HomeSceneContainer /> should render home component with movie tiles pane 1`] = `
 <main>
   <WithStyles(SearchPanelComponent)
     onSubmit={[MockFunction]}
@@ -23,7 +28,9 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
     onSortParamChange={[MockFunction]}
     total={20}
   />
-  <MovieTilesPane
+  <WithStyles(WithLoadingComponent)
+    error=""
+    loading={false}
     movies={
       Array [
         Object {

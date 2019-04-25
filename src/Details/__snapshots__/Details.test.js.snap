@@ -1,17 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<DetailsSceneComponent /> should render details component with loaders 1`] = `
+exports[`<DetailsSceneContainer /> should render details component with loaders 1`] = `
 <main>
   <WithStyles(BackNavigationComponent) />
   <WithStyles(CircularProgress) />
-  <WithStyles(CircularProgress) />
+  <WithStyles(WithLoadingComponent)
+    error="error"
+    loading={true}
+    movies={Array []}
+    title="Films by this genre:"
+  />
 </main>
 `;
 
-exports[`<DetailsSceneComponent /> should render details component with movie details and movies pane 1`] = `
+exports[`<DetailsSceneContainer /> should render details component with movie details and movies pane 1`] = `
 <main>
   <WithStyles(BackNavigationComponent) />
-  <WithStyles(MovieDetailsComponent)
+  <WithStyles(WithLoadingComponent)
+    error=""
     genres={
       Array [
         "Action",
@@ -20,13 +26,16 @@ exports[`<DetailsSceneComponent /> should render details component with movie de
         "Science Fiction",
       ]
     }
+    loading={false}
     overview="mockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmockmock"
     poster_path="https://image.tmdb.org/t/p/w500/yUOJHa9XmB1H0iYodG9Kb3YCc9T.jpg"
     releaseYear="2019"
     title="Shazam!"
     vote_average={0}
   />
-  <MovieTilesPane
+  <WithStyles(WithLoadingComponent)
+    error="error"
+    loading={false}
     movies={
       Array [
         Object {

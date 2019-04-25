@@ -2,19 +2,13 @@ import { DetailsFeature } from './details.feature';
 import {
     FETCH_DETAILS,
     FETCH_DETAILS_ERROR,
-    FETCH_DETAILS_SUCCESS,
-    FETCH_SIMILAR_MOVIES,
-    FETCH_SIMILAR_MOVIES_ERROR,
-    FETCH_SIMILAR_MOVIES_SUCCESS
+    FETCH_DETAILS_SUCCESS
 } from './details.actions';
 
 export const initialState = {
     data: {},
     loadingDetails: false,
-    loadingMovies: false,
-    detailsError: '',
-    similarMoviesError: '',
-    similarMovies: []
+    detailsError: ''
 };
 
 export const movieDetails = (state = initialState, action) => {
@@ -39,29 +33,6 @@ export const movieDetails = (state = initialState, action) => {
                 loadingDetails: false,
                 detailsError: action.payload,
                 data: {}
-            };
-        case DetailsFeature.withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES):
-            return {
-                ...state,
-                loadingMovies: true,
-                similarMoviesError: '',
-                similarMovies: []
-            };
-        case DetailsFeature.withDetailsFeatureLabel(
-            FETCH_SIMILAR_MOVIES_SUCCESS
-        ):
-            return {
-                ...state,
-                loadingMovies: false,
-                similarMoviesError: '',
-                similarMovies: action.payload
-            };
-        case DetailsFeature.withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES_ERROR):
-            return {
-                ...state,
-                loadingMovies: false,
-                similarMoviesError: action.payload,
-                similarMovies: []
             };
         default:
             return state;

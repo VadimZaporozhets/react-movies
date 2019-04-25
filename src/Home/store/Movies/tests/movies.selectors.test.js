@@ -24,19 +24,19 @@ describe('selectMovies', () => {
 });
 
 describe('selectMoviesTotal', () => {
-    it('should derive total number from state', function() {
+    it('should derive total number from state', () => {
         expect(selectMoviesTotal(store)).toEqual(10);
     });
 });
 
 describe('selectMoviesFetchError', () => {
-    it('should derive error from state', function() {
+    it('should derive error from state', () => {
         expect(selectMoviesFetchError(store)).toEqual('error');
     });
 });
 
 describe('selectMoviesLoading', () => {
-    it('should derive loading flag from state', function() {
+    it('should derive loading flag from state', () => {
         expect(selectMoviesLoading(store)).toBeTruthy();
     });
 });

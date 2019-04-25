@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieDetailsComponent /> should render movie details component 1`] = `
+exports[`<MovieDetailsComponent /> should render error when it appears 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={40}
+>
+  <WithStyles(Typography)>
+    Error
+  </WithStyles(Typography)>
+</WithStyles(Grid)>
+`;
+
+exports[`<MovieDetailsComponent /> should render movie details component when there is no error 1`] = `
 <WithStyles(Grid)
   container={true}
   spacing={40}

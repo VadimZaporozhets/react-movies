@@ -4,24 +4,21 @@ import { movieService } from '../../../api/Movies/movies-api';
 import {
     fetchDetailsSuccess,
     fetchDetailsError,
-    FETCH_DETAILS,
-    fetchSimilarMovies,
-    fetchSimilarMoviesSuccess,
-    fetchSimilarMoviesError,
-    FETCH_SIMILAR_MOVIES
+    FETCH_DETAILS
 } from './details.actions';
 import { DetailsFeature } from './details.feature';
 import { SEARCH_BY_PARAMS } from '../../../constants';
+import { fetchMovies } from '../../../Home/store/Movies/movies.actions';
 
 export function* fetchDetailsSaga({ payload }) {
     try {
         const { data } = yield call(movieService.getMovieById, payload);
         yield put(fetchDetailsSuccess(data));
 
-        const genre = data.genres[0] || 'Drama';
+        const genre = data.genres[0];
 
         yield put(
-            fetchSimilarMovies({
+            fetchMovies({
                 search: genre,
                 searchBy: SEARCH_BY_PARAMS.genre
             })
@@ -35,21 +32,5 @@ export function* watchFetchDetailsSaga() {
     yield takeLatest(
         DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS),
         fetchDetailsSaga
-    );
-}
-
-export function* fetchSimilarMoviesSaga({ payload }) {
-    try {
-        const similarMovies = yield call(movieService.getMovies, payload);
-        yield put(fetchSimilarMoviesSuccess(similarMovies.data.data));
-    } catch (e) {
-        yield put(fetchSimilarMoviesError(e.message));
-    }
-}
-
-export function* watchFetchSimilarMoviesSaga() {
-    yield takeLatest(
-        DetailsFeature.withDetailsFeatureLabel(FETCH_SIMILAR_MOVIES),
-        fetchSimilarMoviesSaga
     );
 }

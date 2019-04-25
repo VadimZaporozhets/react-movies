@@ -1,9 +1,9 @@
 import React from 'react';
-import { HomeSceneComponent } from './index';
+import { HomeSceneContainer } from './index';
 import { shallow } from 'enzyme';
 import { SORT_PARAMS } from '../constants';
 
-describe('<HomeSceneComponent />', () => {
+describe('<HomeSceneContainer />', () => {
     it('should render home component with loader', () => {
         const props = {
             classes: expect.any(Object),
@@ -15,7 +15,7 @@ describe('<HomeSceneComponent />', () => {
             sortParam: SORT_PARAMS.releaseDate
         };
 
-        const wrapper = shallow(<HomeSceneComponent {...props} />);
+        const wrapper = shallow(<HomeSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -51,7 +51,7 @@ describe('<HomeSceneComponent />', () => {
             sortParam: SORT_PARAMS.releaseDate
         };
 
-        const wrapper = shallow(<HomeSceneComponent {...props} />);
+        const wrapper = shallow(<HomeSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });

@@ -1,88 +1,38 @@
-import { put, call } from 'redux-saga/effects';
+import { call } from 'redux-saga/effects';
+import { expectSaga } from 'redux-saga-test-plan';
+import { throwError } from 'redux-saga-test-plan/providers';
 
-import { fetchDetailsSaga, fetchSimilarMoviesSaga } from '../details.saga';
+import { fetchDetailsSaga } from '../details.saga';
 import {
     fetchDetails,
     fetchDetailsSuccess,
-    fetchDetailsError,
-    fetchSimilarMovies,
-    fetchSimilarMoviesError,
-    fetchSimilarMoviesSuccess
+    fetchDetailsError
 } from '../details.actions';
+import { fetchMovies } from '../../../../Home/store/Movies/movies.actions';
 import { movieService } from '../../../../api/Movies/movies-api';
 
 describe('fetchDetailsSaga', () => {
     it('should fetch details, call fetchDetailsSuccess and fetchSimilarMovies action', () => {
-        const gen = fetchDetailsSaga(fetchDetails(123));
         const responseObj = { data: { genres: ['Drama'] } };
 
-        expect(gen.next().value).toEqual(call(movieService.getMovieById, 123));
-        expect(gen.next(responseObj).value).toEqual(
-            put(fetchDetailsSuccess({ genres: ['Drama'] }))
-        );
-        expect(gen.next().value).toEqual(
-            put(
-                fetchSimilarMovies({
-                    search: 'Drama',
-                    searchBy: 'genres'
-                })
-            )
-        );
-        expect(gen.next().done).toBeTruthy();
+        return expectSaga(fetchDetailsSaga, fetchDetails(123))
+            .provide([[call(movieService.getMovieById, 123), responseObj]])
+            .put(fetchDetailsSuccess({ genres: ['Drama'] }))
+            .put(fetchMovies({ search: 'Drama', searchBy: 'genres' }))
+            .run();
     });
 
     it('should call fetchDetailsError on error', () => {
-        const gen = fetchDetailsSaga(fetchDetails(123));
         const responseError = new Error('error');
 
-        expect(gen.next().value).toEqual(call(movieService.getMovieById, 123));
-        expect(gen.throw(responseError).value).toEqual(
-            put(fetchDetailsError(responseError.message))
-        );
-        expect(gen.next().done).toBeTruthy();
-    });
-});
-
-describe('fetchSimilarMoviesSaga', () => {
-    it('should fetch details, call fetchDetailsSuccess and fetchSimilarMovies action', () => {
-        const gen = fetchSimilarMoviesSaga(
-            fetchSimilarMovies({
-                search: 'Drama',
-                searchBy: 'genres'
-            })
-        );
-        const responseObj = { data: { data: {} } };
-
-        expect(gen.next().value).toEqual(
-            call(movieService.getMovies, {
-                search: 'Drama',
-                searchBy: 'genres'
-            })
-        );
-        expect(gen.next(responseObj).value).toEqual(
-            put(fetchSimilarMoviesSuccess({}))
-        );
-        expect(gen.next().done).toBeTruthy();
-    });
-
-    it('should call fetchDetailsError on error', () => {
-        const gen = fetchSimilarMoviesSaga(
-            fetchSimilarMovies({
-                search: 'Drama',
-                searchBy: 'genres'
-            })
-        );
-        const responseError = new Error('error');
-
-        expect(gen.next().value).toEqual(
-            call(movieService.getMovies, {
-                search: 'Drama',
-                searchBy: 'genres'
-            })
-        );
-        expect(gen.throw(responseError).value).toEqual(
-            put(fetchSimilarMoviesError(responseError.message))
-        );
-        expect(gen.next().done).toBeTruthy();
+        return expectSaga(fetchDetailsSaga, fetchDetails(123))
+            .provide([
+                [
+                    call(movieService.getMovieById, 123),
+                    throwError(responseError)
+                ]
+            ])
+            .put(fetchDetailsError(responseError.message))
+            .run();
     });
 });

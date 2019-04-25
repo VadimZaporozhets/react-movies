@@ -7,46 +7,52 @@ import {
 } from '../movies.actions';
 
 describe('Movies reducer', () => {
-    it('should return the initial state', function() {
-        expect(reducer(undefined, {})).toEqual(initialState);
+    it('should return the initial state', () => {
+        const actualState = reducer(undefined, {});
+
+        expect(actualState).toEqual(initialState);
     });
 
-    it('should set loading to true on fetch start', function() {
-        expect(
-            reducer(initialState, {
-                type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES)
-            })
-        ).toEqual({
+    it('should set loading to true on fetch start', () => {
+        const actualState = reducer(initialState, {
+            type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES)
+        });
+
+        const expectedState = {
             ...initialState,
             loading: true
-        });
+        };
+
+        expect(actualState).toEqual(expectedState);
     });
 
-    it('should set movies array and total after fetch success', function() {
-        expect(
-            reducer(initialState, {
-                type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS),
-                payload: {
-                    data: expect.any(Array),
-                    total: 10
-                }
-            })
-        ).toEqual({
+    it('should set movies array and total after fetch success', () => {
+        const actualState = reducer(initialState, {
+            type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS),
+            payload: {
+                data: expect.any(Array),
+                total: 10
+            }
+        });
+        const expectedState = {
             ...initialState,
             data: expect.any(Array),
             total: 10
-        });
+        };
+
+        expect(actualState).toEqual(expectedState);
     });
 
-    it('should set error on fetch fail', function() {
-        expect(
-            reducer(initialState, {
-                type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_ERROR),
-                payload: 'error'
-            })
-        ).toEqual({
+    it('should set error on fetch fail', () => {
+        const actualState = reducer(initialState, {
+            type: MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_ERROR),
+            payload: 'error'
+        });
+        const expectedState = {
             ...initialState,
             error: 'error'
-        });
+        };
+
+        expect(actualState).toEqual(expectedState);
     });
 });

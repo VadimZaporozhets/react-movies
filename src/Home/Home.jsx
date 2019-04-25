@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { object, array, string, bool, func, number } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -19,19 +17,11 @@ import {
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
 import { withSortParam } from '../hocs/withSortParam';
+import { withLoading } from '../hocs/withLoading/withLoading';
 
-const mapStateToProps = (state, { sortParam }) => ({
-    movies: selectMovies(state, sortParam),
-    loading: selectMoviesLoading(state),
-    error: selectMoviesFetchError(state),
-    total: selectMoviesTotal(state)
-});
+const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
 
-const mapDispatchToProps = {
-    fetchMovies
-};
-
-export class HomeSceneComponent extends Component {
+export class HomeSceneContainer extends Component {
     state = {
         sortParam: SORT_PARAMS.releaseDate
     };
@@ -56,21 +46,18 @@ export class HomeSceneComponent extends Component {
                     currentSortParam={sortParam}
                     onSortParamChange={onSortParamChange}
                 />
-                {loading ? (
-                    <CircularProgress className={classes.progress} />
-                ) : movies.length ? (
-                    <MovieTilesPane title="Found results:" movies={movies} />
-                ) : (
-                    <Typography className={classes.text} variant="h4">
-                        {error || 'Search for movies'}
-                    </Typography>
-                )}
+                <WithLoadingMovieTilesPane
+                    loading={loading}
+                    title="Found results:"
+                    movies={movies}
+                    error={error}
+                />
             </main>
         );
     }
 }
 
-HomeSceneComponent.propTypes = {
+HomeSceneContainer.propTypes = {
     classes: object.isRequired,
     movies: array.isRequired,
     error: string.isRequired,
@@ -81,6 +68,17 @@ HomeSceneComponent.propTypes = {
     sortParam: string.isRequired
 };
 
+const mapStateToProps = (state, { sortParam }) => ({
+    movies: selectMovies(state, sortParam),
+    loading: selectMoviesLoading(state),
+    error: selectMoviesFetchError(state),
+    total: selectMoviesTotal(state)
+});
+
+const mapDispatchToProps = {
+    fetchMovies
+};
+
 export const HomeScene = compose(
     withSortParam,
     withStyles(styles),
@@ -88,4 +86,4 @@ export const HomeScene = compose(
         mapStateToProps,
         mapDispatchToProps
     )
-)(HomeSceneComponent);
+)(HomeSceneContainer);

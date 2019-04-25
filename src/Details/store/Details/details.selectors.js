@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getMovieDetails = state => state.movieDetails;
+const getMovies = state => state.movies;
 
 export const selectDetails = createSelector(
     getMovieDetails,
@@ -13,8 +14,8 @@ export const selectLoadingDetails = createSelector(
 );
 
 export const selectLoadingMovies = createSelector(
-    getMovieDetails,
-    ({ loadingMovies }) => loadingMovies
+    getMovies,
+    ({ loading }) => loading
 );
 
 export const selectDetailsError = createSelector(
@@ -23,11 +24,11 @@ export const selectDetailsError = createSelector(
 );
 
 export const selectSimilarMoviesError = createSelector(
-    getMovieDetails,
-    ({ similarMoviesError }) => similarMoviesError
+    getMovies,
+    ({ error }) => error
 );
 
 export const selectSimilarMovies = createSelector(
-    getMovieDetails,
-    ({ similarMovies }) => similarMovies
+    getMovies,
+    ({ data }) => data
 );

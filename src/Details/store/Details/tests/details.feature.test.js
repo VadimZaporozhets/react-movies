@@ -2,17 +2,21 @@ import { DetailsFeature } from '../details.feature';
 
 describe('withDetailsFeatureLabel', () => {
     it('should return label with Details feature', () => {
-        expect(DetailsFeature.withDetailsFeatureLabel('action')).toEqual(
-            '@MovieDetails/action'
-        );
+        const actualLabel = DetailsFeature.withDetailsFeatureLabel('action');
+        const expectedLabel = '@MovieDetails/action';
+
+        expect(actualLabel).toEqual(expectedLabel);
     });
 });
 
 describe('actionCreator', () => {
     it('should return action with Movies feature', () => {
-        expect(DetailsFeature.actionCreator('action')('payload')).toEqual({
+        const actualAction = DetailsFeature.actionCreator('action')('payload');
+        const expectedAction = {
             type: '@MovieDetails/action',
             payload: 'payload'
-        });
+        };
+
+        expect(actualAction).toEqual(expectedAction);
     });
 });

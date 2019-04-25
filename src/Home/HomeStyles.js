@@ -8,12 +8,5 @@ export const HomeStyles = theme => ({
             margin: `0 ${theme.spacing.unit * 3}px`,
             maxWidth: '100%'
         }
-    },
-    progress: {
-        margin: 'auto',
-        display: 'block'
-    },
-    text: {
-        textAlign: 'center'
     }
 });

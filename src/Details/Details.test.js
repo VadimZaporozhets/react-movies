@@ -1,8 +1,8 @@
 import React from 'react';
-import { DetailsSceneComponent } from './index';
+import { DetailsSceneContainer } from './index';
 import { shallow } from 'enzyme';
 
-describe('<DetailsSceneComponent />', () => {
+describe('<DetailsSceneContainer />', () => {
     it('should render details component with loaders', () => {
         const props = {
             classes: expect.any(Object),
@@ -20,7 +20,7 @@ describe('<DetailsSceneComponent />', () => {
             similarMovies: []
         };
 
-        const wrapper = shallow(<DetailsSceneComponent {...props} />);
+        const wrapper = shallow(<DetailsSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -71,7 +71,7 @@ describe('<DetailsSceneComponent />', () => {
             similarMovies: movies
         };
 
-        const wrapper = shallow(<DetailsSceneComponent {...props} />);
+        const wrapper = shallow(<DetailsSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });

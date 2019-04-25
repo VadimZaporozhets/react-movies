@@ -35,19 +35,29 @@ export class MovieTilesPane extends Component {
     };
 
     render() {
-        const { title } = this.props;
+        const { title, movies, error } = this.props;
+
+        const searchOrErrorText = error || 'Search for movies';
+
         return (
-            <Grid container spacing={40}>
-                <Grid item xs={12}>
-                    <Typography variant="h4">{title}</Typography>
-                </Grid>
-                {this.renderMovieTiles()}
-            </Grid>
+            <>
+                {movies.length ? (
+                    <Grid container spacing={40}>
+                        <Grid item xs={12}>
+                            <Typography variant="h4">{title}</Typography>
+                        </Grid>
+                        {this.renderMovieTiles()}
+                    </Grid>
+                ) : (
+                    <Typography variant="h4">{searchOrErrorText}</Typography>
+                )}
+            </>
         );
     }
 }
 
 MovieTilesPane.propTypes = {
     movies: array.isRequired,
-    title: string.isRequired
+    title: string.isRequired,
+    error: string.isRequired
 };
