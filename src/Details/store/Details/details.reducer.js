@@ -24,15 +24,13 @@ export const movieDetails = (state = initialState, action) => {
             return {
                 ...state,
                 data: action.payload,
-                loadingDetails: false,
-                detailsError: ''
+                loadingDetails: false
             };
         case DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS_ERROR):
             return {
                 ...state,
                 loadingDetails: false,
-                detailsError: action.payload,
-                data: {}
+                detailsError: action.payload
             };
         default:
             return state;

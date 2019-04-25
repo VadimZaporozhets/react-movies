@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withLoading should render component when loading flag is inactive 1`] = `
+<WithLoadingComponent
+  classes={
+    Object {
+      "progress": "WithLoadingComponent-progress-2",
+    }
+  }
+  loading={false}
+/>
+`;
+
+exports[`withLoading should render loading indicator when loading flag activated 1`] = `
+<WithLoadingComponent
+  classes={
+    Object {
+      "progress": "WithLoadingComponent-progress-1",
+    }
+  }
+  loading={true}
+/>
+`;

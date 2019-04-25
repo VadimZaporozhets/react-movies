@@ -27,16 +27,13 @@ export const movies = (state = initialState, action) => {
                 ...state,
                 data: action.payload.data,
                 loading: false,
-                error: '',
                 total: action.payload.total
             };
         case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_ERROR):
             return {
                 ...state,
-                data: [],
                 loading: false,
-                error: action.payload,
-                total: 0
+                error: action.payload
             };
         default:
             return state;
