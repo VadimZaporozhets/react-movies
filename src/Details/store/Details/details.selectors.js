@@ -1,7 +1,10 @@
 import { createSelector } from 'reselect';
 
-const getMovieDetails = state => state.movieDetails;
-const getMovies = state => state.movies;
+import { MoviesFeature } from '../../../Home/store/Movies/movies.feature';
+import { DetailsFeature } from './details.feature';
+
+const getMovieDetails = state => state[DetailsFeature.name];
+const getMovies = state => state[MoviesFeature.name];
 
 export const selectDetails = createSelector(
     getMovieDetails,

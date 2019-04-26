@@ -1,12 +1,5 @@
-export const MoviesFeature = {
-    name: 'Movies',
-    actionCreator: function(actionName) {
-        return payload => ({
-            type: this.withMoviesFeatureLabel(actionName),
-            payload
-        });
-    },
-    withMoviesFeatureLabel: function(actionName) {
-        return `@${this.name}/${actionName}`;
-    }
-};
+import { createFeature } from '../../../store/utils/create-feature';
+
+export const MoviesFeatureName = 'Movies';
+
+export const MoviesFeature = createFeature(MoviesFeatureName);

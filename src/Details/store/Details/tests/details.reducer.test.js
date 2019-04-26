@@ -1,9 +1,8 @@
 import { movieDetails as reducer, initialState } from '../details.reducer';
-import { DetailsFeature } from '../details.feature';
 import {
-    FETCH_DETAILS_SUCCESS,
-    FETCH_DETAILS_ERROR,
-    FETCH_DETAILS
+    fetchDetails,
+    fetchDetailsError,
+    fetchDetailsSuccess
 } from '../details.actions';
 
 describe('Details reducer', () => {
@@ -13,9 +12,7 @@ describe('Details reducer', () => {
     });
 
     it('should set details loader to true on fetch start', () => {
-        const actualState = reducer(initialState, {
-            type: DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS)
-        });
+        const actualState = reducer(initialState, fetchDetails());
 
         const expectedState = {
             ...initialState,
@@ -26,10 +23,10 @@ describe('Details reducer', () => {
     });
 
     it('should set details on details fetch success', () => {
-        const actualState = reducer(initialState, {
-            type: DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS_SUCCESS),
-            payload: expect.any(Object)
-        });
+        const actualState = reducer(
+            initialState,
+            fetchDetailsSuccess(expect.any(Object))
+        );
 
         const expectedState = {
             ...initialState,
@@ -40,10 +37,7 @@ describe('Details reducer', () => {
     });
 
     it('should set details error on details fetch error', () => {
-        const actualState = reducer(initialState, {
-            type: DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS_ERROR),
-            payload: 'error'
-        });
+        const actualState = reducer(initialState, fetchDetailsError('error'));
 
         const expectedState = {
             ...initialState,

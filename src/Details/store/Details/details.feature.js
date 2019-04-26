@@ -1,12 +1,5 @@
-export const DetailsFeature = {
-    name: 'MovieDetails',
-    actionCreator: function(actionName) {
-        return payload => ({
-            type: this.withDetailsFeatureLabel(actionName),
-            payload
-        });
-    },
-    withDetailsFeatureLabel: function(actionName) {
-        return `@${this.name}/${actionName}`;
-    }
-};
+import { createFeature } from '../../../store/utils/create-feature';
+
+export const detailsFeatureName = 'MovieDetails';
+
+export const DetailsFeature = createFeature(detailsFeatureName);

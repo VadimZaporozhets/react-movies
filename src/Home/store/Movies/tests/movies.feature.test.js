@@ -1,18 +1,13 @@
-import { MoviesFeature } from '../movies.feature';
+import { MoviesFeature, MoviesFeatureName } from '../movies.feature';
 
-describe('withMoviesFeatureLabel', () => {
-    it('should return label with Movies feature', () => {
-        expect(MoviesFeature.withMoviesFeatureLabel('action')).toEqual(
-            '@Movies/action'
-        );
-    });
-});
-
-describe('actionCreator', () => {
+describe('ActionCreator', () => {
     it('should return action with Movies feature', () => {
-        expect(MoviesFeature.actionCreator('action')('payload')).toEqual({
-            type: '@Movies/action',
+        const actualAction = MoviesFeature.ActionCreator('action')('payload');
+        const expectedAction = {
+            type: `@${MoviesFeatureName}/action`,
             payload: 'payload'
-        });
+        };
+
+        expect(actualAction).toEqual(expectedAction);
     });
 });

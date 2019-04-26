@@ -1,19 +1,11 @@
 import { DetailsFeature } from '../details.feature';
+import { detailsFeatureName } from '../details.feature';
 
-describe('withDetailsFeatureLabel', () => {
-    it('should return label with Details feature', () => {
-        const actualLabel = DetailsFeature.withDetailsFeatureLabel('action');
-        const expectedLabel = '@MovieDetails/action';
-
-        expect(actualLabel).toEqual(expectedLabel);
-    });
-});
-
-describe('actionCreator', () => {
-    it('should return action with Movies feature', () => {
-        const actualAction = DetailsFeature.actionCreator('action')('payload');
+describe('ActionCreator', () => {
+    it('should return action with Details feature', () => {
+        const actualAction = DetailsFeature.ActionCreator('action')('payload');
         const expectedAction = {
-            type: '@MovieDetails/action',
+            type: `@${detailsFeatureName}/action`,
             payload: 'payload'
         };
 

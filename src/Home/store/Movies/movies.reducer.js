@@ -1,8 +1,7 @@
-import { MoviesFeature } from './movies.feature';
 import {
-    FETCH_MOVIES,
-    FETCH_MOVIES_ERROR,
-    FETCH_MOVIES_SUCCESS
+    fetchMovies,
+    fetchMoviesSuccess,
+    fetchMoviesError
 } from './movies.actions';
 
 export const initialState = {
@@ -13,29 +12,32 @@ export const initialState = {
 };
 
 export const movies = (state = initialState, action) => {
-    switch (action.type) {
-        case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES):
-            return {
-                ...state,
-                data: [],
-                loading: true,
-                error: '',
-                total: 0
-            };
-        case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_SUCCESS):
-            return {
-                ...state,
-                data: action.payload.data,
-                loading: false,
-                total: action.payload.total
-            };
-        case MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES_ERROR):
-            return {
-                ...state,
-                loading: false,
-                error: action.payload
-            };
-        default:
-            return state;
+    if (fetchMovies.is(action)) {
+        return {
+            ...state,
+            data: [],
+            loading: true,
+            error: '',
+            total: 0
+        };
     }
+
+    if (fetchMoviesSuccess.is(action)) {
+        return {
+            ...state,
+            data: action.payload.data,
+            loading: false,
+            total: action.payload.total
+        };
+    }
+
+    if (fetchMoviesError.is(action)) {
+        return {
+            ...state,
+            loading: false,
+            error: action.payload
+        };
+    }
+
+    return state;
 };

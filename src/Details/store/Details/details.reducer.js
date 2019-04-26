@@ -1,8 +1,7 @@
-import { DetailsFeature } from './details.feature';
 import {
-    FETCH_DETAILS,
-    FETCH_DETAILS_ERROR,
-    FETCH_DETAILS_SUCCESS
+    fetchDetails,
+    fetchDetailsSuccess,
+    fetchDetailsError
 } from './details.actions';
 
 export const initialState = {
@@ -12,27 +11,30 @@ export const initialState = {
 };
 
 export const movieDetails = (state = initialState, action) => {
-    switch (action.type) {
-        case DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS):
-            return {
-                ...state,
-                data: {},
-                loadingDetails: true,
-                detailsError: ''
-            };
-        case DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS_SUCCESS):
-            return {
-                ...state,
-                data: action.payload,
-                loadingDetails: false
-            };
-        case DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS_ERROR):
-            return {
-                ...state,
-                loadingDetails: false,
-                detailsError: action.payload
-            };
-        default:
-            return state;
+    if (fetchDetails.is(action)) {
+        return {
+            ...state,
+            data: {},
+            loadingDetails: true,
+            detailsError: ''
+        };
     }
+
+    if (fetchDetailsSuccess.is(action)) {
+        return {
+            ...state,
+            data: action.payload,
+            loadingDetails: false
+        };
+    }
+
+    if (fetchDetailsError.is(action)) {
+        return {
+            ...state,
+            loadingDetails: false,
+            detailsError: action.payload
+        };
+    }
+
+    return state;
 };

@@ -8,12 +8,12 @@ import {
 } from '../details.selectors';
 
 const store = {
-    movieDetails: {
+    MovieDetails: {
         data: expect.any(Object),
         loadingDetails: false,
         detailsError: 'error'
     },
-    movies: {
+    Movies: {
         data: expect.any(Array),
         error: 'error',
         loading: true

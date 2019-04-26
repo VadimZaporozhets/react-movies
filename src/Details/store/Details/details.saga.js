@@ -4,9 +4,8 @@ import { movieService } from '../../../api/Movies/movies-api';
 import {
     fetchDetailsSuccess,
     fetchDetailsError,
-    FETCH_DETAILS
+    fetchDetails
 } from './details.actions';
-import { DetailsFeature } from './details.feature';
 import { SEARCH_BY_PARAMS } from '../../../constants';
 import { fetchMovies } from '../../../Home/store/Movies/movies.actions';
 
@@ -29,8 +28,5 @@ export function* fetchDetailsSaga({ payload }) {
 }
 
 export function* watchFetchDetailsSaga() {
-    yield takeLatest(
-        DetailsFeature.withDetailsFeatureLabel(FETCH_DETAILS),
-        fetchDetailsSaga
-    );
+    yield takeLatest(fetchDetails.type, fetchDetailsSaga);
 }

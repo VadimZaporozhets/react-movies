@@ -1,11 +1,10 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { movieService } from '../../../api/Movies/movies-api';
 import {
+    fetchMovies,
     fetchMoviesError,
-    fetchMoviesSuccess,
-    FETCH_MOVIES
+    fetchMoviesSuccess
 } from './movies.actions';
-import { MoviesFeature } from './movies.feature';
 
 export function* fetchMoviesSaga({ payload }) {
     try {
@@ -17,8 +16,5 @@ export function* fetchMoviesSaga({ payload }) {
 }
 
 export function* watchFetchMoviesSaga() {
-    yield takeLatest(
-        MoviesFeature.withMoviesFeatureLabel(FETCH_MOVIES),
-        fetchMoviesSaga
-    );
+    yield takeLatest(fetchMovies.type, fetchMoviesSaga);
 }

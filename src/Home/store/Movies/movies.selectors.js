@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 import { SORT_PARAMS } from '../../../constants';
 import { formatMovies } from '../../Home.formatter';
+import { MoviesFeature } from './movies.feature';
 
 const sortByReleaseDate = (firstMovie, secondMovie) => {
     const firstMovieReleaseDate = new Date(firstMovie.release_date);
@@ -12,7 +13,7 @@ const sortByReleaseDate = (firstMovie, secondMovie) => {
 const sortByRating = (firstMovie, secondMovie) =>
     secondMovie.vote_average - firstMovie.vote_average;
 
-const getMovies = state => state.movies;
+const getMovies = state => state[MoviesFeature.name];
 
 const getSortParam = (state, sortParam) => sortParam;
 

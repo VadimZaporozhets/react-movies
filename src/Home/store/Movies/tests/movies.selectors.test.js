@@ -7,7 +7,7 @@ import {
 import { SORT_PARAMS } from '../../../../constants';
 
 const store = {
-    movies: {
+    Movies: {
         data: [],
         loading: true,
         error: 'error',
