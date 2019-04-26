@@ -1,19 +1,27 @@
 import React from 'react';
-import { DetailsSceneComponent } from './index';
+import { DetailsSceneContainer } from './index';
 import { shallow } from 'enzyme';
 
-describe('<DetailsSceneComponent />', () => {
-    let props, wrapper;
-
-    beforeEach(() => {
-        props = {
-            classes: expect.any(Object)
+describe('<DetailsSceneContainer />', () => {
+    it('should render details component with loaders', () => {
+        const props = {
+            classes: expect.any(Object),
+            fetchDetails: jest.fn(),
+            details: {},
+            match: {
+                params: {
+                    id: 1
+                }
+            },
+            loadingDetails: true,
+            loadingMovies: true,
+            similarMoviesError: '',
+            detailsError: '',
+            similarMovies: []
         };
 
-        wrapper = shallow(<DetailsSceneComponent {...props} />);
-    });
+        const wrapper = shallow(<DetailsSceneContainer {...props} />);
 
-    it('should render details component with loaders', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
@@ -24,7 +32,7 @@ describe('<DetailsSceneComponent />', () => {
                 title: 'Guardians of the Galaxy Vol. 3',
                 poster_path:
                     'https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg',
-                releaseYear: '2020',
+                release_date: '2020-12-12',
                 genres: ['Action', 'Adventure', 'Science Fiction']
             },
             {
@@ -32,7 +40,7 @@ describe('<DetailsSceneComponent />', () => {
                 title: 'Transformers 7',
                 poster_path:
                     'https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg',
-                releaseYear: '2019',
+                release_date: '2019-12-12',
                 genres: ['Science Fiction', 'Action', 'Adventure']
             }
         ];
@@ -47,34 +55,24 @@ describe('<DetailsSceneComponent />', () => {
             overview: 'mock'.repeat(100)
         };
 
-        wrapper.setState({
-            movies,
-            details
-        });
+        const props = {
+            classes: expect.any(Object),
+            fetchDetails: jest.fn(),
+            details,
+            match: {
+                params: {
+                    id: 1
+                }
+            },
+            loadingDetails: false,
+            loadingMovies: false,
+            similarMoviesError: '',
+            detailsError: '',
+            similarMovies: movies
+        };
+
+        const wrapper = shallow(<DetailsSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
-    });
-
-    it('componentDidMount should load movies and details', async () => {
-        await wrapper.instance().componentDidMount();
-
-        expect(wrapper.state().details).toMatchObject({
-            title: expect.any(String),
-            poster_path: expect.any(String),
-            vote_average: expect.any(Number),
-            releaseYear: expect.any(String),
-            overview: expect.any(String),
-            genres: expect.any(Array)
-        });
-
-        expect(wrapper.state().movies).toContainEqual(
-            expect.objectContaining({
-                id: expect.any(Number),
-                title: expect.any(String),
-                poster_path: expect.any(String),
-                releaseYear: expect.any(String),
-                genres: expect.any(Array)
-            })
-        );
     });
 });

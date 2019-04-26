@@ -13,6 +13,7 @@ exports[`<SearchInputSubmitComponent /> should render search component 1`] = `
   >
     <TextField
       fullWidth={true}
+      onChange={[Function]}
       placeholder="Search"
       required={false}
       select={false}
@@ -27,6 +28,7 @@ exports[`<SearchInputSubmitComponent /> should render search component 1`] = `
   >
     <WithStyles(Button)
       color="primary"
+      onClick={[Function]}
       variant="contained"
     >
       Search

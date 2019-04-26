@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { object } from 'prop-types';
+
 import { BackNavigationStyles as styles } from './BackNavigationStyles';
 
 export const BackNavigationComponent = ({ classes }) => (

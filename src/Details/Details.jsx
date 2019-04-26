@@ -1,78 +1,104 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { object, array, bool, string } from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { connect } from 'react-redux';
+import { Typography } from '@material-ui/core';
+import { compose } from 'redux';
+
 import { MovieTilesPane } from '../components';
 import { BackNavigation } from './BackNavigation';
 import { MovieDetails } from './MovieDetails';
-import { withStyles } from '@material-ui/core/styles';
-import { object } from 'prop-types';
 import { DetailsStyles as styles } from './DetailsStyles';
-import { formatMovieData, formatMovies } from './Details.formatter';
-import { movieService } from '../api/Movies/movies-api';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { formatMovies } from './Details.formatter';
+import {
+    selectDetails,
+    selectDetailsError,
+    selectLoadingDetails,
+    selectLoadingMovies,
+    selectSimilarMovies,
+    selectSimilarMoviesError
+} from './store/Details/details.selectors';
+import { withLoading } from '../hocs/withLoading/withLoading';
 
-export class DetailsSceneComponent extends Component {
-    state = {
-        details: null,
-        movies: null
-    };
+const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
+const WithLoadingMovieDetails = withLoading(MovieDetails);
 
-    componentDidMount = async () => {
-        const details = await movieService.getMovieById();
-
-        this.setState({
-            details: formatMovieData(details)
-        });
-
-        const movies = await movieService.getMovies();
-
-        this.setState({
-            movies: formatMovies(movies)
-        });
-    };
-
+export class DetailsSceneContainer extends Component {
     render() {
-        const { movies, details } = this.state;
+        const {
+            similarMovies,
+            details,
+            loadingDetails,
+            loadingMovies,
+            detailsError,
+            similarMoviesError
+        } = this.props;
         const {
             title,
             poster_path,
             overview,
             releaseYear,
             genres,
-            description
-        } = details || {};
+            description,
+            vote_average
+        } = details;
 
         const { classes } = this.props;
         return (
             <main className={classes.details}>
                 <BackNavigation />
-                {details ? (
-                    <MovieDetails
+                {detailsError ? (
+                    <Typography>{detailsError}</Typography>
+                ) : loadingDetails ? (
+                    <CircularProgress className={classes.progress} />
+                ) : (
+                    <WithLoadingMovieDetails
                         {...{
                             poster_path,
                             title,
                             overview,
                             releaseYear,
                             genres,
-                            description
+                            description,
+                            vote_average
                         }}
+                        loading={loadingDetails}
+                        error={similarMoviesError}
                     />
-                ) : (
-                    <CircularProgress className={classes.progress} />
                 )}
-                {movies ? (
-                    <MovieTilesPane
-                        title="Films by this genre:"
-                        movies={movies}
-                    />
-                ) : (
-                    <CircularProgress className={classes.progress} />
-                )}
+                <WithLoadingMovieTilesPane
+                    loading={loadingMovies}
+                    error={'error' || similarMoviesError}
+                    title="Films by this genre:"
+                    movies={formatMovies(similarMovies)}
+                />
             </main>
         );
     }
 }
 
-DetailsSceneComponent.propTypes = {
-    classes: object.isRequired
+DetailsSceneContainer.propTypes = {
+    classes: object.isRequired,
+    details: object.isRequired,
+    match: object.isRequired,
+    loadingDetails: bool.isRequired,
+    loadingMovies: bool.isRequired,
+    similarMoviesError: string.isRequired,
+    detailsError: string.isRequired,
+    similarMovies: array.isRequired
 };
 
-export const DetailsScene = withStyles(styles)(DetailsSceneComponent);
+const mapStateToProps = state => ({
+    details: selectDetails(state),
+    loadingDetails: selectLoadingDetails(state),
+    loadingMovies: selectLoadingMovies(state),
+    detailsError: selectDetailsError(state),
+    similarMoviesError: selectSimilarMoviesError(state),
+    similarMovies: selectSimilarMovies(state)
+});
+
+export const DetailsScene = compose(
+    withStyles(styles),
+    connect(mapStateToProps)
+)(DetailsSceneContainer);

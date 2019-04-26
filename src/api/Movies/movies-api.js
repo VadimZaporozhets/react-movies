@@ -1,21 +1,26 @@
-import { moviesArray } from './mockData';
-import { movieData } from './mockData';
+import axios from 'axios';
+
+const BASE_URL = 'https://reactjs-cdp.herokuapp.com/movies';
+
+const defaultParams = {
+    search: '',
+    limit: 10,
+    searchBy: 'title'
+};
 
 class MovieService {
-    getMovies = () => {
-        return this._apiCall(moviesArray);
-    };
-
-    getMovieById = () => {
-        return this._apiCall(movieData);
-    };
-
-    _apiCall = data => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(data);
-            }, 1000);
+    getMovies = ({ search, searchBy, limit } = defaultParams) => {
+        return axios.get(BASE_URL, {
+            params: {
+                search,
+                searchBy,
+                limit
+            }
         });
+    };
+
+    getMovieById = id => {
+        return axios.get(`${BASE_URL}/${id}`);
     };
 }
 

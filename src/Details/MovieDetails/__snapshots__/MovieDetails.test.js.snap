@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieDetailsComponent /> should render movie details component 1`] = `
+exports[`<MovieDetailsComponent /> should render error when it appears 1`] = `
+<WithStyles(Grid)
+  container={true}
+  spacing={40}
+>
+  <WithStyles(Typography)>
+    Error
+  </WithStyles(Typography)>
+</WithStyles(Grid)>
+`;
+
+exports[`<MovieDetailsComponent /> should render movie details component when there is no error 1`] = `
 <WithStyles(Grid)
   container={true}
   spacing={40}
@@ -57,15 +68,14 @@ exports[`<MovieDetailsComponent /> should render movie details component 1`] = `
             xs={12}
           >
             <WithStyles(Badge)
-              badgeContent={4.5}
+              badgeContent={5}
               color="primary"
             >
               <WithStyles(Typography)
                 className="movie-rating"
                 variant="button"
               >
-                Rating 
-                5
+                Rating
               </WithStyles(Typography)>
             </WithStyles(Badge)>
           </WithStyles(Grid)>

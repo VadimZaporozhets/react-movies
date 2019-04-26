@@ -1,18 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HomeSceneComponent /> should render home component with loader 1`] = `
+exports[`<HomeSceneContainer /> should render home component with loader 1`] = `
 <main>
-  <WithStyles(SearchPanelComponent) />
-  <WithStyles(SortResultsPanelComponent) />
-  <WithStyles(CircularProgress) />
+  <WithStyles(SearchPanelComponent)
+    onSubmit={[MockFunction]}
+  />
+  <WithStyles(SortResultsPanelComponent)
+    currentSortParam="RELEASE_DATE"
+    onSortParamChange={[MockFunction]}
+  />
+  <WithStyles(WithLoadingComponent)
+    error=""
+    loading={true}
+    movies={Array []}
+    title="Found results:"
+  />
 </main>
 `;
 
-exports[`<HomeSceneComponent /> should render home component with movie tiles pane 1`] = `
+exports[`<HomeSceneContainer /> should render home component with movie tiles pane 1`] = `
 <main>
-  <WithStyles(SearchPanelComponent) />
-  <WithStyles(SortResultsPanelComponent) />
-  <MovieTilesPane
+  <WithStyles(SearchPanelComponent)
+    onSubmit={[MockFunction]}
+  />
+  <WithStyles(SortResultsPanelComponent)
+    currentSortParam="RELEASE_DATE"
+    onSortParamChange={[MockFunction]}
+    total={20}
+  />
+  <WithStyles(WithLoadingComponent)
+    error=""
+    loading={false}
     movies={
       Array [
         Object {
@@ -23,7 +41,7 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
           ],
           "id": 447365,
           "poster_path": "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
-          "releaseYear": "2020",
+          "release_date": "2020-12-12",
           "title": "Guardians of the Galaxy Vol. 3",
         },
         Object {
@@ -34,7 +52,7 @@ exports[`<HomeSceneComponent /> should render home component with movie tiles pa
           ],
           "id": 424785,
           "poster_path": "https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg",
-          "releaseYear": "2019",
+          "release_date": "2019-12-12",
           "title": "Transformers 7",
         },
       ]

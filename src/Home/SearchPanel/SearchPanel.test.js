@@ -5,7 +5,8 @@ import { shallow } from 'enzyme';
 describe('<SearchPanelComponent />', () => {
     it('should render search panel component', () => {
         const props = {
-            classes: expect.any(Object)
+            classes: expect.any(Object),
+            onSubmit: jest.fn()
         };
 
         const wrapper = shallow(<SearchPanelComponent {...props} />);

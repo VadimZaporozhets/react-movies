@@ -10,7 +10,9 @@ describe('<MovieTile />', () => {
             releaseYear: '2006',
             poster_path: emptyImageUrl,
             genres: ['Action', 'Comedy'],
-            classes: expect.any(Object)
+            classes: expect.any(Object),
+            id: 1,
+            vote_average: 8.5
         };
 
         const wrapper = shallow(<MovieTileComponent {...props} />);

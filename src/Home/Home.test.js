@@ -1,22 +1,21 @@
 import React from 'react';
-import { HomeSceneComponent } from './index';
+import { HomeSceneContainer } from './index';
 import { shallow } from 'enzyme';
+import { SORT_PARAMS } from '../constants';
 
-describe('<HomeSceneComponent />', () => {
-    let props, wrapper;
-
-    beforeEach(() => {
-        props = {
-            classes: expect.any(Object)
+describe('<HomeSceneContainer />', () => {
+    it('should render home component with loader', () => {
+        const props = {
+            classes: expect.any(Object),
+            loading: true,
+            fetchMovies: jest.fn(),
+            error: '',
+            movies: [],
+            onSortParamChange: jest.fn(),
+            sortParam: SORT_PARAMS.releaseDate
         };
 
-        wrapper = shallow(<HomeSceneComponent {...props} />);
-    });
-
-    it('should render home component with loader', () => {
-        wrapper.setState({
-            loading: true
-        });
+        const wrapper = shallow(<HomeSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -28,7 +27,7 @@ describe('<HomeSceneComponent />', () => {
                 title: 'Guardians of the Galaxy Vol. 3',
                 poster_path:
                     'https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg',
-                releaseYear: '2020',
+                release_date: '2020-12-12',
                 genres: ['Action', 'Adventure', 'Science Fiction']
             },
             {
@@ -36,30 +35,24 @@ describe('<HomeSceneComponent />', () => {
                 title: 'Transformers 7',
                 poster_path:
                     'https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg',
-                releaseYear: '2019',
+                release_date: '2019-12-12',
                 genres: ['Science Fiction', 'Action', 'Adventure']
             }
         ];
 
-        wrapper.setState({
+        const props = {
+            classes: expect.any(Object),
             loading: false,
-            movies
-        });
+            fetchMovies: jest.fn(),
+            error: '',
+            movies,
+            total: 20,
+            onSortParamChange: jest.fn(),
+            sortParam: SORT_PARAMS.releaseDate
+        };
+
+        const wrapper = shallow(<HomeSceneContainer {...props} />);
 
         expect(wrapper).toMatchSnapshot();
-    });
-
-    it('componentDidMount should load movies', async () => {
-        await wrapper.instance().componentDidMount();
-
-        expect(wrapper.state().movies).toContainEqual(
-            expect.objectContaining({
-                id: expect.any(Number),
-                title: expect.any(String),
-                poster_path: expect.any(String),
-                releaseYear: expect.any(String),
-                genres: expect.any(Array)
-            })
-        );
     });
 });

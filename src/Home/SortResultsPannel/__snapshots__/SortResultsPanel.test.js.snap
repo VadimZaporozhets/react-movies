@@ -44,14 +44,18 @@ exports[`<SortResultsPanelComponent /> should render sort panel component 1`] = 
           </WithStyles(Typography)>
           <WithStyles(Button)
             color="primary"
+            onClick={[MockFunction]}
             size="small"
-            variant="outlined"
+            value="RELEASE_DATE"
+            variant="contained"
           >
             Release date
           </WithStyles(Button)>
           <WithStyles(Button)
             color="primary"
+            onClick={[MockFunction]}
             size="small"
+            value="RATING"
             variant="outlined"
           >
             Rating

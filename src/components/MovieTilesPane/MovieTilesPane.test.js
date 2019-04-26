@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { emptyImageUrl } from '../../constants';
 
 describe('<MovieTilesPane />', () => {
-    it('should render movie tile pane with movies', () => {
+    it('should render movie tile pane with movies when no error found', () => {
         const props = {
             title: 'Title',
             movies: [
@@ -22,7 +22,20 @@ describe('<MovieTilesPane />', () => {
                     genres: ['Action', 'Comedy'],
                     releaseYear: '2013'
                 }
-            ]
+            ],
+            error: ''
+        };
+
+        const wrapper = shallow(<MovieTilesPane {...props} />);
+
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render error when it appears', () => {
+        const props = {
+            title: 'Title',
+            movies: [],
+            error: 'error'
         };
 
         const wrapper = shallow(<MovieTilesPane {...props} />);
