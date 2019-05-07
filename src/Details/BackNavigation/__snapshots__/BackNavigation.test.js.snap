@@ -13,7 +13,6 @@ exports[`<BackNavigationComponent /> should render back navigation component 1`]
       elevation={1}
     >
       <Link
-        replace={false}
         to="/"
       >
         <WithStyles(Button)

@@ -1,7 +1,8 @@
 import {
     fetchMovies,
     fetchMoviesSuccess,
-    fetchMoviesError
+    fetchMoviesError,
+    clearMovies
 } from './movies.actions';
 
 export const initialState = {
@@ -36,6 +37,13 @@ export const movies = (state = initialState, action) => {
             ...state,
             loading: false,
             error: action.payload
+        };
+    }
+
+    if (clearMovies.is(action)) {
+        return {
+            ...state,
+            data: initialState.data
         };
     }
 

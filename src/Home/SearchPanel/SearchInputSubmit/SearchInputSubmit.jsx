@@ -6,6 +6,7 @@ import { object, func, string } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import { SearchInputSubmitStyles as styles } from './SearchInputSubmitStyles';
+import { routes } from '../../../routes';
 
 export class SearchInputSubmitComponent extends Component {
     state = {
@@ -16,10 +17,12 @@ export class SearchInputSubmitComponent extends Component {
         const { onSubmit, searchBy } = this.props;
         const { search } = this.state;
 
-        onSubmit({
-            search,
-            searchBy
-        });
+        const finalRoute = routes.SEARCH.replace(
+            ':searchQuery',
+            search
+        ).replace(':searchBy', searchBy);
+
+        onSubmit(finalRoute);
     };
 
     handleSearchChange = ({ target: { value } }) => {

@@ -3,13 +3,13 @@ import { object, array, string, bool, func, number } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { push } from 'connected-react-router';
 
 import { MovieTilesPane } from '../components';
 import { SearchPanel } from './SearchPanel';
 import { SortResultsPanel } from './SortResultsPannel';
 import { HomeStyles as styles } from './HomeStyles';
 import { SORT_PARAMS } from '../constants';
-import { fetchMovies } from './store/Movies/movies.actions';
 import {
     selectMovies,
     selectMoviesFetchError,
@@ -31,7 +31,7 @@ export class HomeSceneContainer extends Component {
             classes,
             loading,
             error,
-            fetchMovies,
+            push,
             total,
             onSortParamChange,
             movies,
@@ -40,7 +40,7 @@ export class HomeSceneContainer extends Component {
 
         return (
             <main className={classes.home}>
-                <SearchPanel onSubmit={fetchMovies} />
+                <SearchPanel onSubmit={push} />
                 <SortResultsPanel
                     total={total}
                     currentSortParam={sortParam}
@@ -62,7 +62,7 @@ HomeSceneContainer.propTypes = {
     movies: array.isRequired,
     error: string.isRequired,
     loading: bool.isRequired,
-    fetchMovies: func.isRequired,
+    push: func.isRequired,
     total: number,
     onSortParamChange: func.isRequired,
     sortParam: string.isRequired
@@ -76,7 +76,7 @@ const mapStateToProps = (state, { sortParam }) => ({
 });
 
 const mapDispatchToProps = {
-    fetchMovies
+    push
 };
 
 export const HomeScene = compose(

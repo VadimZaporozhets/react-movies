@@ -2,7 +2,8 @@ import { movies as reducer, initialState } from '../movies.reducer';
 import {
     fetchMovies,
     fetchMoviesSuccess,
-    fetchMoviesError
+    fetchMoviesError,
+    clearMovies
 } from '../movies.actions';
 
 describe('Movies reducer', () => {
@@ -48,5 +49,18 @@ describe('Movies reducer', () => {
         };
 
         expect(actualState).toEqual(expectedState);
+    });
+
+    it('should clear movies', () => {
+        const moviesObj = {
+            data: [expect.any(Object)]
+        };
+        console.log(expect.any(Object));
+        const actualState = reducer(
+            { ...initialState, ...moviesObj },
+            clearMovies()
+        );
+
+        expect(actualState).toEqual(initialState);
     });
 });

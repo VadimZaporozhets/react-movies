@@ -8,11 +8,6 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         publicPath: '/'
     },
-    devServer: {
-        contentBase: path.resolve(__dirname + '/build'),
-        port: 9000,
-        historyApiFallback: true
-    },
     module: {
         rules: [
             {
@@ -43,5 +38,6 @@ module.exports = {
             template: './src/index.html',
             filename: './index.html'
         })
-    ]
+    ],
+    devtool: 'source-map'
 };

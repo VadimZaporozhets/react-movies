@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import { HomeScene } from './Home';
 import { DetailsScene } from './Details';
+import { PageNotFound } from './PageNotFound';
 import { store, persistor, history } from './store';
 import { routes } from './routes';
 
@@ -35,11 +36,12 @@ export class App extends Component {
                                 exact
                                 component={HomeScene}
                             />
+                            <Route path={routes.SEARCH} component={HomeScene} />
                             <Route
                                 path={routes.DETAILS}
-                                exact
                                 component={DetailsScene}
                             />
+                            <Route component={PageNotFound} />
                         </Switch>
                     </ConnectedRouter>
                 </PersistGate>
