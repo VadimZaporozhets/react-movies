@@ -3,7 +3,6 @@ import { object, array, string, bool, func, number } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { push } from 'connected-react-router';
 
 import { MovieTilesPane } from '../components';
 import { SearchPanel } from './SearchPanel';
@@ -16,8 +15,10 @@ import {
     selectMoviesLoading,
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
+import { searchMovies } from './store/Movies/movies.actions';
 import { withSortParam } from '../hocs/withSortParam';
 import { withLoading } from '../hocs/withLoading/withLoading';
+import { selectPathname } from '../store/router.selectors';
 
 const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
 
@@ -26,21 +27,28 @@ export class HomeSceneContainer extends Component {
         sortParam: SORT_PARAMS.releaseDate
     };
 
+    componentDidMount() {
+        const { searchMovies, pathname } = this.props;
+
+        searchMovies({ pathname });
+    }
+
     render() {
         const {
             classes,
             loading,
             error,
-            push,
+            searchMovies,
             total,
             onSortParamChange,
             movies,
-            sortParam
+            sortParam,
+            pathname
         } = this.props;
 
         return (
             <main className={classes.home}>
-                <SearchPanel onSubmit={push} />
+                <SearchPanel onSubmit={searchMovies} pathname={pathname} />
                 <SortResultsPanel
                     total={total}
                     currentSortParam={sortParam}
@@ -62,21 +70,23 @@ HomeSceneContainer.propTypes = {
     movies: array.isRequired,
     error: string.isRequired,
     loading: bool.isRequired,
-    push: func.isRequired,
     total: number,
     onSortParamChange: func.isRequired,
-    sortParam: string.isRequired
+    sortParam: string.isRequired,
+    searchMovies: func.isRequired,
+    pathname: string.isRequired
 };
 
 const mapStateToProps = (state, { sortParam }) => ({
     movies: selectMovies(state, sortParam),
     loading: selectMoviesLoading(state),
     error: selectMoviesFetchError(state),
-    total: selectMoviesTotal(state)
+    total: selectMoviesTotal(state),
+    pathname: selectPathname(state)
 });
 
 const mapDispatchToProps = {
-    push
+    searchMovies
 };
 
 export const HomeScene = compose(

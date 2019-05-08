@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { object, func } from 'prop-types';
+import { object, func, string } from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,7 +19,7 @@ export class SearchPanelComponent extends Component {
     };
 
     render() {
-        const { classes, onSubmit } = this.props;
+        const { classes, onSubmit, pathname } = this.props;
         const { searchBy } = this.state;
 
         return (
@@ -29,6 +29,7 @@ export class SearchPanelComponent extends Component {
                         <SearchInputSubmit
                             searchBy={searchBy}
                             onSubmit={onSubmit}
+                            pathname={pathname}
                         />
                         <SearchCategories
                             handleSearchByChange={this.handleSearchByChange}
@@ -43,7 +44,8 @@ export class SearchPanelComponent extends Component {
 
 SearchPanelComponent.propTypes = {
     classes: object.isRequired,
-    onSubmit: func.isRequired
+    onSubmit: func.isRequired,
+    pathname: string.isRequired
 };
 
 export const SearchPanel = withStyles(styles)(SearchPanelComponent);

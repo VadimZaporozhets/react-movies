@@ -14,6 +14,7 @@ exports[`<SearchPanelComponent /> should render search panel component 1`] = `
     >
       <WithStyles(SearchInputSubmitComponent)
         onSubmit={[MockFunction]}
+        pathname="/"
         searchBy="title"
       />
       <WithStyles(SearchCategoriesComponent)

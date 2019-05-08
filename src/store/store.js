@@ -21,12 +21,19 @@ const persistedReducer = persistReducer(persistConfig, reducer(history));
 
 const sagaMiddleware = createSagaMiddleware();
 
-export const store = createStore(
-    persistedReducer,
-    composeWithDevTools(
+const DEVELOPMENT = process.env.NODE_ENV === 'development';
+
+let middlewares;
+
+if (DEVELOPMENT) {
+    middlewares = composeWithDevTools(
         applyMiddleware(routerMiddleware(history), sagaMiddleware)
-    )
-);
+    );
+} else {
+    middlewares = applyMiddleware(routerMiddleware(history), sagaMiddleware);
+}
+
+export const store = createStore(persistedReducer, middlewares);
 export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);

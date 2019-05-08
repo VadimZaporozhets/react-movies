@@ -1,3 +1,5 @@
+import { routes } from '../routes';
+
 export const formatMovies = moviesArr => {
     return moviesArr.map(
         ({ id, title, poster_path, release_date, genres, vote_average }) => {
@@ -12,3 +14,9 @@ export const formatMovies = moviesArr => {
         }
     );
 };
+
+export const formatSearchRoute = (search, searchBy) =>
+    routes.SEARCH.replace(':searchQuery', search).replace(
+        ':searchBy',
+        searchBy
+    );

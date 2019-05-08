@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "start": "start npm run dev && start npm run start-server",
-        "dev": "webpack --watch --mode development --open --hot",
+        "dev": "webpack --watch --mode development --open --hot --env.NODE_ENV=development",
         "start-server": "node server.js",
-        "build": "webpack --mode production",
+        "build": "webpack --mode production --env.NODE_ENV=production",
         "test": "jest",
         "coverage": " jest --coverage --ci",
         "cypress": "cypress open"

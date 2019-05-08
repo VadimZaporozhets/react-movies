@@ -8,7 +8,8 @@ describe('<SearchInputSubmitComponent />', () => {
         const props = {
             classes: expect.any(Object),
             onSubmit: jest.fn(),
-            searchBy: SEARCH_BY_PARAMS.title
+            searchBy: SEARCH_BY_PARAMS.title,
+            pathname: '/'
         };
 
         const wrapper = shallow(<SearchInputSubmitComponent {...props} />);

@@ -52,12 +52,11 @@ describe('Movies reducer', () => {
     });
 
     it('should clear movies', () => {
-        const moviesObj = {
+        const moviesPayload = {
             data: [expect.any(Object)]
         };
-        console.log(expect.any(Object));
         const actualState = reducer(
-            { ...initialState, ...moviesObj },
+            { ...initialState, ...moviesPayload },
             clearMovies()
         );
 

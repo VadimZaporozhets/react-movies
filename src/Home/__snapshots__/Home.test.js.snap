@@ -3,7 +3,24 @@
 exports[`<HomeSceneContainer /> should render home component with loader 1`] = `
 <main>
   <WithStyles(SearchPanelComponent)
-    onSubmit={[MockFunction]}
+    onSubmit={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "pathname": "/",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    pathname="/"
   />
   <WithStyles(SortResultsPanelComponent)
     currentSortParam="RELEASE_DATE"
@@ -21,7 +38,24 @@ exports[`<HomeSceneContainer /> should render home component with loader 1`] = `
 exports[`<HomeSceneContainer /> should render home component with movie tiles pane 1`] = `
 <main>
   <WithStyles(SearchPanelComponent)
-    onSubmit={[MockFunction]}
+    onSubmit={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "pathname": "/",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      }
+    }
+    pathname="/"
   />
   <WithStyles(SortResultsPanelComponent)
     currentSortParam="RELEASE_DATE"
