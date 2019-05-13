@@ -6,7 +6,8 @@ describe('<SearchPanelComponent />', () => {
     it('should render search panel component', () => {
         const props = {
             classes: expect.any(Object),
-            onSubmit: jest.fn()
+            onSubmit: jest.fn(),
+            pathname: '/'
         };
 
         const wrapper = shallow(<SearchPanelComponent {...props} />);

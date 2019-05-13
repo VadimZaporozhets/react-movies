@@ -9,22 +9,19 @@ import { SearchInputSubmitStyles as styles } from './SearchInputSubmitStyles';
 
 export class SearchInputSubmitComponent extends Component {
     state = {
-        search: ''
+        searchQuery: ''
     };
 
     onSubmit = () => {
-        const { onSubmit, searchBy } = this.props;
-        const { search } = this.state;
+        const { onSubmit, searchBy, pathname } = this.props;
+        const { searchQuery } = this.state;
 
-        onSubmit({
-            search,
-            searchBy
-        });
+        onSubmit({ pathname, searchBy, searchQuery });
     };
 
     handleSearchChange = ({ target: { value } }) => {
         this.setState({
-            search: value
+            searchQuery: value
         });
     };
 
@@ -57,7 +54,8 @@ export class SearchInputSubmitComponent extends Component {
 SearchInputSubmitComponent.propTypes = {
     classes: object.isRequired,
     onSubmit: func.isRequired,
-    searchBy: string.isRequired
+    searchBy: string.isRequired,
+    pathname: string.isRequired
 };
 
 export const SearchInputSubmit = withStyles(styles)(SearchInputSubmitComponent);

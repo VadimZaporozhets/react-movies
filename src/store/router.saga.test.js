@@ -3,7 +3,6 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { locationChangeSaga } from './router.saga';
 import { LOCATION_CHANGE } from 'connected-react-router';
 import { fetchDetails } from '../Details/store/Details/details.actions';
-import { fetchMovies } from '../Home/store/Movies/movies.actions';
 
 describe('locationChangeSaga', () => {
     it('should dispatch details fetch on details route match', () => {
@@ -16,19 +15,6 @@ describe('locationChangeSaga', () => {
             }
         })
             .put(fetchDetails('509885'))
-            .run();
-    });
-
-    it('should dispatch movies fetch on home route match', () => {
-        return expectSaga(locationChangeSaga, {
-            type: LOCATION_CHANGE,
-            payload: {
-                location: {
-                    pathname: '/'
-                }
-            }
-        })
-            .put(fetchMovies())
             .run();
     });
 

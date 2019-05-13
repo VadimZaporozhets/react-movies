@@ -8,7 +8,6 @@ exports[`<MovieTile /> should render movie tile component 1`] = `
   sm={6}
 >
   <Link
-    replace={false}
     to="/details/1"
   >
     <WithStyles(Card)

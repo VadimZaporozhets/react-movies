@@ -1,4 +1,6 @@
 export const routes = {
     HOME: '/',
-    DETAILS: '/details/:id'
+    SEARCH: '/search/:searchQuery/:searchBy',
+    DETAILS: '/details/:id',
+    NO_MATCH: 'not-found'
 };

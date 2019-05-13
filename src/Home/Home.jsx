@@ -9,15 +9,16 @@ import { SearchPanel } from './SearchPanel';
 import { SortResultsPanel } from './SortResultsPannel';
 import { HomeStyles as styles } from './HomeStyles';
 import { SORT_PARAMS } from '../constants';
-import { fetchMovies } from './store/Movies/movies.actions';
 import {
     selectMovies,
     selectMoviesFetchError,
     selectMoviesLoading,
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
+import { searchMovies } from './store/Movies/movies.actions';
 import { withSortParam } from '../hocs/withSortParam';
 import { withLoading } from '../hocs/withLoading/withLoading';
+import { selectPathname } from '../store/router.selectors';
 
 const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
 
@@ -26,21 +27,28 @@ export class HomeSceneContainer extends Component {
         sortParam: SORT_PARAMS.releaseDate
     };
 
+    componentDidMount() {
+        const { searchMovies, pathname } = this.props;
+
+        searchMovies({ pathname });
+    }
+
     render() {
         const {
             classes,
             loading,
             error,
-            fetchMovies,
+            searchMovies,
             total,
             onSortParamChange,
             movies,
-            sortParam
+            sortParam,
+            pathname
         } = this.props;
 
         return (
             <main className={classes.home}>
-                <SearchPanel onSubmit={fetchMovies} />
+                <SearchPanel onSubmit={searchMovies} pathname={pathname} />
                 <SortResultsPanel
                     total={total}
                     currentSortParam={sortParam}
@@ -62,21 +70,23 @@ HomeSceneContainer.propTypes = {
     movies: array.isRequired,
     error: string.isRequired,
     loading: bool.isRequired,
-    fetchMovies: func.isRequired,
     total: number,
     onSortParamChange: func.isRequired,
-    sortParam: string.isRequired
+    sortParam: string.isRequired,
+    searchMovies: func.isRequired,
+    pathname: string.isRequired
 };
 
 const mapStateToProps = (state, { sortParam }) => ({
     movies: selectMovies(state, sortParam),
     loading: selectMoviesLoading(state),
     error: selectMoviesFetchError(state),
-    total: selectMoviesTotal(state)
+    total: selectMoviesTotal(state),
+    pathname: selectPathname(state)
 });
 
 const mapDispatchToProps = {
-    fetchMovies
+    searchMovies
 };
 
 export const HomeScene = compose(

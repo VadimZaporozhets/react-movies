@@ -8,7 +8,8 @@ describe('<HomeSceneContainer />', () => {
         const props = {
             classes: expect.any(Object),
             loading: true,
-            fetchMovies: jest.fn(),
+            searchMovies: jest.fn(),
+            pathname: '/',
             error: '',
             movies: [],
             onSortParamChange: jest.fn(),
@@ -43,7 +44,8 @@ describe('<HomeSceneContainer />', () => {
         const props = {
             classes: expect.any(Object),
             loading: false,
-            fetchMovies: jest.fn(),
+            searchMovies: jest.fn(),
+            pathname: '/',
             error: '',
             movies,
             total: 20,
