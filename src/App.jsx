@@ -29,11 +29,7 @@ export class App extends Component {
                 <Route path={routes.HOME} exact component={HomeScene} />
                 <Route path={routes.SEARCH} component={HomeScene} />
                 <Route path={routes.DETAILS} component={DetailsScene} />
-                <Redirect
-                    exact
-                    from={match.path}
-                    to={routes.NO_MATCH}
-                />
+                <Redirect exact from={match.path} to={routes.NO_MATCH} />
                 <Route path={routes.NO_MATCH} component={PageNotFound} />
             </Switch>
         );
