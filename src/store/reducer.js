@@ -6,9 +6,10 @@ import { movieDetails } from '../Details/store/Details';
 import { MoviesFeature } from '../Home/store/Movies/movies.feature';
 import { DetailsFeature } from '../Details/store/Details/details.feature';
 
-export const reducer = history =>
-    combineReducers({
+export const reducer = history => {
+    return combineReducers({
         router: connectRouter(history),
         [MoviesFeature.name]: movies,
         [DetailsFeature.name]: movieDetails
     });
+};

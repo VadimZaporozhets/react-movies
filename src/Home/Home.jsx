@@ -89,11 +89,20 @@ const mapDispatchToProps = {
     searchMovies
 };
 
-export const HomeScene = compose(
-    withSortParam,
-    withStyles(styles),
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )
-)(HomeSceneContainer);
+const loadData = store => {
+    debugger;
+    const pathname = selectPathname(store.getState());
+    return store.dispatch(searchMovies({ pathname }));
+};
+
+export const HomeScene = {
+    component: compose(
+        withSortParam,
+        withStyles(styles),
+        connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )
+    )(HomeSceneContainer),
+    loadData
+};

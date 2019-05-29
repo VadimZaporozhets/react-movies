@@ -22,6 +22,7 @@ module.exports = {
     rules: {
         'prettier/prettier': 'error',
         'eol-last': ['error', 'always'],
-        'no-console': 'warn'
+        'no-console': 'warn',
+        'no-debugger': 'warn'
     }
 };

@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { compose } from 'redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 import { MovieTilesPane } from '../components';
 import { BackNavigation } from './BackNavigation';
@@ -98,7 +99,14 @@ const mapStateToProps = state => ({
     similarMovies: selectSimilarMovies(state)
 });
 
-export const DetailsScene = compose(
-    withStyles(styles),
-    connect(mapStateToProps)
-)(DetailsSceneContainer);
+const loadData = ({ dispatch }) => {
+    return dispatch(LOCATION_CHANGE);
+};
+
+export const DetailsScene = {
+    component: compose(
+        withStyles(styles),
+        connect(mapStateToProps)
+    )(DetailsSceneContainer),
+    loadData
+};

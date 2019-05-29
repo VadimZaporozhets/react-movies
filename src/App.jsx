@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Switch, withRouter } from 'react-router-dom';
 import { object } from 'prop-types';
-
-import { HomeScene } from './Home';
-import { DetailsScene } from './Details';
-import { PageNotFound } from './PageNotFound';
+import { renderRoutes } from 'react-router-config';
 import { routes } from './routes';
 
 export class App extends Component {
@@ -18,7 +15,7 @@ export class App extends Component {
 
     render() {
         const { errorInfo } = this.state;
-        const { match } = this.props;
+        // const { match } = this.props;
 
         if (errorInfo) {
             return <h2>{errorInfo.message}</h2>;
@@ -26,11 +23,12 @@ export class App extends Component {
 
         return (
             <Switch>
-                <Route path={routes.HOME} exact component={HomeScene} />
-                <Route path={routes.SEARCH} component={HomeScene} />
-                <Route path={routes.DETAILS} component={DetailsScene} />
-                <Redirect exact from={match.path} to={routes.NO_MATCH} />
-                <Route path={routes.NO_MATCH} component={PageNotFound} />
+                {renderRoutes(routes)}
+                {/*<Route path={routes.HOME} exact component={HomeScene} />*/}
+                {/*<Route path={routes.SEARCH} component={HomeScene} />*/}
+                {/*<Route path={routes.DETAILS} component={DetailsScene} />*/}
+                {/*<Redirect exact from={match.path} to={routes.NO_MATCH} />*/}
+                {/*<Route path={routes.NO_MATCH} component={PageNotFound} />*/}
             </Switch>
         );
     }
