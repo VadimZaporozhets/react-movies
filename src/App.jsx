@@ -15,22 +15,12 @@ export class App extends Component {
 
     render() {
         const { errorInfo } = this.state;
-        // const { match } = this.props;
 
         if (errorInfo) {
             return <h2>{errorInfo.message}</h2>;
         }
 
-        return (
-            <Switch>
-                {renderRoutes(routes)}
-                {/*<Route path={routes.HOME} exact component={HomeScene} />*/}
-                {/*<Route path={routes.SEARCH} component={HomeScene} />*/}
-                {/*<Route path={routes.DETAILS} component={DetailsScene} />*/}
-                {/*<Redirect exact from={match.path} to={routes.NO_MATCH} />*/}
-                {/*<Route path={routes.NO_MATCH} component={PageNotFound} />*/}
-            </Switch>
-        );
+        return <Switch>{renderRoutes(routes)}</Switch>;
     }
 }
 

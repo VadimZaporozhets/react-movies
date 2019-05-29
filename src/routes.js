@@ -20,3 +20,10 @@ export const routes = [
         path: '/not-found'
     }
 ];
+
+export const routesPaths = {
+    HOME: '/',
+    SEARCH: '/search/:searchQuery/:searchBy',
+    DETAILS: '/details/:id',
+    NO_MATCH: '/not-found'
+};

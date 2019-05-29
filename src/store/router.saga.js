@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { matchPath } from 'react-router-dom';
 
-import { routes } from '../routes';
+import { routesPaths } from '../routes';
 import { fetchDetails } from '../Details/store/Details/details.actions';
 import { LOCATION_CHANGE } from 'connected-react-router';
 
@@ -10,7 +10,7 @@ export function* locationChangeSaga({
         location: { pathname }
     }
 }) {
-    const detailsMatch = matchPath(pathname, routes.DETAILS);
+    const detailsMatch = matchPath(pathname, routesPaths.DETAILS);
 
     if (detailsMatch) {
         yield put(fetchDetails(detailsMatch.params.id));

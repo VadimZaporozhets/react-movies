@@ -1,4 +1,4 @@
-import { routes } from '../routes';
+import { routesPaths } from '../routes';
 
 export const formatMovies = moviesArr => {
     return moviesArr.map(
@@ -16,7 +16,7 @@ export const formatMovies = moviesArr => {
 };
 
 export const formatSearchRoute = (search, searchBy) =>
-    routes.SEARCH.replace(':searchQuery', search).replace(
+    routesPaths.SEARCH.replace(':searchQuery', search).replace(
         ':searchBy',
         searchBy
     );

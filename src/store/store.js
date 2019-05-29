@@ -33,7 +33,11 @@ if (DEVELOPMENT) {
     middlewares = applyMiddleware(routerMiddleware(history), sagaMiddleware);
 }
 
-export const store = createStore(persistedReducer, middlewares);
+export const store = createStore(
+    persistedReducer,
+    window.INITIAL_STATE,
+    middlewares
+);
 export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);

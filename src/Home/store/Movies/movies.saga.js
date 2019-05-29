@@ -10,7 +10,7 @@ import {
     fetchMoviesSuccess,
     searchMovies
 } from './movies.actions';
-import { routes } from '../../../routes';
+import { routesPaths } from '../../../routes';
 import { SEARCH_BY_PARAMS } from '../../../constants';
 import { formatSearchRoute } from '../../Home.formatter';
 
@@ -29,8 +29,11 @@ export function* watchFetchMoviesSaga() {
 
 export function* searchMoviesSaga({ payload }) {
     const { searchQuery, searchBy, pathname } = payload;
-    const searchMatch = matchPath(pathname, routes.SEARCH);
-    const homeMatch = matchPath(pathname, { path: routes.HOME, exact: true });
+    const searchMatch = matchPath(pathname, routesPaths.SEARCH);
+    const homeMatch = matchPath(pathname, {
+        path: routesPaths.HOME,
+        exact: true
+    });
     let finalSearchQuery;
     let finalSearchBy = SEARCH_BY_PARAMS.title;
 
