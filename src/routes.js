@@ -16,8 +16,7 @@ export const routes = [
         path: '/details/:id'
     },
     {
-        ...PageNotFound,
-        path: '/not-found'
+        ...PageNotFound
     }
 ];
 
@@ -25,5 +24,5 @@ export const routesPaths = {
     HOME: '/',
     SEARCH: '/search/:searchQuery/:searchBy',
     DETAILS: '/details/:id',
-    NO_MATCH: '/not-found'
+    MASKED_ROUTE: '/film/:searchQuery/:searchBy'
 };

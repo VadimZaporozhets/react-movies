@@ -2,7 +2,8 @@ import { all } from 'redux-saga/effects';
 
 import {
     watchFetchMoviesSaga,
-    watchSearchMoviesSaga
+    watchSearchMoviesSaga,
+    watchLoadInitialMoviesSaga
 } from '../Home/store/Movies/movies.saga';
 import { watchFetchDetailsSaga } from '../Details/store/Details/details.saga';
 import { watchLocationChange } from './router.saga';
@@ -12,6 +13,7 @@ export function* rootSaga() {
         watchFetchMoviesSaga(),
         watchFetchDetailsSaga(),
         watchLocationChange(),
-        watchSearchMoviesSaga()
+        watchSearchMoviesSaga(),
+        watchLoadInitialMoviesSaga()
     ]);
 }

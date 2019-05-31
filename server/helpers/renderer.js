@@ -10,7 +10,7 @@ import { getInitialTemplate } from '../page-template';
 export const renderer = (req, store, context) => {
     const content = renderToString(
         <Provider store={store}>
-            <StaticRouter location={req.path} context={context}>
+            <StaticRouter location={req.url} context={context}>
                 <Switch>{renderRoutes(routes)}</Switch>
             </StaticRouter>
         </Provider>

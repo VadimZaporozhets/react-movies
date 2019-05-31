@@ -8,6 +8,7 @@ import {
     fetchMovies,
     fetchMoviesError,
     fetchMoviesSuccess,
+    loadInitialMovies,
     searchMovies
 } from './movies.actions';
 import { routesPaths } from '../../../routes';
@@ -67,4 +68,42 @@ export function* searchMoviesSaga({ payload }) {
 
 export function* watchSearchMoviesSaga() {
     yield takeLatest(searchMovies.type, searchMoviesSaga);
+}
+
+export function* loadInitialMoviesSaga({ payload }) {
+    try {
+        const { url } = payload;
+        const searchMatch = matchPath(url, routesPaths.SEARCH);
+        const homeMatch = matchPath(url, {
+            path: routesPaths.HOME,
+            exact: true
+        });
+        let search;
+        let searchBy = SEARCH_BY_PARAMS.title;
+
+        if (homeMatch) {
+            put(clearMovies());
+            return;
+        }
+
+        if (searchMatch) {
+            search = searchMatch.params.searchQuery;
+            searchBy = searchMatch.params.searchBy;
+        }
+
+        if (search) {
+            const { data } = yield call(movieService.getMovies, {
+                search,
+                searchBy
+            });
+
+            yield put(fetchMoviesSuccess(data));
+        }
+    } catch (e) {
+        yield put(fetchMoviesError(e));
+    }
+}
+
+export function* watchLoadInitialMoviesSaga() {
+    yield takeLatest(loadInitialMovies.type, loadInitialMoviesSaga);
 }

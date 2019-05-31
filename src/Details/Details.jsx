@@ -102,8 +102,8 @@ const mapStateToProps = state => ({
     similarMovies: selectSimilarMovies(state)
 });
 
-const loadData = async ({ dispatch }, { path }) => {
-    const detailsMatch = matchPath(path, routesPaths.DETAILS);
+const loadData = async ({ dispatch }, { url }) => {
+    const detailsMatch = matchPath(url, routesPaths.DETAILS);
     const detailId = detailsMatch.params.id;
 
     const { data } = await movieService.getMovieById(detailId);

@@ -6,6 +6,7 @@ import { routesPaths } from '../routes';
 
 export const PageNotFound = ({ staticContext = {} }) => {
     staticContext.notFound = true;
+
     return (
         <>
             <Link to={routesPaths.HOME}>Go to Home Page</Link>

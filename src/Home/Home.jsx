@@ -3,29 +3,22 @@ import { object, array, string, bool, func, number } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { matchPath } from 'react-router-dom';
 
 import { MovieTilesPane } from '../components';
 import { SearchPanel } from './SearchPanel';
 import { SortResultsPanel } from './SortResultsPannel';
 import { HomeStyles as styles } from './HomeStyles';
-import { SEARCH_BY_PARAMS, SORT_PARAMS } from '../constants';
+import { SORT_PARAMS } from '../constants';
 import {
     selectMovies,
     selectMoviesFetchError,
     selectMoviesLoading,
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
-import {
-    clearMovies,
-    fetchMoviesSuccess,
-    searchMovies
-} from './store/Movies/movies.actions';
+import { loadInitialMovies, searchMovies } from './store/Movies/movies.actions';
 import { withSortParam } from '../hocs/withSortParam';
 import { withLoading } from '../hocs/withLoading/withLoading';
 import { selectPathname } from '../store/router.selectors';
-import { movieService } from '../api/Movies/movies-api';
-import { routesPaths } from '../routes';
 
 const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
 
@@ -98,32 +91,8 @@ const mapDispatchToProps = {
     searchMovies
 };
 
-const loadData = async ({ dispatch }, { path }) => {
-    const searchMatch = matchPath(path, routesPaths.SEARCH);
-    const homeMatch = matchPath(path, {
-        path: routesPaths.HOME,
-        exact: true
-    });
-    let search;
-    let searchBy = SEARCH_BY_PARAMS.title;
-
-    if (homeMatch) {
-        return dispatch(clearMovies());
-    }
-
-    if (searchMatch) {
-        search = searchMatch.params.searchQuery;
-        searchBy = searchMatch.params.searchBy;
-    }
-
-    if (search) {
-        const { data } = await movieService.getMovies({
-            search,
-            searchBy
-        });
-
-        return dispatch(fetchMoviesSuccess(data));
-    }
+const loadData = ({ dispatch }, { url }) => {
+    return dispatch(loadInitialMovies({ url }));
 };
 
 export const HomeScene = {
