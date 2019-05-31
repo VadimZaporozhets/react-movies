@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { object } from 'prop-types';
 
-import { routes } from '../routes';
+import { routesPaths } from '../routes';
 
-export const PageNotFound = () => (
-    <>
-        <Link to={routes.HOME}>Go to Home Page</Link>
-        <h1>Page not found</h1>
-    </>
-);
+export const PageNotFound = ({ staticContext = {} }) => {
+    staticContext.notFound = true;
+
+    return (
+        <>
+            <Link to={routesPaths.HOME}>Go to Home Page</Link>
+            <h1>Page not found</h1>
+        </>
+    );
+};
+
+PageNotFound.propTypes = {
+    staticContext: object
+};

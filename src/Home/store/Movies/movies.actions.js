@@ -13,3 +13,7 @@ export const fetchMoviesError = MoviesFeature.ActionCreator(
 export const clearMovies = MoviesFeature.ActionCreator('CLEAR_MOVIES');
 
 export const searchMovies = MoviesFeature.ActionCreator('SEARCH_MOVIES');
+
+export const loadInitialMovies = MoviesFeature.ActionCreator(
+    'LOAD_INITIAL_MOVIES'
+);

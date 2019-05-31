@@ -15,7 +15,7 @@ import {
     selectMoviesLoading,
     selectMoviesTotal
 } from './store/Movies/movies.selectors';
-import { searchMovies } from './store/Movies/movies.actions';
+import { loadInitialMovies, searchMovies } from './store/Movies/movies.actions';
 import { withSortParam } from '../hocs/withSortParam';
 import { withLoading } from '../hocs/withLoading/withLoading';
 import { selectPathname } from '../store/router.selectors';
@@ -28,9 +28,11 @@ export class HomeSceneContainer extends Component {
     };
 
     componentDidMount() {
-        const { searchMovies, pathname } = this.props;
+        const { searchMovies, pathname, movies } = this.props;
 
-        searchMovies({ pathname });
+        if (movies.length === 0) {
+            searchMovies({ pathname });
+        }
     }
 
     render() {
@@ -89,11 +91,18 @@ const mapDispatchToProps = {
     searchMovies
 };
 
-export const HomeScene = compose(
-    withSortParam,
-    withStyles(styles),
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )
-)(HomeSceneContainer);
+const loadData = ({ dispatch }, { url }) => {
+    return dispatch(loadInitialMovies({ url }));
+};
+
+export const HomeScene = {
+    component: compose(
+        withSortParam,
+        withStyles(styles),
+        connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )
+    )(HomeSceneContainer),
+    loadData
+};

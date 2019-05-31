@@ -5,6 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import { compose } from 'redux';
+import { matchPath } from 'react-router-dom';
 
 import { MovieTilesPane } from '../components';
 import { BackNavigation } from './BackNavigation';
@@ -20,6 +21,9 @@ import {
     selectSimilarMoviesError
 } from './store/Details/details.selectors';
 import { withLoading } from '../hocs/withLoading/withLoading';
+import { routesPaths } from '../routes';
+import { movieService } from '../api/Movies/movies-api';
+import { fetchDetailsSuccess } from './store/Details/details.actions';
 
 const WithLoadingMovieTilesPane = withLoading(MovieTilesPane);
 const WithLoadingMovieDetails = withLoading(MovieDetails);
@@ -98,7 +102,19 @@ const mapStateToProps = state => ({
     similarMovies: selectSimilarMovies(state)
 });
 
-export const DetailsScene = compose(
-    withStyles(styles),
-    connect(mapStateToProps)
-)(DetailsSceneContainer);
+const loadData = async ({ dispatch }, { url }) => {
+    const detailsMatch = matchPath(url, routesPaths.DETAILS);
+    const detailId = detailsMatch.params.id;
+
+    const { data } = await movieService.getMovieById(detailId);
+
+    return dispatch(fetchDetailsSuccess(data));
+};
+
+export const DetailsScene = {
+    component: compose(
+        withStyles(styles),
+        connect(mapStateToProps)
+    )(DetailsSceneContainer),
+    loadData
+};
